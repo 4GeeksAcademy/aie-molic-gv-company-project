@@ -1,131 +1,127 @@
-# Bienvenido a HealthCore
+# Bienvenido a TrackFlow
 
 ## AI Engineering · 4Geeks Academy — Briefing de empresa
 
 ---
 
-HealthCore es una empresa sanitaria de atención ambulatoria fundada en 2011 en Austin, Texas. Opera una red de **12 clínicas** — 9 en Estados Unidos (Texas, Florida y Georgia) y 3 en el Reino Unido (Londres y Mánchester) — que ofrecen atención primaria, consultas con especialistas, gestión de enfermedades crónicas y programas de salud preventiva. La empresa emplea a unas **200 personas** entre personal clínico, operaciones, administración y una unidad tecnológica en crecimiento. La facturación anual ronda los **28 millones de dólares**.
+TrackFlow es una empresa de logística de última milla y gestión de almacenes fundada en 2009 en Los Ángeles, Estados Unidos. Opera en dos mercados — Estados Unidos y España — con almacenes en Los Ángeles y Zaragoza. La empresa cuenta con unos 130 empleados y factura alrededor de 9 millones de euros anuales.
 
-HealthCore se construyó sobre una idea sencilla: atención de calidad y accesible que no obliga a los pacientes a esperar semanas para una cita ni a navegar por un sistema confuso. Citas en el mismo día, horarios ampliados y personal bilingüe en los mercados estadounidenses se convirtieron en las señas de identidad de la marca. Durante la mayor parte de su historia, eso fue suficiente para crecer de forma constante y ganar una base de pacientes fiel en los dos países.
-
-Ya no es suficiente.
+TrackFlow existe porque las marcas de e-commerce son buenas haciendo y vendiendo productos, pero no haciendo llegar esos productos a la puerta del cliente. Eso es lo que hace TrackFlow por ellas: almacena su inventario, prepara y empaqueta los pedidos, los envía a través de una red de transportistas y gestiona las devoluciones cuando los productos regresan. Para las marcas que trabajan con TrackFlow, toda la operación logística — desde el momento en que se hace un pedido hasta el momento en que se entrega o se devuelve — es responsabilidad de TrackFlow.
 
 ## Cómo está organizada la empresa
 
-HealthCore está liderada por **la Dra. Sandra Okonkwo**, médica que pasó años trabajando dentro de grandes sistemas hospitalarios antes de fundar la empresa, frustrada por el tiempo que los clínicos dedicaban a tareas administrativas en lugar de a los pacientes. Es precisa, orientada a la evidencia y profundamente escéptica con la tecnología que no resuelve un problema real — pero ha llegado a entender que sin sistemas modernos, HealthCore no puede gestionar lo que ya ha construido, y mucho menos seguir creciendo.
+TrackFlow está liderada por **Thomas Harry**, fundador y CEO, con sede en Los Ángeles. La empresa tiene una oficina de tecnología en Zaragoza, España, donde están el CTO Andrés Kim y la mayor parte del equipo técnico. Los equipos de operaciones, comercial y atención al cliente están distribuidos entre los dos países.
 
 La empresa se organiza en las siguientes áreas:
 
-**Operaciones Clínicas** es donde ocurre la medicina. El Dr. Marcus Reid supervisa a unos 120 integrantes del personal clínico — médicos, enfermeras de práctica avanzada, enfermeras y auxiliares — en las 12 sedes. Cada clínica opera de forma relativamente independiente, con sus propios procesos y su propio sistema de historia clínica electrónica. Los centros de EE.UU. y los del Reino Unido utilizan plataformas distintas que no se comunican entre sí.
+**Operaciones de Almacén** es donde ocurre el trabajo físico de la logística. Ana Whitfield supervisa los dos almacenes —uno en Los Ángeles, otro en Zaragoza— y los aproximadamente 70 operarios que los gestionan. Cada día, cientos de pedidos llegan, se recogen de las estanterías, se empaquetan y se entregan a los transportistas. Los dos almacenes funcionan con sistemas distintos y no tienen una visión compartida del inventario.
 
-**Experiencia del Paciente y Acceso** gestiona todo lo que ocurre antes y después del encuentro clínico: reservar citas, recordar a los pacientes, hacer seguimiento y garantizar que el paciente tenga una experiencia fluida desde el primer contacto hasta el alta. Priya Nair lidera esta función desde Londres y es muy consciente de que una tasa de no-shows del 22% en la red representa tanto un fallo con el paciente como una pérdida económica significativa.
+**Última Milla y Gestión de Transportistas** gestiona la relación con los 8 transportistas con los que TrackFlow trabaja en los dos países — entre ellos UPS, FedEx, MRW y SEUR. Carlos Vega coordina qué transportista lleva cada envío, hace seguimiento de las entregas y gestiona las incidencias que inevitablemente ocurren: paquetes perdidos, entregas fallidas, direcciones incorrectas. Hoy, la mayor parte de esto se hace de forma manual, transportista por transportista.
 
-**Ciclo de Ingresos y Facturación** es el área responsable de cobrar por la atención que HealthCore presta. En EE.UU., eso significa navegar por los seguros comerciales, Medicare y Medicaid — un proceso complejo de reclamaciones y reembolsos donde una tasa de rechazo del 14% (más del doble de la media del sector) está costando a la empresa dinero real. En el Reino Unido, la facturación combina pago privado y un pequeño contrato con el NHS. Tom Callahan gestiona ambas corrientes de ingresos, pero sin una visión unificada de ninguna de ellas.
+**Logística Inversa** gestiona lo que ocurre cuando un producto regresa. Sofía Ramos lidera este equipo de cinco personas. Las devoluciones representan entre el 18% y el 25% del volumen total según el cliente y el país, y cada devolución implica una cadena de decisiones — aprobar o rechazar, recoger o no, reacondicionar o desechar — que actualmente pasan todas por revisión humana.
 
-**Cumplimiento y Gobierno del Dato** es lo que mantiene a HealthCore dentro de la ley. Claire Whitfield gestiona las obligaciones de la empresa bajo HIPAA en EE.UU. y UK GDPR en el Reino Unido — dos marcos distintos con reglas diferentes sobre cómo se pueden almacenar, acceder y compartir los datos de los pacientes. Cualquier sistema que HealthCore construya o adopte debe evaluarse bajo esta perspectiva. El equipo de Claire es pequeño, pero su autoridad dentro de la organización es considerable.
+**Atención al Cliente** es la primera línea entre TrackFlow y las personas a las que sirve. Valentina Cruz gestiona 15 agentes en Los Ángeles y Zaragoza que atienden consultas tanto de las marcas (que quieren saber cómo va su operación) como de los consumidores finales (que quieren saber dónde está su paquete). La gran mayoría de las consultas son repetitivas, y ahora mismo cada una de ellas la responde una persona.
 
-**Personas y Fuerza Laboral** gestiona las 200 personas distribuidas en 12 sedes de dos países, cada uno con su propio marco de derecho laboral. Diane Foster se encarga de todo, desde la contratación — los perfiles clínicos son difíciles de cubrir y tardan una media de 47 días en cerrarse — hasta el onboarding, la formación en cumplimiento normativo y el seguimiento de las horas de formación médica continua que los clínicos están legalmente obligados a completar para mantener sus licencias.
+**Comercial y Relación con Clientes** gestiona la cartera de clientes marca de TrackFlow. Miguel Torres lidera a los account managers y al equipo de desarrollo de negocio, responsables de retener a los clientes actuales y ganar nuevos. Los contratos son anuales, y las renovaciones se ganan o se pierden en función de si los clientes sienten que su operación logística está funcionando bien.
 
-**Tecnología** es el equipo encargado de hacer que todo esto funcione. James Osei, el CTO, lidera a seis personas en Austin. Son responsables de un mosaico de sistemas heredados que fueron construidos o adquiridos individualmente para resolver un problema concreto y que nunca se han integrado correctamente. Dos sistemas de historia clínica electrónica distintos. Una plataforma de facturación para EE.UU. Una hoja de cálculo de facturación para el Reino Unido. Un sistema de programación de citas por teléfono en EE.UU. Una agenda manual en el Reino Unido. Ninguna capa de datos compartida entre ninguno de ellos.
+**Tecnología** es el equipo que construye y mantiene todo. Andrés Kim lidera desde Zaragoza a un equipo de desarrolladores, data engineers y personas de sistemas. La arquitectura actual es un patchwork: dos sistemas de almacén distintos, un ERP de principios de los años 2010 e integraciones entre ellos que se construyeron con rapidez y nunca se documentaron bien. Cuando algo falla, el equipo se entera por un mensaje de WhatsApp de alguien en operaciones.
 
-**Dirección Ejecutiva** recae en la Dra. Okonkwo, que recibe informes semanales de cada responsable de área — todos con formatos distintos, a veces contradictorios y siempre basados en datos que llevan varios días de retraso. Gestiona una red clínica de 28 millones de dólares en dos países sin poder responder a una pregunta tan básica como "¿cuál es nuestra tasa de no-shows en la red esta semana?" sin hacer llamadas.
+**Dirección Ejecutiva** recae en Thomas, que gestiona el negocio desde Los Ángeles con un informe semanal consolidado que cada director prepara manualmente — un proceso que consume horas cada domingo por la noche y que aun así entrega datos que ya llevan uno o dos días de antigüedad.
 
 ## Dónde está la empresa hoy
 
-HealthCore ha construido algo genuinamente valioso: una red de clínicas en las que los pacientes confían y en las que el personal clínico quiere trabajar. Pero la infraestructura que sostiene el trabajo clínico no ha crecido al mismo ritmo que la empresa. Las consecuencias van de lo inconveniente a lo serio.
+TrackFlow tiene buenos clientes, un equipo de operaciones competente y una propuesta de valor clara. Lo que le falta es la infraestructura para gestionar una operación logística de dos países a escala. Los dos almacenes no pueden ver el inventario del otro. Los datos de rendimiento de los transportistas no existen en ninguna forma estructurada. Las devoluciones se aprueban o rechazan una por una. Las consultas de los clientes las responden agentes consultando un documento de Word en Google Drive. El CEO toma decisiones basándose en un informe ensamblado a mano.
 
-Los pacientes en EE.UU. reservan por teléfono mientras los del Reino Unido llaman a la recepción — no existe ningún sistema de reservas online compartido. Un quinto de los pacientes no acude a sus citas y no hay ningún sistema de contacto proactivo para prevenirlo. El personal clínico dedica 35 minutos al día a tareas de documentación que la IA podría asistir. Los rechazos de facturación cuestan millones cada año. La formación en cumplimiento se sigue registrando en una hoja de cálculo. Los datos de los pacientes fluyen por sistemas que nunca fueron diseñados para compartir información.
+La consecuencia es que TrackFlow es más lenta, más propensa a errores y menos rentable de lo que necesita ser — y la brecha crece mientras los competidores invierten en automatización.
 
-Operar en el sector sanitario añade una capa de responsabilidad que no existe en otras industrias. Los datos de los pacientes están protegidos por ley — HIPAA en EE.UU., UK GDPR en el Reino Unido. Cada sistema que gestione esos datos debe cumplir estándares legales específicos. Los errores no son solo ineficiencias; en el ámbito sanitario, pueden tener consecuencias para pacientes reales.
+Daniel ha creado una unidad interna llamada **TrackFlow Tech** con un mandato claro: construir los sistemas, las integraciones y las automatizaciones inteligentes que permitan a TrackFlow operar como la empresa logística moderna que necesita ser.
 
-La Dra. Okonkwo ha creado una unidad interna llamada **HealthCore Digital** para construir los sistemas, flujos de trabajo y herramientas inteligentes que permitan a la empresa operar como un proveedor sanitario moderno — seguro, eficiente y genuinamente centrado en el paciente.
-
-**Tú eres parte de esa unidad.**
+**Tú formas parte de esa unidad.**
 
 ---
 
-## Los Departamentos y sus Problemas
+## Los departamentos y sus problemas
 
-### 🏥 Operaciones Clínicas
+### 🚚 Operaciones de almacén
 
-**Director:** Dr. Marcus Reid (~120 integrantes del personal clínico en 12 sedes)
+**Responsable:** Ana Whitfield (~70 operarios + 2 responsables de almacén)
 
-Cada una de las 12 clínicas opera con sus propios procesos y sistema de historia clínica. Las clínicas estadounidenses usan una plataforma EHR, las del Reino Unido usan otra, y no pueden comunicarse entre sí. El personal clínico dedica 35 minutos al día a tareas de documentación que podrían ser asistidas por IA. Cuando un paciente se mueve entre sedes o cruza la frontera EE.UU.-Reino Unido, su historia no le sigue.
+El almacén de Los Ángeles y el de Zaragoza utilizan sistemas de gestión de almacén (SGA) diferentes — uno es software comercial, el otro es una hoja de cálculo avanzada. No existe visibilidad de inventario en tiempo real a nivel global. Los pedidos entrantes llegan por email en formatos distintos según el cliente y se transcriben manualmente. El picking se hace con listas en papel. Las discrepancias de inventario son frecuentes y se detectan tarde.
 
-**Lo que necesitan:** Una API unificada de historia clínica que exponga datos de ambos sistemas EHR, documentación clínica asistida por IA para reducir el tiempo administrativo, visibilidad del historial del paciente entre sedes, y un dashboard de operaciones clínicas que muestre volumen de citas, flujo de pacientes y tiempo de documentación por sede.
-
----
-
-### 🗓️ Experiencia del Paciente y Acceso
-
-**Responsable:** Priya Nair (Londres)
-
-Los pacientes en EE.UU. reservan citas por teléfono. Los pacientes en el Reino Unido llaman a la recepción. No hay ningún sistema de reserva online compartido. Una tasa de no-shows del 22% en la red representa tanto una mala experiencia del paciente como una pérdida económica significativa — aproximadamente 1,8 millones de dólares al año en huecos de cita perdidos. No existe ningún sistema proactivo de contacto para recordar a los pacientes o reprogramar citas de riesgo.
-
-**Lo que necesitan:** Una plataforma de reservas online unificada para ambos mercados, un sistema inteligente de recordatorios de cita con notificaciones por SMS/email/app, un modelo de predicción de no-shows que marque citas de alto riesgo para contacto proactivo, y un dashboard de experiencia del paciente que registre tasas de reserva, no-shows y satisfacción del paciente por sede.
+**Qué necesitan:** Una API de inventario unificada que devuelva el stock en tiempo real de cualquier SKU en cualquiera de los dos almacenes, un pipeline de ingesta de pedidos que parsee los emails automáticamente, un dashboard de operaciones de almacén, y alertas de stock bajo que notifiquen al cliente y al equipo de compras.
 
 ---
 
-### 💰 Ciclo de Ingresos y Facturación
+### 📦 Última milla y gestión de transportistas
 
-**Responsable:** Tom Callahan
+**Responsable:** Carlos Vega (6 coordinadores logísticos)
 
-En EE.UU., una tasa de rechazo de reclamaciones del 14% — más del doble de la media del sector, que ronda el 5-8% — está costando a HealthCore ingresos significativos. Las reclamaciones se envían manualmente con prácticas de codificación inconsistentes entre sedes. En el Reino Unido, la facturación se divide entre pago privado y un pequeño contrato con el NHS, gestionados por separado sin ninguna visión unificada. Tom no puede responder "¿cuál es nuestra tasa de cobro este mes?" sin hacer llamadas.
+TrackFlow trabaja con 8 transportistas en ambos países (UPS, FedEx y DHL en Estados Unidos; MRW, SEUR y DHL en España, más dos transportistas locales). La asignación de transportista por envío es manual. El seguimiento de paquetes obliga a consultar múltiples portales de cada transportista por separado. No hay datos históricos de rendimiento: sin tasa de entrega a tiempo, sin incidencias por ruta, sin coste por kg.
 
-**Lo que necesitan:** Un sistema de revisión de reclamaciones asistido por IA que marque envíos de alto riesgo antes de salir, sugerencias automáticas de codificación basadas en notas clínicas, un dashboard de facturación unificado que muestre las corrientes de ingresos de EE.UU. y Reino Unido en tiempo real, análisis de patrones de rechazo para identificar problemas sistemáticos, y flujos de seguimiento automatizados para reclamaciones rechazadas o impagadas.
-
----
-
-### 🔒 Cumplimiento y Gobierno del Dato
-
-**Responsable:** Claire Whitfield
-
-HealthCore opera bajo dos marcos legales distintos: HIPAA en Estados Unidos y UK GDPR en el Reino Unido. Cada sistema que gestione datos de pacientes debe evaluarse bajo ambos prismas. Los registros de acceso a datos se mantienen por separado en cada sistema EHR. Las pistas de auditoría están incompletas. Cuando un paciente solicita sus datos bajo GDPR o HIPAA, compilarlos requiere trabajo manual en múltiples sistemas.
-
-**Lo que necesitan:** Un dashboard centralizado de monitorización del cumplimiento que muestre patrones de acceso a datos en ambas jurisdicciones, consolidación automática de pistas de auditoría, una herramienta de automatización de solicitudes de datos del paciente que compile registros de todos los sistemas, y un sistema de puntuación de riesgo de cumplimiento que marque posibles violaciones antes de que se conviertan en infracciones.
+**Qué necesitan:** Un motor de selección de transportista que recomiende la opción óptima dado el destino, peso y urgencia; un endpoint unificado de tracking que agregue el estado desde cualquier transportista; un portal de seguimiento público para el destinatario; y un dashboard de rendimiento de transportistas.
 
 ---
 
-### 👥 Personas y Fuerza Laboral
+### 🔄 Logística inversa
 
-**Responsable:** Diane Foster
+**Responsable:** Sofía Ramos (equipo de 5 personas)
 
-Gestionar 200 personas en 12 sedes de dos países, cada uno con su propio marco de derecho laboral, crea una sobrecarga considerable. Los perfiles clínicos son difíciles de cubrir y tardan una media de 47 días en cerrarse — casi 20 días más que los estándares del sector. El onboarding es manual. Las horas de formación médica continua (CME), que los clínicos están legalmente obligados a registrar para mantener sus licencias, se anotan en una hoja de cálculo.
+Las devoluciones representan entre el 18% y el 25% del volumen según cliente y país. Cada devolución pasa por revisión manual — no existen criterios de aprobación automáticos. La inspección del producto devuelto es subjetiva e inconsistente entre operarios. No hay visibilidad sobre qué productos se devuelven más ni por qué.
 
-**Lo que necesitan:** Un portal interno de RR.HH. para solicitudes de vacaciones, gestión de ausencias y consultas de políticas, un flujo de onboarding clínico automatizado con checklists de verificación de credenciales, un sistema de seguimiento de CME con alertas automáticas de caducidad, un dashboard de KPIs de RR.HH. que registre tiempo de contratación, rotación y absentismo por sede y perfil, y un chatbot de RR.HH. que responda preguntas comunes de la plantilla.
+**Qué necesitan:** Un motor de aprobación automática de devoluciones con reglas configurables por cliente, un flujo automatizado de recogida (aprobación → etiqueta → instrucciones al cliente → programación con transportista), un sistema de inspección asistido por IA donde el operario fotografía el producto y la IA clasifica su estado, y un dashboard de devoluciones con análisis de patrones.
+
+---
+
+### 📞 Experiencia del cliente
+
+**Responsable:** Valentina Cruz (15 agentes en Los Ángeles y Zaragoza)
+
+TrackFlow atiende a dos tipos de cliente: las marcas (B2B) que contratan sus servicios y los consumidores finales (B2C) que reciben los paquetes. Los 15 agentes gestionan ambos a través de email, WhatsApp y teléfono sin un sistema unificado de tickets. El 80% de las consultas podría resolverse automáticamente. No hay base de conocimiento. La cobertura fuera del horario de oficina es cero.
+
+**Qué necesitan:** Un agente de CX de primera línea que resuelva automáticamente consultas de seguimiento y estado de devoluciones, una base de conocimiento semántica indexada para RAG, un sistema unificado de tickets, un dashboard de CX en tiempo real, y análisis de sentimiento para detectar clientes frustrados antes de que escalen. El soporte multiidioma (español + inglés) es opcional pero altamente recomendado, empezando por un idioma base.
+
+---
+
+### 🤝 Comercial y relación con clientes
+
+**Responsable:** Miguel Torres (4 account managers + 4 desarrollo de negocio)
+
+Los account managers gestionan sus cuentas en hojas de cálculo personales e hilos de email — no hay CRM. Los informes a clientes son manuales: cada mes un account manager consolida datos de distintos sistemas para enviar a cada cliente un informe en PDF. No hay visibilidad sobre qué clientes corren riesgo de no renovar.
+
+**Qué necesitan:** Integración con CRM con perfil unificado de cliente, informes PDF para clientes generados automáticamente por un agente, un dashboard de salud de cliente con puntuación de riesgo de renovación, alertas a 90 y 30 días del vencimiento del contrato, y un agente comercial que sugiera el servicio y la estructura de precios más relevantes para cada prospecto.
 
 ---
 
 ### 💻 Tecnología
 
-**CTO:** James Osei (equipo de 6 personas en Austin)
+**CTO:** Andrés Kim (equipo de 7 personas en Zaragoza)
 
-El patrimonio tecnológico de HealthCore es un mosaico de sistemas adquiridos o construidos a lo largo de una década: dos plataformas EHR distintas, un sistema de facturación para EE.UU., una hoja de cálculo de facturación para el Reino Unido, un sistema de programación de citas por teléfono en EE.UU. y agendas manuales en el Reino Unido. No hay ninguna capa de datos compartida. Ninguna telemetría. Ningún registro centralizado. Cuando un sistema falla, el equipo se entera cuando una clínica llama para reportarlo.
+La arquitectura tecnológica de TrackFlow es el resultado de años de crecimiento no planificado: dos SGA diferentes, un ERP corporativo de principios de la década de 2010, scripts de Python punto a punto sin documentar, y bases de datos en dos proveedores cloud distintos. No hay telemetría centralizada. Cuando un endpoint falla en Los Ángeles, el equipo de Zaragoza se entera por WhatsApp. Desplegar una nueva funcionalidad lleva entre una y dos semanas.
 
-**Lo que necesitan:** Una API central de HealthCore que unifique datos de pacientes, citas, facturación y personal de ambos sistemas EHR, telemetría y monitorización en tiempo real desde las 12 sedes, un pipeline de datos que alimente dashboards clínicos, operacionales y financieros, chequeos de salud automatizados con alertas, y documentación técnica indexada para búsqueda semántica.
+**Qué necesitan:** Telemetría y logging centralizados de ambos países, un pipeline de datos que alimente todos los dashboards de la empresa, monitorización en tiempo real con alertas automáticas, un agente de documentación técnica, y automatización de tareas de operaciones (backups, health checks, notificaciones de incidencias con contexto).
 
 ---
 
 ### 📊 Dirección Ejecutiva
 
-**CEO:** Dra. Sandra Okonkwo
+**CEO:** Daniel Espinoza
 
-La Dra. Okonkwo gestiona una red sanitaria de 28 millones de dólares en dos países sin un dashboard unificado. Sus decisiones se basan en informes semanales de cada responsable de área — todos con formatos distintos, a veces contradictorios y siempre con varios días de retraso. No puede responder preguntas operacionales básicas como "¿cuál es nuestra tasa de no-shows esta semana?" o "¿qué sede tiene la tasa de rechazo de reclamaciones más alta este mes?" sin hacer llamadas.
+Daniel recibe un informe consolidado cada lunes que sus directores preparan el domingo por la tarde combinando datos de distintos sistemas — 3 o 4 horas de trabajo por director. A las 10 de la mañana del lunes, algunos datos ya tienen dos días de antigüedad. No hay una visión unificada del negocio por país. Las decisiones estratégicas se toman con datos parciales.
 
-**Lo que necesita:** Un dashboard ejecutivo unificado con KPIs en tiempo real de todos los departamentos (volumen de citas, tasa de no-shows, tasa de rechazo de reclamaciones, ingresos por sede, satisfacción del paciente), un informe semanal generado automáticamente entregado cada lunes a las 7am, alertas de umbral para métricas críticas, y un asistente de IA en lenguaje natural que pueda consultar directamente.
+**Qué necesita:** Un dashboard ejecutivo global con KPIs de ambas operaciones en tiempo real (volumen de envíos, tasa de entrega a tiempo, coste operativo, devoluciones, satisfacción del cliente), un informe semanal generado automáticamente los lunes a las 7 de la mañana, comparativas por país, alertas por umbrales, y un asistente de IA al que pueda consultar en lenguaje natural.
 
 ---
 
-## ¿Por qué elegir HealthCore?
+## ¿Por qué elegir TrackFlow?
 
-Elige HealthCore si te atraen:
+Elige TrackFlow si te atraen:
 
-- **Sanidad y datos regulados** — construir sistemas que gestionan información sanitaria protegida bajo HIPAA y UK GDPR, donde los errores tienen consecuencias legales y la privacidad no es negociable.
-- **Operaciones sanitarias transfronterizas** — dos países, dos marcos regulatorios, dos sistemas EHR y una experiencia del paciente unificada que debe funcionar a través de todo ello.
-- **Aplicaciones de IA de alto riesgo** — asistencia a la documentación clínica, predicción de rechazo de reclamaciones y pronóstico de no-shows de citas no son mejoras opcionales; impactan directamente en la atención al paciente y la viabilidad de la empresa.
-- **Sistemas que sirven a pacientes reales** — cada dashboard, API y automatización que construyes existe para ayudar a las personas a recibir la atención sanitaria que necesitan, cuando la necesitan, sin fricciones innecesarias.
+- **Logística y operaciones físicas** — cada línea de código que escribas está conectada a un paquete que se mueve de una estantería de almacén a la puerta de alguien.
+- **Complejidad transfronteriza** — dos países, dos idiomas, dos entornos regulatorios y dos stacks tecnológicos separados que hay que unificar.
+- **Ingeniería de datos en su forma más concreta** — métricas de rendimiento de transportistas, inventario a nivel de SKU, streams de eventos de envío y clasificación de devoluciones son todos estructurados, medibles y visualmente impactantes en dashboards.
+- **Sistemas que funcionan 24/7** — los clientes de TrackFlow no dejan de esperar sus paquetes después de las 18:00. El agente de CX, el portal de seguimiento y el dashboard de operaciones deben estar siempre disponibles.
 
-Los desafíos de IA en HealthCore incluyen procesamiento de lenguaje natural de notas clínicas para sugerencias de códigos de facturación, modelos predictivos para no-shows de citas entrenados con datos multi-sede, sistemas RAG sobre documentación de cumplimiento en dos jurisdicciones y programación inteligente que equilibra las preferencias del paciente con la capacidad de la clínica. Si quieres construir sistemas donde la excelencia técnica se traduce directamente en mejor prestación de atención sanitaria, HealthCore es tu empresa.
+Los retos de IA en TrackFlow incluyen clasificación de estado de productos devueltos por imagen, búsqueda semántica sobre políticas logísticas en dos idiomas, selección inteligente de transportista con recomendaciones explicables, y un agregador de tracking en tiempo real que extrae datos de 8 APIs de transportistas distintas. Si quieres construir sistemas que manejen complejidad del mundo físico a escala, TrackFlow es tu empresa.
 
 ---
 
