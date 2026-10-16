@@ -62,6 +62,8 @@ Antes de ejecutar un comando de un componente, comprueba su README y sus archivo
 
 Al inicio de cada sesión y de nuevo antes de modificar cualquier archivo, lee `memory-bank/projectbrief.md`, `memory-bank/techContext.md` y `memory-bank/progress.md`. Lee también el README de cada carpeta afectada antes de trabajar allí. Comprueba el estado actual de los archivos y conserva cambios preexistentes que no sean tuyos.
 
+Considera siempre activa y de alcance global para todas las tareas del monorepo la regla `.agents/rules/trackflow-development.md`: léela y aplícala al inicio de cada sesión y de nuevo antes de modificar código. Copilot no garantiza la carga automática de reglas ubicadas en `.agents/rules/`; la referencia explícita desde este `AGENTS.md` es el mecanismo de integración de este repositorio.
+
 Trabaja en el alcance autorizado más pequeño. Antes de editar, identifica los archivos afectados y cualquier decisión no resuelta que bloquee la implementación; solicita confirmación cuando sea necesaria. No inventes funcionalidades, tecnologías, decisiones empresariales, comandos ni resultados de pruebas. No amplíes el alcance de una tarea sin autorización.
 
 Actualiza el documento correspondiente del Memory Bank cuando cambie, con evidencia verificable, el alcance o una decisión (`projectbrief.md`), la estructura o una decisión técnica (`techContext.md`), o el estado, avance y tareas pendientes (`progress.md`). Registra las decisiones como confirmadas solo después de su aprobación; conserva las cuestiones no resueltas como pendientes. No modifiques `CONTEXT.md` ni `company-choice.md` para resolver contradicciones sin autorización.
