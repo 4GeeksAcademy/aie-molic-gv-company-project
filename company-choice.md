@@ -1,6 +1,8 @@
 # Elección de empresa
 
-He elegido TrackFlow porque el sector de la logística me llama la atención y me resulta cercano por el trabajo de mi padre, relacionado con clientes y coordinación de envíos. Me interesa aplicar IA y automatización al seguimiento de pedidos, la gestión de inventario, la elección de transportistas y la predicción de incidencias. Además, es un sector nuevo para mí y me parece una buena oportunidad para aprender a trabajar con datos, APIs y procesos logísticos reales.
+He elegido **TrackFlow** porque el sector de la logística me llama la atención y me resulta cercano por el trabajo de mi padre, relacionado con clientes y coordinación de envíos. Me interesa aplicar IA y automatización al seguimiento de pedidos, la gestión de inventario, la elección de transportistas y la predicción de incidencias. Además, es un sector nuevo para mí y me parece una buena oportunidad para aprender a trabajar con datos, APIs y procesos logísticos reales.
+
+Otra razón, más personal que académica, es porque me encantan los videojuegos de logistica y transporte (eurotruck, transport fever, snowrunner.. jeje)
 
 
 ## Departamentos que más me interesan
@@ -9,7 +11,7 @@ He elegido TrackFlow porque el sector de la logística me llama la atención y m
 
 - **Tecnología:** me llama la atención porque implica integrar sistemas distintos, construir pipelines de datos, automatizar procesos y monitorizar el funcionamiento de toda la plataforma.
 
-No obstante, tambine me llama mucho la atención este tercer departamento: 
+No obstante, tambien me llama mucho la atención este tercer departamento: 
 
 - **Comercial y relación con clientes:** me interesa porque permite aplicar IA al análisis de clientes, la predicción del riesgo de pérdida y la automatización de informes y seguimiento comercial.
 
