@@ -1,9 +1,9 @@
 # TASKS 001-website: landing pública de TrackFlow
 
 - **Fecha:** 2026-10-22.
-- **Estado:** definición de tareas; ninguna ejecutada ni completada.
+- **Estado:** T001, T002, T004, T005, T006 y T008–T012 completadas. T003 sigue pendiente por acceso restringido; T007 y T013 están implementadas parcialmente y abiertas por la selección del logo oficial.
 - **Fuentes principales:** [SPEC](spec.md) para requisitos y [PLAN](plan.md) para decisiones técnicas, ambos leídos completos en su versión actual.
-- **Alcance actual:** crear únicamente este documento. No autoriza IMPLEMENT, instalaciones, compilaciones, ejecución de la web, commits ni pushes.
+- **Alcance actual:** IMPLEMENT autorizado para T001–T005 y, posteriormente, solo T006–T013. No autoriza T014 ni fases posteriores, compilar, ejecutar la web ni realizar commits o pushes.
 - **Inventario:** 50 tareas, T001–T050, distribuidas en ocho fases. Los identificadores no se renumerarán al comenzar la implementación.
 
 ## Contexto, precedencia y condiciones previas
@@ -16,7 +16,7 @@ La inspección actual confirma `index.html`, `application.html`, `validation.js`
 
 ### Reglas de ejecución futura
 
-- Todas las tareas están pendientes. Marcar una casilla únicamente después de ejecutar su acción y comprobar su condición de finalización; si está bloqueada, conservarla abierta y registrar el motivo.
+- Las tareas no marcadas permanecen pendientes. Marcar una casilla únicamente después de ejecutar su acción y comprobar su condición de finalización; si está bloqueada, conservarla abierta y registrar el motivo.
 - Las dependencias se refieren a tareas anteriores; son acumulativas. Las fases agrupan responsabilidades, no autorizaciones para ejecutarlas ahora.
 - Las tareas de estructura y estilos se cierran mediante inspección de fuentes cuando así se indique. Esa revisión no acredita comportamiento renderizado: las pruebas de navegador quedan explícitamente en las fases 7 y 8, después de compilar y servir.
 - Durante IMPLEMENT, recompilar al cambiar clases tras T036 y repetir solo la comprobación afectada; no marcar una prueba visual o interactiva por inspección de código. No añadir tests o dependencias de pruebas sin autorización. Respetar el límite de dos intentos de corrección ante errores y comunicar bloqueos.
@@ -29,12 +29,12 @@ En cada tarea, las rutas de implementación se expresan relativas a `uis/website
 
 ## Fase 1 — Preparación técnica (T001–T005)
 
-- [ ] **T001 — Comprobar línea base y límites de edición.** Revisar Git, instrucciones, estructura y contenido real de los tres archivos existentes; identificar cambios ajenos y recursos protegidos.
+- [x] **T001 — Comprobar línea base y límites de edición.** Revisar Git, instrucciones, estructura y contenido real de los tres archivos existentes; identificar cambios ajenos y recursos protegidos.
   - **Archivos:** sin cambios; revisar `index.html`, `application.html`, `validation.js` y estructura del componente.
   - **Dependencias:** ninguna. **Referencias:** RF-08, RNF-02, RNF-10, CA-14, CA-15; PLAN §§1–3, 12.
   - **Finalización:** inventario y cambios previos identificados; queda explícito que el formulario y sus validaciones no se tocarán. Si difiere del PLAN, se comunica antes de implementar la parte afectada.
 
-- [ ] **T002 — Confirmar autorizaciones técnicas antes de IMPLEMENT.** Obtener confirmación para Tailwind 3.4.17 por CLI, http-server 14.1.1, entrada/salida CSS del PLAN y Google Fonts; no inferirla de la creación de TASKS.
+- [x] **T002 — Confirmar autorizaciones técnicas antes de IMPLEMENT.** Obtener confirmación para Tailwind 3.4.17 por CLI, http-server 14.1.1, entrada/salida CSS del PLAN y Google Fonts; no inferirla de la creación de TASKS.
   - **Archivos:** sin cambios de aplicación; autorización registrada en la conversación, sin editar SPEC/PLAN ni Memory Bank.
   - **Dependencias:** T001. **Referencias:** RD-03, RNF-02, RNF-09, RNF-10, CA-11, CA-14; PLAN PT-02, PT-03, PT-05, PT-06 y §12.
   - **Finalización:** decisiones y archivos futuros autorizados explícitamente. Si se rechaza alguna propuesta, detener las tareas dependientes y solicitar revisión autorizada del PLAN, sin inventar otra arquitectura.
@@ -44,54 +44,75 @@ En cada tarea, las rutas de implementación se expresan relativas a `uis/website
   - **Dependencias:** T001. **Referencias:** RD-05, RNF-05, RNF-09, CA-07; PLAN §§9, 12; SPEC DEP-01.
   - **Finalización:** seleccionada por apariencia la variante horizontal legible en fondo oscuro; dimensiones/pesos conocidos, sujetos y alt propuestos comprobados. Si el acceso sigue excluido, no eludirlo ni completar estos datos por suposición; mantener abierta.
 
-- [ ] **T004 — Preparar la entrada mínima de Tailwind.** Crear únicamente las tres directivas estándar de entrada y reservar la ruta de salida compilada; conservar las versiones y el comando de PLAN §10, sin configurar un runner raíz.
+- [x] **T004 — Preparar la entrada mínima de Tailwind.** Crear únicamente las tres directivas estándar de entrada y reservar la ruta de salida compilada; conservar las versiones y el comando de PLAN §10, sin configurar un runner raíz.
   - **Archivos:** crear `assets/css/tailwind.input.css`; todavía no crear manualmente `assets/css/tailwind.css`.
   - **Dependencias:** T002. **Referencias:** RNF-02, CA-11; PLAN PT-02, PT-03, §3 y §10.
   - **Finalización:** entrada con `base`, `components` y `utilities`, sin reglas propias, `@apply`, manifiesto, configuración Tailwind o CSS adicional. La salida se generará en T036, no a mano.
 
-- [ ] **T005 — Preparar el archivo independiente de navegación y contrato de rutas.** Crear el archivo reservado al menú, sin lógica de formulario; fijar los identificadores y rutas que utilizarán HTML y script.
+- [x] **T005 — Preparar el archivo independiente de navegación y contrato de rutas.** Crear el archivo reservado al menú, sin lógica de formulario; fijar los identificadores y rutas que utilizarán HTML y script.
   - **Archivos:** crear `assets/js/navigation.js`; no cargarlo desde HTML hasta disponer de la inicialización de T027.
   - **Dependencias:** T002. **Referencias:** RF-01, RF-08, RNF-04, CA-04, CA-09, CA-15; PLAN PT-04, §§3, 7.
   - **Finalización:** archivo separado de `validation.js`; contrato definido para `contenido`, `inicio`, `servicios`, `cobertura`, `contacto`, botón/panel y rutas `./assets/...` y `./application.html`, sin `<base>` ni prefijos del monorepo.
 
+### Evidencia del bloque T001–T005 (2026-10-22)
+
+- **T001:** rama `website`, árbol de trabajo limpio al comenzar. `index.html`, `application.html` y `validation.js` existen y están vacíos. Se leyeron las reglas global y educativa y ambas skills frontend; no se implementó contenido ni se tocaron archivos del formulario.
+- **T002:** la solicitud de IMPLEMENT autoriza expresamente Tailwind CLI 3.4.17, entrada/salida CSS, http-server 14.1.1, Google Fonts para Manrope/Inter y JavaScript vanilla. Esta confirmación no significa que se hayan descargado o integrado esas herramientas.
+- **T003, pendiente:** el listado confirma los seis SVG y cuatro WebP de SPEC/PLAN. La lectura de `trackflow-horizontal-light.svg` y la visualización de `hero.webp` fueron bloqueadas por la configuración de Copilot. No se intentó eludir la exclusión. Apariencia, dimensiones, pesos, viewBox, variante de logo, sujetos, alt y recortes siguen sin verificar; se requiere acceso permitido o evidencia del desarrollador para completar la tarea.
+- **T004:** creada `uis/website/assets/css/tailwind.input.css` con las tres directivas estándar, sin estilos personalizados. No se generó `tailwind.css`, no se ejecutó compilación ni se instalaron dependencias.
+- **T005:** creado `uis/website/assets/js/navigation.js` únicamente con comentarios de responsabilidad y contrato. Se reservan `menu-toggle` y `menu-panel`, además de los identificadores de secciones de PLAN. No contiene instrucciones ejecutables ni se carga desde HTML; el comportamiento corresponde a T027.
+- **Comprobaciones realizadas:** el editor no detectó errores en ambos archivos. Una comprobación estática con Node.js confirmó las tres directivas, sintaxis JavaScript válida, ausencia de instrucciones ejecutables, identificadores/rutas previstos, tres archivos de código existentes todavía vacíos y ausencia de salida CSS compilada. El control inicial se ajustó para no exigir un salto de línea final; la repetición pasó. `git diff --exit-code HEAD` sobre archivos protegidos no mostró cambios.
+- **Límite:** no se ejecutaron pruebas de interfaz, auditorías ni servidor para este bloque. SPEC, PLAN, recursos, reglas, Memory Bank y SPEC 002 permanecen sin cambios. La preparación independiente de T004/T005 no depende de T003; las tareas posteriores que sí la necesitan continúan bloqueadas.
+
+### Evidencia del bloque T006–T013 (2026-10-23)
+
+- **T006, completada:** `index.html` ahora declara HTML5, `lang="es"`, UTF-8, viewport, título y meta description previstos, hoja Tailwind relativa y landmarks header/nav/main/footer con `main id="contenido"`.
+- **T007, parcial y abierta por T003:** se añadieron la navegación nativa con cuatro destinos, CTA y botón `menu-toggle` asociado a `menu-panel`; los enlaces quedan visibles y el botón `hidden` mientras no haya JavaScript. Como no se reintentó la inspección del logo, el nombre textual TrackFlow es solo un marcador y no se seleccionó ni declaró oficial una variante SVG. Falta sustituirlo por el logo aprobado para cerrar la tarea.
+- **T008, completada:** hero con H1, subtítulo íntegros según RF-02, CTA y ruta `./assets/images/hero.webp`. Imagen con `alt=""` como apoyo decorativo para no inventar una descripción de escena no inspeccionada.
+- **T009, completada en su estructura/contenido:** tres servicios y sus características exactas usan las rutas locales indicadas por la SPEC. Sus imágenes tienen alternativa vacía porque el texto de cada tarjeta comunica la información y no se atribuye un contenido visual no verificado. La inspección visual de recursos sigue pendiente en T003/T039.
+- **T010–T012, completadas:** cobertura y carriers, cuatro beneficios, contactos oficiales, destinos mailto/tel y CTA a `./application.html` añadidos sin datos extra.
+- **T013, parcial y abierta por T003:** footer con descripción limitada, contactos, LinkedIn y copyright literal de 2025. El nombre textual TrackFlow ocupa temporalmente el lugar del logo; falta sustituirlo por la variante oficial verificada.
+- **Validaciones:** diagnóstico del editor sin errores. Parser HTML estándar comprobó doctype/idioma, metadatos, un H1, orden de secciones, encabezados de servicios/mercados/beneficios, las cuatro rutas locales, IDs únicos, CTA/contactos/LinkedIn y copyright. También confirmó que `application.html` y `validation.js` siguen vacíos e intactos y que la landing no carga `validation.js`.
+- **Límites:** no se compilaron clases Tailwind, no se ejecutó servidor, ni se aplicaron estilos de la fase 3. Por ello, las comprobaciones son estructurales: no acreditan apariencia visual, responsive, contraste, funcionamiento interactivo del menú ni carga HTTP de la hoja CSS. No se volvió a intentar T003.
+
 ## Fase 2 — Estructura HTML5 y contenido (T006–T013)
 
-- [ ] **T006 — Crear el documento semántico base.** Incorporar doctype, HTML en español, UTF-8, viewport sin bloqueo de zoom, título/description de PLAN §8 y enlace relativo a la futura salida CSS. Establecer header, nav, main y footer sin contenido inventado.
+- [x] **T006 — Crear el documento semántico base.** Incorporar doctype, HTML en español, UTF-8, viewport sin bloqueo de zoom, título/description de PLAN §8 y enlace relativo a la futura salida CSS. Establecer header, nav, main y footer sin contenido inventado.
   - **Archivos:** modificar `index.html`.
   - **Dependencias:** T004, T005. **Referencias:** RF-01, RNF-01, RNF-07, CA-01, CA-12; PLAN §§3, 4, 8.
   - **Finalización:** inspección de fuentes confirma un `main id="contenido"`, metadatos exactos previstos y landmarks sin duplicados; no incluye frameworks ni carga de `validation.js`.
 
-- [ ] **T007 — Construir header y navegación nativa.** Añadir enlace del logo a Inicio, cuatro enlaces de sección, CTA «Solicitar información», botón Menú y panel controlado con identificadores coincidentes.
+- [ ] **T007 — Construir header y navegación nativa.** Añadir enlace del logo a Inicio, cuatro enlaces de sección, CTA «Solicitar información», botón Menú y panel controlado con identificadores coincidentes. **Parcial:** menú, anclajes y CTA implementados; selección del SVG oficial pendiente de T003.
   - **Archivos:** modificar `index.html`.
   - **Dependencias:** T006, T003. **Referencias:** RF-01, RF-08, RNF-04, CA-04, CA-09; PLAN §§4, 7.
   - **Finalización:** destinos `#inicio`, `#servicios`, `#cobertura`, `#contacto` y `./application.html` correctos; nombre «Navegación principal», botón nativo sin `role="menu"`; enlaces visibles y botón oculto en HTML sin JS. T027 añadirá el comportamiento.
 
-- [ ] **T008 — Incorporar el hero con textos exactos.** Añadir `id="inicio"`, el H1 y subtítulo literales de RF-02, CTA y referencia a la fotografía local, en orden texto–CTA–imagen.
+- [x] **T008 — Incorporar el hero con textos exactos.** Añadir `id="inicio"`, el H1 y subtítulo literales de RF-02, CTA y referencia a la fotografía local, en orden texto–CTA–imagen.
   - **Archivos:** modificar `index.html`.
   - **Dependencias:** T007. **Referencias:** RF-02, RF-08, RD-01, CA-01, CA-04; PLAN §4.
   - **Finalización:** cotejo textual con SPEC sin omisiones, un solo H1 y CTA a `./application.html`; no aparecen overlays de SLA, live o métricas de Stitch.
 
-- [ ] **T009 — Incorporar las tres tarjetas de servicios.** Crear sección con H2, tres artículos con H3 y listas completas: Gestión de Almacenes, Entregas de Última Milla y Logística Inversa; asignar las fotografías indicadas en RF-03.
+- [x] **T009 — Incorporar las tres tarjetas de servicios.** Crear sección con H2, tres artículos con H3 y listas completas: Gestión de Almacenes, Entregas de Última Milla y Logística Inversa; asignar las fotografías indicadas en RF-03.
   - **Archivos:** modificar `index.html`.
   - **Dependencias:** T008, T003. **Referencias:** RF-03, RD-05, RNF-01, CA-02; PLAN §4.
   - **Finalización:** tres características exactas por servicio, mismo orden DOM/visual, rutas `warehouse.webp`, `last-mile.webp`, `reverse-logistics.webp` bajo `./assets/images/`; contenido no oculto tras interacciones.
 
-- [ ] **T010 — Incorporar la cobertura binacional.** Crear dos artículos de mercado con almacén, cobertura y carriers del briefing; mantener solo Los Ángeles y Zaragoza en la representación binacional.
+- [x] **T010 — Incorporar la cobertura binacional.** Crear dos artículos de mercado con almacén, cobertura y carriers del briefing; mantener solo Los Ángeles y Zaragoza en la representación binacional.
   - **Archivos:** modificar `index.html`.
   - **Dependencias:** T009. **Referencias:** RF-04, RNF-01, CA-03, CA-15; PLAN §4.
   - **Finalización:** Estados Unidos incluye cobertura nacional y UPS/FedEx/DHL; España, península e islas y MRW/SEUR/DHL; sin distancias, rutas aéreas, garantías ni «integraciones» añadidas.
 
-- [ ] **T011 — Incorporar los cuatro beneficios corporativos.** Crear sección «Por qué TrackFlow» y lista con operación binacional, más de 130 profesionales, tecnología propia y especialización e-commerce, con sus explicaciones de RF-05.
+- [x] **T011 — Incorporar los cuatro beneficios corporativos.** Crear sección «Por qué TrackFlow» y lista con operación binacional, más de 130 profesionales, tecnología propia y especialización e-commerce, con sus explicaciones de RF-05.
   - **Archivos:** modificar `index.html`.
   - **Dependencias:** T010. **Referencias:** RF-05, RNF-01, CA-03, CA-15; PLAN §4.
   - **Finalización:** cuatro beneficios completos, sin facturación centralizada, horario bilingüe, plataformas concretas o predicción agregadas desde Stitch.
 
-- [ ] **T012 — Incorporar el contacto y CTA comercial.** Añadir sección con email y teléfonos oficiales, enlaces nativos y CTA al formulario.
+- [x] **T012 — Incorporar el contacto y CTA comercial.** Añadir sección con email y teléfonos oficiales, enlaces nativos y CTA al formulario.
   - **Archivos:** modificar `index.html`.
   - **Dependencias:** T011. **Referencias:** RF-06, RF-08, CA-04, CA-05; PLAN §4.
   - **Finalización:** nombres, números visibles y destinos coinciden con RF-06 (`mailto:comercial@trackflow.com`, `tel:+12135550147`, `tel:+34976123456`); sin formulario embebido, horarios ni plazo de respuesta.
 
-- [ ] **T013 — Completar el footer y el orden de contenido.** Añadir logo, descripción limitada al briefing, contactos, LinkedIn y copyright literal de 2025; comprobar la secuencia completa de secciones.
+- [ ] **T013 — Completar el footer y el orden de contenido.** Añadir logo, descripción limitada al briefing, contactos, LinkedIn y copyright literal de 2025; comprobar la secuencia completa de secciones. **Parcial:** contenido y orden implementados; logo oficial pendiente de T003.
   - **Archivos:** modificar `index.html`.
   - **Dependencias:** T012. **Referencias:** RF-01, RF-07, RF-08, CA-01, CA-05, CA-15; PLAN §4.
   - **Finalización:** Header → Hero → Servicios → Cobertura → Por qué TrackFlow → Contacto → Footer; LinkedIn oficial, sin denominación «Inc.», aduanas ni control de flota. Enlace externo en la misma pestaña salvo justificación del comportamiento alternativo y protección correspondiente.
@@ -302,52 +323,52 @@ Son comprobaciones independientes sobre la web servida. Toda corrección regresa
 La cobertura siguiente es **documental**: indica qué tareas implementarán o comprobarán cada criterio, no que este se haya satisfecho.
 
 | Criterio | Implementación/preparación principal | Verificación final |
-| --- | --- | --- |
-| CA-01 | T006–T013, T032 | T041 |
-| CA-02 | T009, T018, T022–T026 | T041, T043 |
-| CA-03 | T010, T011, T019, T020, T024, T025 | T041, T043 |
-| CA-04 | T007, T008, T012, T027–T029 | T042 |
-| CA-05 | T012, T013, T021 | T041, T042 |
-| CA-06 | T014–T021, T025, T031 | T046, T049 |
-| CA-07 | T003, T016–T018, T026, T032, T039 | T046 |
-| CA-08 | T022–T026, T029, T030 | T043, T049 |
-| CA-09 | T007, T027–T030 | T044 |
-| CA-10 | T030–T032 | T044, T048 |
-| CA-11 | T004, T014, T023, T036 | T047 |
-| CA-12 | T006, T033–T035 | T045 |
-| CA-13 | T015, T039, T040 | T048 |
-| CA-14 | T002, T005, T037, T038, T040 | T042, T047, T050 |
-| CA-15 | T001, T005, T010–T013, T019, T027 | T041, T042, T047 |
+| -------- | ------------------------------------ | ------------------ |
+| CA-01    | T006–T013, T032                      | T041               |
+| CA-02    | T009, T018, T022–T026                | T041, T043         |
+| CA-03    | T010, T011, T019, T020, T024, T025   | T041, T043         |
+| CA-04    | T007, T008, T012, T027–T029          | T042               |
+| CA-05    | T012, T013, T021                     | T041, T042         |
+| CA-06    | T014–T021, T025, T031                | T046, T049         |
+| CA-07    | T003, T016–T018, T026, T032, T039    | T046               |
+| CA-08    | T022–T026, T029, T030                | T043, T049         |
+| CA-09    | T007, T027–T030                      | T044               |
+| CA-10    | T030–T032                            | T044, T048         |
+| CA-11    | T004, T014, T023, T036               | T047               |
+| CA-12    | T006, T033–T035                      | T045               |
+| CA-13    | T015, T039, T040                     | T048               |
+| CA-14    | T002, T005, T037, T038, T040         | T042, T047, T050   |
+| CA-15    | T001, T005, T010–T013, T019, T027    | T041, T042, T047   |
 
 ## Cobertura de requisitos y decisiones
 
-| Grupo de SPEC/PLAN | Tareas responsables |
-| --- | --- |
-| RF-01 / PT-01 | T006, T007, T013, T016, T027–T030, T041, T042 |
-| RF-02 | T008, T017, T025, T041 |
-| RF-03 | T009, T018, T022, T024, T025, T041, T043 |
-| RF-04 | T010, T019, T024, T041, T043 |
-| RF-05 | T011, T020, T024, T025, T041, T043 |
-| RF-06 / RF-07 | T012, T013, T021, T041, T042 |
-| RF-08 / PT-04 | T001, T005, T007, T027–T029, T037, T042, T047 |
-| RD-01 / RD-02 / RD-04 | T014, T016–T021, T031, T049 |
-| RD-03 / PT-05 | T002, T015, T017, T025, T039, T046, T049 |
-| RD-05 | T003, T016–T018, T026, T032, T039, T046 |
-| RD-06 / RNF-03 / RNF-06 | T022–T026, T029, T030, T043, T049 |
-| RNF-01 | T006–T013, T032, T035, T041, T044, T045 |
-| RNF-02 / PT-02 / PT-03 | T002, T004, T014, T023–T025, T036, T047 |
-| RNF-04 | T005, T007, T027–T030, T042, T044 |
-| RNF-05 | T003, T030–T032, T044, T046, T048 |
-| RNF-07 / RNF-08 | T006, T033–T035, T045 |
-| RNF-09 | T003, T015, T026, T036, T039, T046–T048 |
-| RNF-10 / PT-06 | T002, T037, T038, T040, T047, T048, T050 |
+| Grupo de SPEC/PLAN      | Tareas responsables                           |
+| ----------------------- | --------------------------------------------- |
+| RF-01 / PT-01           | T006, T007, T013, T016, T027–T030, T041, T042 |
+| RF-02                   | T008, T017, T025, T041                        |
+| RF-03                   | T009, T018, T022, T024, T025, T041, T043      |
+| RF-04                   | T010, T019, T024, T041, T043                  |
+| RF-05                   | T011, T020, T024, T025, T041, T043            |
+| RF-06 / RF-07           | T012, T013, T021, T041, T042                  |
+| RF-08 / PT-04           | T001, T005, T007, T027–T029, T037, T042, T047 |
+| RD-01 / RD-02 / RD-04   | T014, T016–T021, T031, T049                   |
+| RD-03 / PT-05           | T002, T015, T017, T025, T039, T046, T049      |
+| RD-05                   | T003, T016–T018, T026, T032, T039, T046       |
+| RD-06 / RNF-03 / RNF-06 | T022–T026, T029, T030, T043, T049             |
+| RNF-01                  | T006–T013, T032, T035, T041, T044, T045       |
+| RNF-02 / PT-02 / PT-03  | T002, T004, T014, T023–T025, T036, T047       |
+| RNF-04                  | T005, T007, T027–T030, T042, T044             |
+| RNF-05                  | T003, T030–T032, T044, T046, T048             |
+| RNF-07 / RNF-08         | T006, T033–T035, T045                         |
+| RNF-09                  | T003, T015, T026, T036, T039, T046–T048       |
+| RNF-10 / PT-06          | T002, T037, T038, T040, T047, T048, T050      |
 
 ## Dependencias pendientes antes de IMPLEMENT
 
-1. **Autorización expresa de IMPLEMENT:** crear TASKS no permite comenzar ninguna de sus tareas de código o ejecución.
-2. **Confirmación técnica de T002:** herramientas/versiones, dos archivos CSS justificados y proveedor de fuentes según el PLAN, sin instalaciones ahora.
-3. **Verificación permitida de assets en T003:** variante SVG, dimensiones, pesos, sujetos y recortes. No eludir la exclusión ni generar nuevos recursos.
+1. **Autorización del siguiente bloque:** T006–T013 quedaron autorizadas y están implementadas/verificadas según el estado indicado; T014 y posteriores requieren nueva autorización.
+2. **Confirmación técnica de T002, completada:** herramientas/versiones, dos archivos CSS justificados y proveedor de fuentes autorizados para la landing. En este bloque no se instalaron ni integraron; solo se preparó la entrada CSS y la reserva de navegación.
+3. **T003, expresamente aplazada:** no volver a intentar la inspección del SVG ni de las fotografías hasta que el desarrollador habilite un método permitido o aporte evidencia. El texto TrackFlow sigue como marcador provisional del logo; T007 y T013 no se cierran.
 4. **Condiciones de entorno:** acceso npm/fuentes y permiso para URL pública de Codespaces cuando llegue T040; herramientas de evaluación disponibles sin dependencias nuevas no autorizadas.
 5. **Dependencia de SPEC 002:** se acepta aquí el enlace al recurso existente, no un formulario funcional. No añadir campos, validaciones o páginas provisionales para ocultar esa limitación.
 
-El único archivo creado en esta fase es `specs/001-website/tasks.md`. Ninguna prueba de implementación se ha ejecutado y todas las casillas permanecen abiertas. **Detenerse en TASKS; no comenzar IMPLEMENT sin autorización expresa.**
+El bloque T006–T013 añadió estructura y contenido semánticos, pero no estilos ni comportamiento JavaScript del menú. T001, T002, T004–T006 y T008–T012 están verificadas; T003 sigue pendiente y T007/T013 permanecen abiertas por el logo oficial. **Detenerse antes de la fase 3; no avanzar a T014 sin autorización expresa.**
