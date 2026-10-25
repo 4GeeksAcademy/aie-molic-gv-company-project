@@ -6,182 +6,248 @@
 		<title>TrackFlow | Logística e-commerce en Estados Unidos y España</title>
 		<meta name="description" content="Gestión de almacenes, entregas de última milla y logística inversa para marcas de e-commerce en Estados Unidos y España. Solicita información a TrackFlow.">
 		<link rel="stylesheet" href="./assets/css/tailwind.css">
+		<!-- Una sola hoja de fuentes; swap mantiene el texto visible durante la carga. -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700;800&amp;display=swap">
 	</head>
-	<body>
+	<body class="bg-[#F6F5F1] font-['Inter',sans-serif] text-[0.9375rem] leading-6 tracking-normal text-[#03142E]">
 		<!-- Cabecera y navegación principal -->
-		<header>
-			<a href="#inicio" aria-label="TrackFlow, ir al inicio">
-				<!-- TODO(T003): sustituir el nombre por el SVG aprobado tras verificar las variantes. -->
-				<span>TrackFlow</span>
-			</a>
+		<header class="border-b border-[#00DCCF]/20 bg-gradient-to-r from-[#03142E] via-[#06295D] to-[#03142E] text-white">
+			<div class="mx-auto flex w-full max-w-[1440px] flex-col gap-4 px-4 py-4 md:px-8 lg:flex-row lg:items-center lg:gap-6 lg:px-12">
+				<a href="#inicio" aria-label="TrackFlow, ir al inicio" class="inline-flex min-h-12 w-fit items-center rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00CFFF]">
+					<img src="./assets/logos/trackflow-horizontal-light.svg" alt="TrackFlow" width="1130" height="270" class="h-auto w-48 max-w-full sm:w-56">
+				</a>
 
-			<nav aria-label="Navegación principal">
-				<button
-					id="menu-toggle"
-					type="button"
-					aria-controls="menu-panel"
-					aria-expanded="false"
-					hidden
-				>
-					Menú
-				</button>
+				<!-- Sin JavaScript los enlaces permanecen visibles. El disclosure llega en T027. -->
+				<nav aria-label="Navegación principal" class="lg:ml-auto">
+					<button
+						id="menu-toggle"
+						type="button"
+						aria-controls="menu-panel"
+						aria-expanded="false"
+						hidden
+					>
+						Menú
+					</button>
 
-				<div id="menu-panel">
-					<ul>
-						<li><a href="#inicio">Inicio</a></li>
-						<li><a href="#servicios">Servicios</a></li>
-						<li><a href="#cobertura">Cobertura</a></li>
-						<li><a href="#contacto">Contacto</a></li>
-					</ul>
-				</div>
-			</nav>
+					<div id="menu-panel">
+						<ul class="grid grid-cols-2 gap-x-4 gap-y-1 sm:grid-cols-4 lg:flex lg:gap-6">
+							<li><a href="#inicio" class="flex min-h-12 items-center rounded-lg px-2 text-sm font-medium hover:text-[#00DCCF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00CFFF] lg:min-h-11">Inicio</a></li>
+							<li><a href="#servicios" class="flex min-h-12 items-center rounded-lg px-2 text-sm font-medium hover:text-[#00DCCF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00CFFF] lg:min-h-11">Servicios</a></li>
+							<li><a href="#cobertura" class="flex min-h-12 items-center rounded-lg px-2 text-sm font-medium hover:text-[#00DCCF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00CFFF] lg:min-h-11">Cobertura</a></li>
+							<li><a href="#contacto" class="flex min-h-12 items-center rounded-lg px-2 text-sm font-medium hover:text-[#00DCCF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00CFFF] lg:min-h-11">Contacto</a></li>
+						</ul>
+					</div>
+				</nav>
 
-			<a href="./application.html">Solicitar información</a>
+				<a href="./application.html" class="inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-[#0758BD] px-6 py-3 text-center text-sm font-semibold text-white hover:bg-[#06295D] active:bg-[#03142E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00CFFF] sm:w-fit lg:min-h-11">Solicitar información</a>
+			</div>
 		</header>
 
 		<main id="contenido">
 			<!-- Presentación principal -->
-			<section id="inicio" aria-labelledby="titulo-principal">
-				<h1 id="titulo-principal">Logística que escala con tu e-commerce</h1>
-				<p>
+			<section id="inicio" aria-labelledby="titulo-principal" class="mx-auto w-full max-w-[1440px] px-4 py-10 md:px-8 lg:px-12 lg:py-20">
+				<!-- Base móvil: 36/44 px. lg amplía el titular sin cambiar el orden del contenido. -->
+				<h1 id="titulo-principal" class="max-w-3xl font-['Manrope',sans-serif] text-4xl font-extrabold leading-[2.75rem] tracking-normal lg:text-[3.5rem] lg:leading-[4rem]">Logística que escala con tu e-commerce</h1>
+				<p class="mt-6 max-w-3xl text-lg leading-7 text-[#526578]">
 					Gestión de almacenes, entregas de última milla y logística inversa en Estados Unidos y España.
 					Más de 15 años ayudando a marcas de moda, electrónica y cosmética a crecer sin preocuparse por la operación.
 				</p>
-				<a href="./application.html">Solicitar información</a>
+				<a href="./application.html" class="mt-6 inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-[#0758BD] px-6 py-3 text-center font-semibold text-white hover:bg-[#06295D] active:bg-[#03142E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0758BD] sm:w-fit lg:min-h-11">Solicitar información</a>
 
-				<!-- Imagen de apoyo decorativa; la información está en el texto del hero. -->
+				<!-- Dimensiones originales; object-cover recorta sin deformar la fotografía. -->
 				<img
 					src="./assets/images/hero.webp"
-					alt=""
+					alt="Interior de un almacén con estanterías, paquetes y cintas transportadoras."
+					width="960"
+					height="768"
+					class="mt-10 aspect-[4/3] w-full rounded-2xl object-cover object-center md:aspect-video md:max-h-[32rem]"
 					loading="eager"
 					decoding="async"
 				>
 			</section>
 
 			<!-- Servicios de TrackFlow -->
-			<section id="servicios" aria-labelledby="titulo-servicios">
-				<h2 id="titulo-servicios">Servicios</h2>
+			<section id="servicios" aria-labelledby="titulo-servicios" class="mx-auto w-full max-w-[1440px] space-y-6 px-4 py-10 md:px-8 lg:px-12 lg:py-16">
+				<h2 id="titulo-servicios" class="font-['Manrope',sans-serif] text-[1.75rem] font-bold leading-9 lg:text-[2.5rem] lg:leading-[3rem]">Servicios</h2>
 
-				<article>
-					<h3>Gestión de Almacenes</h3>
-					<img
-						src="./assets/images/warehouse.webp"
-						alt=""
-						loading="lazy"
-						decoding="async"
-					>
-					<ul>
-						<li>Almacenamiento, picking y packing</li>
-						<li>Inventario en tiempo real</li>
-						<li>Operamos almacenes en Los Ángeles y Zaragoza</li>
-					</ul>
-				</article>
+				<!-- Servicios: una columna hasta tablet y tres desde lg (1024 px). -->
+				<div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+					<article class="min-w-0 rounded-2xl border border-[#526578]/[0.16] bg-white shadow-[0_1px_3px_rgba(3,20,46,0.04),0_6px_16px_rgba(3,20,46,0.03)]">
+						<img
+							src="./assets/images/warehouse.webp"
+							alt="Operaria escaneando un paquete en un almacén."
+							width="1536" height="1024"
+							loading="lazy" decoding="async"
+							class="aspect-[4/3] w-full rounded-t-2xl object-cover object-center"
+						>
+						<div class="space-y-4 p-6">
+							<h3 class="font-['Manrope',sans-serif] text-2xl font-semibold leading-8">Gestión de Almacenes</h3>
+							<ul class="list-disc space-y-2 pl-5 text-[#526578] marker:text-[#0758BD]">
+								<li>Almacenamiento, picking y packing</li>
+								<li>Inventario en tiempo real</li>
+								<li>Operamos almacenes en Los Ángeles y Zaragoza</li>
+							</ul>
+						</div>
+					</article>
 
-				<article>
-					<h3>Entregas de Última Milla</h3>
-					<img
-						src="./assets/images/last-mile.webp"
-						alt=""
-						loading="lazy"
-						decoding="async"
-					>
-					<ul>
-						<li>Red de carriers certificados en ambos países</li>
-						<li>Seguimiento unificado de envíos</li>
-						<li>Gestión de incidencias y devoluciones</li>
-					</ul>
-				</article>
+					<article class="min-w-0 rounded-2xl border border-[#526578]/[0.16] bg-white shadow-[0_1px_3px_rgba(3,20,46,0.04),0_6px_16px_rgba(3,20,46,0.03)]">
+						<img
+							src="./assets/images/last-mile.webp"
+							alt="Repartidor junto a una furgoneta cargada de cajas."
+							width="1145" height="680"
+							loading="lazy" decoding="async"
+							class="aspect-[4/3] w-full rounded-t-2xl object-cover object-center"
+						>
+						<div class="space-y-4 p-6">
+							<h3 class="font-['Manrope',sans-serif] text-2xl font-semibold leading-8">Entregas de Última Milla</h3>
+							<ul class="list-disc space-y-2 pl-5 text-[#526578] marker:text-[#0758BD]">
+								<li>Red de carriers certificados en ambos países</li>
+								<li>Seguimiento unificado de envíos</li>
+								<li>Gestión de incidencias y devoluciones</li>
+							</ul>
+						</div>
+					</article>
 
-				<article>
-					<h3>Logística Inversa</h3>
-					<img
-						src="./assets/images/reverse-logistics.webp"
-						alt=""
-						loading="lazy"
-						decoding="async"
-					>
-					<ul>
-						<li>Gestión completa de devoluciones</li>
-						<li>Inspección y reacondicionamiento</li>
-						<li>Integración con tu plataforma de ventas</li>
-					</ul>
-				</article>
+					<article class="min-w-0 rounded-2xl border border-[#526578]/[0.16] bg-white shadow-[0_1px_3px_rgba(3,20,46,0.04),0_6px_16px_rgba(3,20,46,0.03)]">
+						<img
+							src="./assets/images/reverse-logistics.webp"
+							alt="Operaria escaneando una zapatilla junto a prendas y cajas."
+							width="1536" height="1024"
+							loading="lazy" decoding="async"
+							class="aspect-[4/3] w-full rounded-t-2xl object-cover object-center"
+						>
+						<div class="space-y-4 p-6">
+							<h3 class="font-['Manrope',sans-serif] text-2xl font-semibold leading-8">Logística Inversa</h3>
+							<ul class="list-disc space-y-2 pl-5 text-[#526578] marker:text-[#0758BD]">
+								<li>Gestión completa de devoluciones</li>
+								<li>Inspección y reacondicionamiento</li>
+								<li>Integración con tu plataforma de ventas</li>
+							</ul>
+						</div>
+					</article>
+				</div>
 			</section>
 
-			<!-- Mercados de operación -->
-			<section id="cobertura" aria-labelledby="titulo-cobertura">
-				<h2 id="titulo-cobertura">Cobertura</h2>
-
-				<article>
-					<h3>Estados Unidos</h3>
-					<ul>
-						<li>Almacén en Los Ángeles</li>
-						<li>Cobertura nacional</li>
-						<li>Carriers: UPS, FedEx, DHL</li>
+			<!-- Presencia binacional: las ciudades indican sedes, no una ruta de transporte. -->
+			<section id="cobertura" aria-labelledby="titulo-cobertura" class="mx-auto w-full max-w-[1440px] space-y-6 px-4 py-10 md:px-8 lg:px-12 lg:py-16">
+				<h2 id="titulo-cobertura" class="font-['Manrope',sans-serif] text-[1.75rem] font-bold leading-9 lg:text-[2.5rem] lg:leading-[3rem]">Cobertura</h2>
+				<div class="rounded-2xl bg-gradient-to-r from-[#03142E] to-[#06295D] p-6 text-white">
+					<ul class="grid grid-cols-1 divide-y divide-white/15 md:grid-cols-2 md:divide-x md:divide-y-0">
+						<li class="pb-6 md:pb-0 md:pr-6">
+							<p class="text-sm font-medium text-[#00DCCF]">Estados Unidos</p>
+							<p class="mt-2 font-['Manrope',sans-serif] text-2xl font-semibold leading-8">Los Ángeles</p>
+						</li>
+						<li class="pt-6 md:pl-6 md:pt-0">
+							<p class="text-sm font-medium text-[#00DCCF]">España</p>
+							<p class="mt-2 font-['Manrope',sans-serif] text-2xl font-semibold leading-8">Zaragoza</p>
+						</li>
 					</ul>
-				</article>
+				</div>
 
-				<article>
-					<h3>España</h3>
-					<ul>
-						<li>Almacén en Zaragoza</li>
-						<li>Cobertura peninsular e islas</li>
-						<li>Carriers: MRW, SEUR, DHL</li>
-					</ul>
-				</article>
+				<div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+					<article class="rounded-2xl border border-[#526578]/[0.16] bg-white p-6">
+						<h3 class="font-['Manrope',sans-serif] text-2xl font-semibold leading-8">Estados Unidos</h3>
+						<ul class="mt-4 space-y-2 text-[#526578]">
+							<li>Almacén en <span class="font-semibold text-[#03142E]">Los Ángeles</span></li>
+							<li>Cobertura nacional</li>
+							<li class="border-t border-[#ECEFF1] pt-4"><span class="font-medium text-[#03142E]">Carriers:</span> UPS, FedEx, DHL</li>
+						</ul>
+					</article>
+					<article class="rounded-2xl border border-[#526578]/[0.16] bg-white p-6">
+						<h3 class="font-['Manrope',sans-serif] text-2xl font-semibold leading-8">España</h3>
+						<ul class="mt-4 space-y-2 text-[#526578]">
+							<li>Almacén en <span class="font-semibold text-[#03142E]">Zaragoza</span></li>
+							<li>Cobertura peninsular e islas</li>
+							<li class="border-t border-[#ECEFF1] pt-4"><span class="font-medium text-[#03142E]">Carriers:</span> MRW, SEUR, DHL</li>
+						</ul>
+					</article>
+				</div>
 			</section>
 
-			<!-- Beneficios corporativos -->
-			<section aria-labelledby="titulo-beneficios">
-				<h2 id="titulo-beneficios">Por qué TrackFlow</h2>
-				<ul>
-					<li>
-						<h3>Operación binacional</h3>
-						<p>El único operador con infraestructura propia en Estados Unidos y España.</p>
+			<!-- Lista editorial continua para diferenciar beneficios de las tarjetas de servicios. -->
+			<section aria-labelledby="titulo-beneficios" class="mx-auto w-full max-w-[1440px] space-y-6 px-4 py-10 md:px-8 lg:px-12 lg:py-16">
+				<h2 id="titulo-beneficios" class="font-['Manrope',sans-serif] text-[1.75rem] font-bold leading-9 lg:text-[2.5rem] lg:leading-[3rem]">Por qué TrackFlow</h2>
+				<ul class="grid grid-cols-1 divide-y divide-[#ECEFF1] rounded-2xl border border-[#526578]/[0.16] bg-white px-6 md:grid-cols-2 md:gap-x-6 md:divide-y-0 lg:grid-cols-4">
+					<li class="flex min-w-0 items-start gap-4 py-6 md:flex-col md:gap-2">
+						<span aria-hidden="true" class="pt-1 text-sm font-semibold tabular-nums text-[#0758BD]">01</span>
+						<div class="min-w-0 space-y-2">
+							<h3 class="font-['Manrope',sans-serif] text-xl font-semibold leading-7">Operación binacional</h3>
+							<p class="text-[#526578]">El único operador con infraestructura propia en Estados Unidos y España.</p>
+						</div>
 					</li>
-					<li>
-						<h3>Más de 130 profesionales</h3>
-						<p>Dedicados a tu logística.</p>
+					<li class="flex min-w-0 items-start gap-4 py-6 md:flex-col md:gap-2">
+						<span aria-hidden="true" class="pt-1 text-sm font-semibold tabular-nums text-[#0758BD]">02</span>
+						<div class="min-w-0 space-y-2">
+							<h3 class="font-['Manrope',sans-serif] text-xl font-semibold leading-7">Más de 130 profesionales</h3>
+							<p class="text-[#526578]">Dedicados a tu logística.</p>
+						</div>
 					</li>
-					<li>
-						<h3>Tecnología propia</h3>
-						<p>Para visibilidad total de tu inventario.</p>
+					<li class="flex min-w-0 items-start gap-4 py-6 md:flex-col md:gap-2">
+						<span aria-hidden="true" class="pt-1 text-sm font-semibold tabular-nums text-[#0758BD]">03</span>
+						<div class="min-w-0 space-y-2">
+							<h3 class="font-['Manrope',sans-serif] text-xl font-semibold leading-7">Tecnología propia</h3>
+							<p class="text-[#526578]">Para visibilidad total de tu inventario.</p>
+						</div>
 					</li>
-					<li>
-						<h3>Especialización e-commerce</h3>
-						<p>En moda, electrónica y cosmética.</p>
+					<li class="flex min-w-0 items-start gap-4 py-6 md:flex-col md:gap-2">
+						<span aria-hidden="true" class="pt-1 text-sm font-semibold tabular-nums text-[#0758BD]">04</span>
+						<div class="min-w-0 space-y-2">
+							<h3 class="font-['Manrope',sans-serif] text-xl font-semibold leading-7">Especialización e-commerce</h3>
+							<p class="text-[#526578]">En moda, electrónica y cosmética.</p>
+						</div>
 					</li>
 				</ul>
 			</section>
 
-			<!-- Contacto comercial -->
-			<section id="contacto" aria-labelledby="titulo-contacto">
-				<h2 id="titulo-contacto">Contacto</h2>
-				<address>
-					<ul>
-						<li><a href="mailto:comercial@trackflow.com">comercial@trackflow.com</a></li>
-						<li>Los Ángeles: <a href="tel:+12135550147">+1 213 555 0147</a></li>
-						<li>Zaragoza: <a href="tel:+34976123456">+34 976 123 456</a></li>
-					</ul>
-				</address>
-				<a href="./application.html">Solicitar información</a>
+			<!-- Franja de contacto en el flujo de la página; no contiene un formulario. -->
+			<section id="contacto" aria-labelledby="titulo-contacto" class="mt-10 bg-gradient-to-r from-[#03142E] via-[#06295D] to-[#03142E] text-white">
+				<div class="mx-auto w-full max-w-[1440px] space-y-6 px-4 py-10 md:px-8 lg:px-12 lg:py-16">
+					<h2 id="titulo-contacto" class="font-['Manrope',sans-serif] text-[1.75rem] font-bold leading-9 lg:text-[2.5rem] lg:leading-[3rem]">Contacto</h2>
+					<address class="not-italic">
+						<ul class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+							<li><a href="mailto:comercial@trackflow.com" class="inline-block min-h-12 max-w-full break-words py-3 rounded-sm underline decoration-white/30 underline-offset-4 hover:text-[#00DCCF] hover:decoration-[#00DCCF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#00CFFF]">comercial@trackflow.com</a></li>
+							<li>
+								<span class="block text-sm text-white/70">Los Ángeles:</span>
+								<a href="tel:+12135550147" class="inline-flex min-h-12 items-center rounded-sm underline decoration-white/30 underline-offset-4 hover:text-[#00DCCF] hover:decoration-[#00DCCF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#00CFFF]">+1 213 555 0147</a>
+							</li>
+							<li>
+								<span class="block text-sm text-white/70">Zaragoza:</span>
+								<a href="tel:+34976123456" class="inline-flex min-h-12 items-center rounded-sm underline decoration-white/30 underline-offset-4 hover:text-[#00DCCF] hover:decoration-[#00DCCF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#00CFFF]">+34 976 123 456</a>
+							</li>
+						</ul>
+					</address>
+					<a href="./application.html"
+						class="inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-[#0758BD] px-6 py-3 text-center font-semibold text-white
+							hover:bg-[#06295D] active:bg-[#03142E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00CFFF] sm:w-fit lg:min-h-11">
+						Solicitar información
+					</a>
+				</div>
 			</section>
 		</main>
 
-		<!-- Información corporativa y enlaces -->
-		<footer>
-			<!-- TODO(T003): sustituir el nombre por el SVG aprobado tras verificar las variantes. -->
-			<p>TrackFlow</p>
-			<p>Gestión de almacenes, entregas de última milla y logística inversa en Estados Unidos y España.</p>
-			<address>
-				<ul>
-					<li><a href="mailto:comercial@trackflow.com">comercial@trackflow.com</a></li>
-					<li>Los Ángeles: <a href="tel:+12135550147">+1 213 555 0147</a></li>
-					<li>Zaragoza: <a href="tel:+34976123456">+34 976 123 456</a></li>
-				</ul>
-			</address>
-			<a href="https://linkedin.com/company/trackflow">LinkedIn</a>
-			<p>© 2025 TrackFlow. Todos los derechos reservados.</p>
+		<!-- Mismo logo claro del navbar, sin alterar sus colores ni proporciones. -->
+		<footer class="border-t border-white/15 bg-[#03142E] text-white">
+			<div class="mx-auto grid w-full max-w-[1440px] grid-cols-1 gap-6 md:grid-cols-2 md:gap-x-10 px-4 py-10 md:px-8 lg:px-12 lg:py-16">
+				<img src="./assets/logos/trackflow-horizontal-light.svg" alt="TrackFlow" width="1130" height="270" class="h-auto w-48 max-w-full sm:w-56">
+				<p class="max-w-xl text-white/80">Gestión de almacenes, entregas de última milla y logística inversa en Estados Unidos y España.</p>
+				<address class="min-w-0 not-italic md:col-start-2 md:row-span-3 md:row-start-1">
+					<ul class="space-y-4">
+						<li><a href="mailto:comercial@trackflow.com" class="inline-block min-h-12 max-w-full break-words py-3 rounded-sm underline decoration-white/30 underline-offset-4 hover:text-[#00DCCF] hover:decoration-[#00DCCF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#00CFFF]">comercial@trackflow.com</a></li>
+						<li>
+							<span class="block text-sm text-white/70">Los Ángeles:</span>
+							<a href="tel:+12135550147" class="inline-flex min-h-12 items-center rounded-sm underline decoration-white/30 underline-offset-4 hover:text-[#00DCCF] hover:decoration-[#00DCCF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#00CFFF]">+1 213 555 0147</a>
+						</li>
+						<li>
+							<span class="block text-sm text-white/70">Zaragoza:</span>
+							<a href="tel:+34976123456" class="inline-flex min-h-12 items-center rounded-sm underline decoration-white/30 underline-offset-4 hover:text-[#00DCCF] hover:decoration-[#00DCCF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#00CFFF]">+34 976 123 456</a>
+						</li>
+					</ul>
+				</address>
+				<a href="https://linkedin.com/company/trackflow" class="inline-flex min-h-12 items-center rounded-sm underline decoration-white/30 underline-offset-4 hover:text-[#00DCCF] hover:decoration-[#00DCCF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#00CFFF]">LinkedIn</a>
+				<p class="border-t border-white/15 pt-6 md:col-span-2 text-sm text-white/70">© 2025 TrackFlow. Todos los derechos reservados.</p>
+			</div>
 		</footer>
 	</body>
 </html>

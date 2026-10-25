@@ -28,6 +28,10 @@ El briefing solicita, como necesidades de negocio:
 
 Estos son requisitos descritos en `CONTEXT.md`; no implican que estén priorizados, aprobados como alcance de un único hito ni implementados.
 
+## Hito web autorizado (2026-10-25)
+
+El desarrollador autoriza la landing estática de `uis/website/` según SPEC/PLAN 001 y, en el bloque actual, resolver T003/T013 e implementar T014–T017. La revisión se detiene después de T017; no incluye formulario, backend ni funcionalidades operativas. Stitch es una referencia visual flexible dentro de los requisitos. Estado y evidencias: [TASKS 001](../specs/001-website/tasks.md).
+
 ## Alcance personal propuesto
 
 `company-choice.md` expresa interés personal por última milla, tecnología y área comercial, y propone como reto un sistema que recomiende el transportista más adecuado según destino, peso, urgencia, coste y rendimiento histórico. También plantea explicar la recomendación al coordinador y, tras su aprobación, permitir que se desencadene el siguiente paso.
@@ -38,4 +42,4 @@ Esta propuesta no sustituye ni reduce los requisitos empresariales anteriores y 
 
 - Fuentes principales: [`CONTEXT.md`](../CONTEXT.md), [`company-choice.md`](../company-choice.md) y la guía de estructura en [`README.md`](../README.md).
 - El briefing contiene una discrepancia sobre quién es el CEO: menciona a Thomas Harry en la introducción y a Daniel Espinoza en la sección de dirección ejecutiva. Pendiente de confirmación; no se modifica la fuente.
-- El repositorio no confirma qué requisitos empresariales formarán el primer alcance, qué datos estarán disponibles ni qué criterios de aceptación operativa se aplicarán.
+- La landing tiene el alcance documental anterior; los requisitos operativos posteriores, sus datos y criterios de aceptación siguen pendientes.

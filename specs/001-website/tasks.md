@@ -1,9 +1,9 @@
 # TASKS 001-website: landing pública de TrackFlow
 
 - **Fecha:** 2026-10-22.
-- **Estado:** T001, T002, T004, T005, T006 y T008–T012 completadas. T003 sigue pendiente por acceso restringido; T007 y T013 están implementadas parcialmente y abiertas por la selección del logo oficial.
+- **Estado (2026-10-25):** T001–T021 completadas en su alcance de implementación. T018–T021 verificadas en Windows a 320 y 375 px. T022–T050 abiertas, incluida T036; la compilación de desarrollo no sustituye su validación final.
 - **Fuentes principales:** [SPEC](spec.md) para requisitos y [PLAN](plan.md) para decisiones técnicas, ambos leídos completos en su versión actual.
-- **Alcance actual:** IMPLEMENT autorizado para T001–T005 y, posteriormente, solo T006–T013. No autoriza T014 ni fases posteriores, compilar, ejecutar la web ni realizar commits o pushes.
+- **Alcance actual:** el desarrollador autoriza exclusivamente T018–T021 y la recompilación de Tailwind 3.4.17 con `npx.cmd`, sin instalar nuevas dependencias. Conservar los cambios previos y el Memory Bank; no adelantar la fase 4 ni el menú JavaScript. Detenerse después de T021. Sin commits ni pushes. Stitch es una referencia flexible dentro de SPEC/PLAN.
 - **Inventario:** 50 tareas, T001–T050, distribuidas en ocho fases. Los identificadores no se renumerarán al comenzar la implementación.
 
 ## Contexto, precedencia y condiciones previas
@@ -39,7 +39,7 @@ En cada tarea, las rutas de implementación se expresan relativas a `uis/website
   - **Dependencias:** T001. **Referencias:** RD-03, RNF-02, RNF-09, RNF-10, CA-11, CA-14; PLAN PT-02, PT-03, PT-05, PT-06 y §12.
   - **Finalización:** decisiones y archivos futuros autorizados explícitamente. Si se rechaza alguna propuesta, detener las tareas dependientes y solicitar revisión autorizada del PLAN, sin inventar otra arquitectura.
 
-- [ ] **T003 — Verificar los recursos por medios permitidos.** Confirmar los seis SVG y cuatro WebP; inspeccionar apariencia, dimensiones, pesos y viewBox mediante acceso permitido o información verificada aportada por el desarrollador.
+- [x] **T003 — Verificar los recursos por medios permitidos.** Confirmar los seis SVG y cuatro WebP; inspeccionar apariencia, dimensiones, pesos y viewBox mediante acceso permitido o información verificada aportada por el desarrollador.
   - **Archivos:** sin cambios; `assets/logos/` y `assets/images/`.
   - **Dependencias:** T001. **Referencias:** RD-05, RNF-05, RNF-09, CA-07; PLAN §§9, 12; SPEC DEP-01.
   - **Finalización:** seleccionada por apariencia la variante horizontal legible en fondo oscuro; dimensiones/pesos conocidos, sujetos y alt propuestos comprobados. Si el acceso sigue excluido, no eludirlo ni completar estos datos por suposición; mantener abierta.
@@ -82,7 +82,7 @@ En cada tarea, las rutas de implementación se expresan relativas a `uis/website
   - **Dependencias:** T004, T005. **Referencias:** RF-01, RNF-01, RNF-07, CA-01, CA-12; PLAN §§3, 4, 8.
   - **Finalización:** inspección de fuentes confirma un `main id="contenido"`, metadatos exactos previstos y landmarks sin duplicados; no incluye frameworks ni carga de `validation.js`.
 
-- [ ] **T007 — Construir header y navegación nativa.** Añadir enlace del logo a Inicio, cuatro enlaces de sección, CTA «Solicitar información», botón Menú y panel controlado con identificadores coincidentes. **Parcial:** menú, anclajes y CTA implementados; selección del SVG oficial pendiente de T003.
+- [x] **T007 — Construir header y navegación nativa.** Añadir enlace del logo a Inicio, cuatro enlaces de sección, CTA «Solicitar información», botón Menú y panel controlado con identificadores coincidentes. **Verificada:** SVG oficial integrado tras T003; comportamiento JavaScript pendiente de T027.
   - **Archivos:** modificar `index.html`.
   - **Dependencias:** T006, T003. **Referencias:** RF-01, RF-08, RNF-04, CA-04, CA-09; PLAN §§4, 7.
   - **Finalización:** destinos `#inicio`, `#servicios`, `#cobertura`, `#contacto` y `./application.html` correctos; nombre «Navegación principal», botón nativo sin `role="menu"`; enlaces visibles y botón oculto en HTML sin JS. T027 añadirá el comportamiento.
@@ -112,7 +112,7 @@ En cada tarea, las rutas de implementación se expresan relativas a `uis/website
   - **Dependencias:** T011. **Referencias:** RF-06, RF-08, CA-04, CA-05; PLAN §4.
   - **Finalización:** nombres, números visibles y destinos coinciden con RF-06 (`mailto:comercial@trackflow.com`, `tel:+12135550147`, `tel:+34976123456`); sin formulario embebido, horarios ni plazo de respuesta.
 
-- [ ] **T013 — Completar el footer y el orden de contenido.** Añadir logo, descripción limitada al briefing, contactos, LinkedIn y copyright literal de 2025; comprobar la secuencia completa de secciones. **Parcial:** contenido y orden implementados; logo oficial pendiente de T003.
+- [x] **T013 — Completar el footer y el orden de contenido.** Añadir logo, descripción limitada al briefing, contactos, LinkedIn y copyright literal de 2025; comprobar la secuencia completa de secciones. **Verificada:** contenido, orden y logo oficial comprobados tras T003.
   - **Archivos:** modificar `index.html`.
   - **Dependencias:** T012. **Referencias:** RF-01, RF-07, RF-08, CA-01, CA-05, CA-15; PLAN §4.
   - **Finalización:** Header → Hero → Servicios → Cobertura → Por qué TrackFlow → Contacto → Footer; LinkedIn oficial, sin denominación «Inc.», aduanas ni control de flota. Enlace externo en la misma pestaña salvo justificación del comportamiento alternativo y protección correspondiente.
@@ -121,69 +121,69 @@ En cada tarea, las rutas de implementación se expresan relativas a `uis/website
 
 Aplicar primero utilidades **base móviles** en estas tareas, con referencia obligatoria a DESIGN y screen.png. Las variantes mayores se añaden en la fase 4; no diseñar primero el escritorio y reducirlo después.
 
-- [ ] **T014 — Aplicar superficies, paleta y ritmo base.** Establecer marfil `#F6F5F1`, blanco y apoyos claros, texto marino/secundario y contenedor de PLAN §5 con ritmo 4/8/16/24/40 px, sin envolver secciones en tarjetas flotantes.
+- [x] **T014 — Aplicar superficies, paleta y ritmo base.** Establecer marfil `#F6F5F1`, blanco y apoyos claros, texto marino/secundario y contenedor de PLAN §5 con ritmo 4/8/16/24/40 px, sin envolver secciones en tarjetas flotantes.
   - **Archivos:** modificar `index.html`.
   - **Dependencias:** T013. **Referencias:** RD-01, RD-02, RD-04, RNF-02, CA-06, CA-11; PLAN §§5, 6.
   - **Finalización:** clases literales base, mayoría de superficies de lectura claras y contenedor flexible con ancho máximo 1440 px; sin paleta alternativa ni CSS manual de componentes.
 
-- [ ] **T015 — Integrar Manrope e Inter con la autorización acordada.** Aplicar PT-05: una hoja Google Fonts con pesos utilizados, `display=swap`, preconexiones y fallback; familias y jerarquías mediante utilidades.
+- [x] **T015 — Integrar Manrope e Inter con la autorización acordada.** Aplicar PT-05: una hoja Google Fonts con pesos utilizados, `display=swap`, preconexiones y fallback; familias y jerarquías mediante utilidades.
   - **Archivos:** modificar `index.html`.
   - **Dependencias:** T014, T002. **Referencias:** RD-03, RNF-06, RNF-09, CA-06, CA-08; PLAN PT-05, §§5, 9.
   - **Finalización:** fuentes/pesos coinciden con PLAN, tracking en 0, tamaños en rem y reflujo sin `vw` ni truncado. Si Google Fonts no está aprobado, no sustituir unilateralmente: tarea bloqueada. La descarga real se comprobará en T039/T046.
 
-- [ ] **T016 — Estilizar logo, navbar oscura y CTA.** Integrar el SVG comprobado y el degradado marino/corporativo con iluminación azul/turquesa suave; aplicar estados previstos y esquinas de controles de 8 px.
+- [x] **T016 — Estilizar logo, navbar oscura y CTA.** Integrar el SVG comprobado y el degradado marino/corporativo con iluminación azul/turquesa suave; aplicar estados previstos y esquinas de controles de 8 px.
   - **Archivos:** modificar `index.html`; logos solo lectura.
   - **Dependencias:** T015, T003. **Referencias:** RF-01, RD-01, RD-02, RD-05, RNF-06, CA-04, CA-06, CA-07; PLAN §5.
   - **Finalización:** logo con nombre TrackFlow, proporción reservada y colores originales; navbar en flujo, sin orbes ni login/selector ES/EN, CTA sin texto recortado y alturas mínimas previstas.
 
-- [ ] **T017 — Estilizar el hero móvil y su fotografía.** Aplicar H1 de 36 px/44 px, subtítulo legible, CTA prominente e imagen debajo del texto, sin tarjeta de hero ni nueva composición dividida.
+- [x] **T017 — Estilizar el hero móvil y su fotografía.** Aplicar H1 de 36 px/44 px, subtítulo legible, CTA prominente e imagen debajo del texto, sin tarjeta de hero ni nueva composición dividida.
   - **Archivos:** modificar `index.html`.
   - **Dependencias:** T016. **Referencias:** RF-02, RD-01, RD-03, RD-05, CA-01, CA-06; PLAN §§4–6, 9.
   - **Finalización:** utilidades base y proporción inicial 4:3 presentes; textos íntegros, ruta hero existente y sin claims superpuestos. La aceptación visual se ejecutará en T049.
 
-- [ ] **T018 — Estilizar las tarjetas de servicios.** Aplicar fotografía, cuerpo claro, padding, borde, sombra nivel 1 y radio de hasta 16 px; conservar listas visibles y alturas flexibles.
+- [x] **T018 — Estilizar las tarjetas de servicios.** Aplicar fotografía, cuerpo claro, padding, borde, sombra nivel 1 y radio de hasta 16 px; conservar listas visibles y alturas flexibles.
   - **Archivos:** modificar `index.html`.
   - **Dependencias:** T017. **Referencias:** RF-03, RD-04, RD-05, CA-02, CA-06; PLAN §§4, 5, 9.
   - **Finalización:** tres tarjetas con patrón coherente y `grid-cols-1` base; ningún texto depende de altura fija, hover o line-clamp para ser visible.
 
-- [ ] **T019 — Estilizar cobertura y sus dos mercados.** Añadir franja binacional oscura y paneles claros; carriers como información, no botones de funciones inexistentes.
+- [x] **T019 — Estilizar cobertura y sus dos mercados.** Añadir franja binacional oscura y paneles claros; carriers como información, no botones de funciones inexistentes.
   - **Archivos:** modificar `index.html`.
   - **Dependencias:** T018. **Referencias:** RF-04, RD-01, RD-02, RD-04, CA-03, CA-06, CA-15; PLAN §§4–6.
   - **Finalización:** utilidades base apilan mercados y ciudades cuando falta espacio; sin indicadores live, distancias, avión ni nuevos datos comerciales.
 
-- [ ] **T020 — Estilizar los cuatro beneficios.** Aplicar jerarquía compacta, superficies y separación coherentes con Stitch, sin tarjetas anidadas ni hero-scale en títulos compactos.
+- [x] **T020 — Estilizar los cuatro beneficios.** Aplicar jerarquía compacta, superficies y separación coherentes con Stitch, sin tarjetas anidadas ni hero-scale en títulos compactos.
   - **Archivos:** modificar `index.html`.
   - **Dependencias:** T019. **Referencias:** RF-05, RD-01, RD-03, RD-04, CA-03, CA-06; PLAN §§4–6.
   - **Finalización:** lista apilada base, padding/radios del sistema y contenido íntegro, sin alterar los cuatro beneficios obligatorios.
 
-- [ ] **T021 — Estilizar contacto y footer oscuros.** Aplicar franja de contacto con CTA, grupos de enlaces flexibles y footer con logo legible, manteniendo superficie y acentos del diseño sin tarjetas dentro de tarjetas.
+- [x] **T021 — Estilizar contacto y footer oscuros.** Aplicar franja de contacto con CTA, grupos de enlaces flexibles y footer con logo legible, manteniendo superficie y acentos del diseño sin tarjetas dentro de tarjetas.
   - **Archivos:** modificar `index.html`.
   - **Dependencias:** T020. **Referencias:** RF-06, RF-07, RD-01, RD-02, RD-04, CA-05, CA-06; PLAN §§4, 5.
   - **Finalización:** clases base con bloques apilados, texto completo y enlaces visibles; decoración no intercepta clics ni se presenta como información operativa.
 
 ## Fase 4 — Mobile-first y responsive (T022–T026)
 
-- [ ] **T022 — Consolidar el diseño base a 320/375 px.** Revisar fuentes HTML/Tailwind para que header compacto, hero vertical, servicios/mercados/beneficios apilados y contactos flexibles no dependan de variantes de escritorio.
+- [x] **T022 — Consolidar el diseño base a 320/375 px.** Revisar fuentes HTML/Tailwind para que header compacto, hero vertical, servicios/mercados/beneficios apilados y contactos flexibles no dependan de variantes de escritorio.
   - **Archivos:** modificar `index.html` si procede.
   - **Dependencias:** T021. **Referencias:** RF-01 a RF-07, RD-06, RNF-03, RNF-06, CA-02, CA-03, CA-08; PLAN §6.
   - **Finalización:** estilos base móviles, márgenes 16 px y anchos flexibles verificables en fuente; preparado el caso 320 px sin ocultación de textos. La prueba renderizada corresponde a T043.
 
-- [ ] **T023 — Añadir ajustes `sm` sin cambiar la estructura.** Desde 640 px, ajustar el ancho intrínseco de CTA y agrupaciones pequeñas donde haya espacio; conservar el orden de lectura.
+- [x] **T023 — Añadir ajustes `sm` sin cambiar la estructura.** Desde 640 px, ajustar el ancho intrínseco de CTA y agrupaciones pequeñas donde haya espacio; conservar el orden de lectura.
   - **Archivos:** modificar `index.html`.
   - **Dependencias:** T022. **Referencias:** RD-06, RNF-02, RNF-03, CA-08, CA-11; PLAN §6.
   - **Finalización:** variantes `sm:` justificadas y sin usar ese prefijo para definir el diseño móvil; no hay anchos de documento fijos.
 
-- [ ] **T024 — Añadir la adaptación tablet a 768 px.** Aplicar márgenes 32 px, cobertura en dos columnas y beneficios en dos; mantener servicios en una columna y menú compacto bajo `lg`.
+- [x] **T024 — Añadir la adaptación tablet a 768 px.** Aplicar márgenes 32 px, cobertura en dos columnas y beneficios en dos; mantener servicios en una columna y menú compacto bajo `lg`.
   - **Archivos:** modificar `index.html`.
   - **Dependencias:** T023. **Referencias:** RF-03 a RF-05, RD-06, RNF-02, RNF-03, CA-02, CA-03, CA-08; PLAN §6.
   - **Finalización:** variantes `md:` reflejan esa distribución, sin forzar los cuatro enlaces y CTA en una fila demasiado estrecha. Prueba de 768 px reservada a T043.
 
-- [ ] **T025 — Añadir escritorio desde 1024 hasta 1440 px.** Aplicar navegación en fila, servicios en tres columnas, beneficios en cuatro, cobertura en dos y márgenes 48 px; H1 de 56 px/64 px, hero aún con fotografía debajo.
+- [x] **T025 — Añadir escritorio desde 1024 hasta 1440 px.** Aplicar navegación en fila, servicios en tres columnas, beneficios en cuatro, cobertura en dos y márgenes 48 px; H1 de 56 px/64 px, hero aún con fotografía debajo.
   - **Archivos:** modificar `index.html`.
   - **Dependencias:** T024. **Referencias:** RF-01 a RF-05, RD-03, RD-06, RNF-03, CA-02, CA-03, CA-06, CA-08; PLAN §§5, 6.
   - **Finalización:** variantes `lg:` y ancho máximo 1440 px coinciden con PLAN; nada cambia el orden DOM ni introduce hero dividido o pantalla completa.
 
-- [ ] **T026 — Preparar reflujo, imágenes fluidas y prevención de overflow.** Aplicar `min-w-0`, wrapping de email, proporciones estables y recortes según T003; revisar los casos 320/375/768/1024/1440 px, zoom y orientación como checklist para T043.
+- [x] **T026 — Preparar reflujo, imágenes fluidas y prevención de overflow.** Aplicar `min-w-0`, wrapping de email, proporciones estables y recortes según T003; revisar los casos 320/375/768/1024/1440 px, zoom y orientación como checklist para T043.
   - **Archivos:** modificar `index.html`.
   - **Dependencias:** T025, T003. **Referencias:** RD-05, RD-06, RNF-03, RNF-06, CA-07, CA-08; PLAN §§6, 9.
   - **Finalización:** fuentes sin `w-screen` en contenedores con padding, sin `overflow-x-hidden` global ni alturas fijas de texto; recorte solo de imagen, no de foco/contenido. No se declara ausencia real de overflow antes de T043.
@@ -365,10 +365,47 @@ La cobertura siguiente es **documental**: indica qué tareas implementarán o co
 
 ## Dependencias pendientes antes de IMPLEMENT
 
-1. **Autorización del siguiente bloque:** T006–T013 quedaron autorizadas y están implementadas/verificadas según el estado indicado; T014 y posteriores requieren nueva autorización.
+1. **Autorización del siguiente bloque:** T018–T021 autorizadas y verificadas el 2026-10-25. T022 y posteriores requieren nueva autorización.
 2. **Confirmación técnica de T002, completada:** herramientas/versiones, dos archivos CSS justificados y proveedor de fuentes autorizados para la landing. En este bloque no se instalaron ni integraron; solo se preparó la entrada CSS y la reserva de navegación.
-3. **T003, expresamente aplazada:** no volver a intentar la inspección del SVG ni de las fotografías hasta que el desarrollador habilite un método permitido o aporte evidencia. El texto TrackFlow sigue como marcador provisional del logo; T007 y T013 no se cierran.
+3. **T003 resuelta:** el desarrollador habilitó expresamente la inspección mediante Windows. Los seis SVG y cuatro WebP se inspeccionaron sin alterarlos; T007 y T013 ya incorporan el logo correspondiente al fondo.
 4. **Condiciones de entorno:** acceso npm/fuentes y permiso para URL pública de Codespaces cuando llegue T040; herramientas de evaluación disponibles sin dependencias nuevas no autorizadas.
 5. **Dependencia de SPEC 002:** se acepta aquí el enlace al recurso existente, no un formulario funcional. No añadir campos, validaciones o páginas provisionales para ocultar esa limitación.
 
-El bloque T006–T013 añadió estructura y contenido semánticos, pero no estilos ni comportamiento JavaScript del menú. T001, T002, T004–T006 y T008–T012 están verificadas; T003 sigue pendiente y T007/T013 permanecen abiertas por el logo oficial. **Detenerse antes de la fase 3; no avanzar a T014 sin autorización expresa.**
+La fase 3 queda implementada hasta T021: tarjetas de servicios, cobertura binacional, beneficios y cierre oscuro de contacto/footer. Los bloques nuevos mantienen una columna base; las distribuciones tablet/escritorio corresponden a la fase 4. El menú JavaScript y el formulario no están implementados. **Detenerse después de T021 para revisión visual.**
+
+## Evidencia del bloque T003/T013 y T014–T017 — 2026-10-25
+
+Inspección expresamente autorizada en Windows: lectura de SVG/viewBox, renderizado de las seis variantes en Chrome y visualización de los cuatro WebP originales. Dimensiones WebP contrastadas con `naturalWidth`/`naturalHeight` del navegador; tamaños en bytes del sistema de archivos.
+
+| Recurso | Dimensiones / viewBox | Bytes | Observación |
+| --- | --- | --- | --- |
+| trackflow-full-dark.svg | 1130 × 270 / 0 0 1130 270 | 2014 | Nombre oscuro y lema; para fondo claro. |
+| trackflow-full-light.svg | 1130 × 270 / 0 0 1130 270 | 2014 | Nombre blanco y lema claro; para fondo oscuro. |
+| trackflow-horizontal-dark.svg | 1130 × 270 / 0 0 1130 270 | 1821 | Nombre oscuro sin lema; integrado en footer claro provisional. |
+| trackflow-horizontal-light.svg | 1130 × 270 / 0 0 1130 270 | 1821 | Nombre blanco sin lema; seleccionado y comprobado sobre navbar marino. |
+| trackflow-symbol-dark.svg | 320 × 270 / 0 0 320 270 | 1622 | Símbolo con trazo oscuro; no sustituye al nombre en navegación. |
+| trackflow-symbol-light.svg | 320 × 270 / 0 0 320 270 | 1622 | Símbolo con trazo claro; no sustituye al nombre en navegación. |
+| hero.webp | 960 × 768 | 214254 | Almacén con estanterías, paquetes, trabajadores y cintas transportadoras. |
+| warehouse.webp | 1536 × 1024 | 185192 | Operaria escaneando un paquete entre estanterías. |
+| last-mile.webp | 1145 × 680 | 81712 | Repartidor junto a furgoneta con cajas; contiene borde negro e icono incrustado arriba a la derecha. Original conservado. |
+| reverse-logistics.webp | 1536 × 1024 | 139940 | Operaria con guantes escaneando una zapatilla junto a prendas y cajas. |
+
+- **Alternativas y recortes (T003):** logo con `alt="TrackFlow"`; hero con descripción del almacén verificado, proporción móvil 4:3 y recorte central, sin deformación. Para las futuras tarjetas se proponen «Operaria escaneando un paquete en un almacén», «Repartidor junto a una furgoneta cargada de cajas» y «Operaria escaneando una zapatilla junto a prendas y cajas». La integración de estos alt/recortes en servicios corresponde al bloque posterior; no se retocan los originales ni se inventa la localización de las escenas.
+- **T007/T013:** logos originales con dimensiones reservadas. Verificados un H1, header → hero → servicios → cobertura → beneficios → contacto → footer; descripción, ambos teléfonos, correo, LinkedIn en la misma pestaña y copyright literal de 2025. Los cuatro anclajes apuntan a IDs existentes y los tres CTA a `./application.html`. Sin Inc., aduanas, control de flota ni contenido nuevo. El menú conserva enlaces visibles y botón oculto hasta T027.
+- **T014/T015:** base marfil, superficies blancas, texto marino, contenedor máximo 1440 px y espaciados 4/8/16/24/40. Una hoja Google Fonts, preconexiones y swap; Manrope 600/700/800 e Inter 400/500/600 comprobadas cargadas en Chrome. Jerarquías con utilidades, tamaños rem y tracking normal.
+- **T016/T017:** navbar en flujo con degradado marino, acento turquesa, logo legible y CTA con hover/active/foco; hero abierto con titular/subtítulo íntegros, CTA y fotografía debajo. Base de 36/44 px y ampliación inicial a 56/64 px desde lg. Sin carruseles, métricas, overlays o nuevas dependencias.
+- **Compilación de desarrollo:** comando de PLAN §10 con `npx.cmd`, Tailwind 3.4.17, salida minificada y Preflight activo. El primer intento restringido se canceló sin salida; la ejecución con permiso fuera del sandbox terminó con código 0. Aviso de caniuse-lite desactualizado, sin actualizar dependencias. T036 permanece abierta.
+- **Revisión local:** CSS 200 en localhost:3000, imágenes cargadas, fuentes reales cargadas y estructura/enlaces inspeccionados. Comprobados 320, 375, 768, 1024 y 1440 px sin desbordamiento horizontal; CTA de header/hero de al menos 48 px móvil y 44 px escritorio. Capturas revisadas en móvil y escritorio. Estas comprobaciones no cierran las auditorías T039–T050, ni validan un formulario funcional.
+- **Límites:** no se implementan tarjetas T018, franja T019, beneficios T020, footer visual T021 ni menú T027. Los bloques posteriores conservan solo estilos base/tipografía. No se modifican originales, formulario, validación, SPEC, PLAN, README plantilla, infraestructura o manifiestos. No se realizan commits ni pushes.
+
+## Evidencia del bloque T018–T021 — 2026-10-25
+
+- **T018:** tres artículos con fotografía original, descripción alternativa basada en T003, dimensiones intrínsecas, marco 4:3, cuerpo blanco con padding de 24 px, borde tenue, radio de 16 px y sombra de nivel 1. Listas con las nueve características íntegras, sin truncado ni alturas fijas de texto. `grid-cols-1` y ancho máximo de lectura de 42rem; no se añaden columnas de escritorio. El borde negro presente en `last-mile.webp` sigue perteneciendo al original y no se ha retocado.
+- **T019:** franja marina con Los Ángeles/Estados Unidos y Zaragoza/España apilados; dos paneles claros conservan almacén, cobertura y carriers oficiales. Los nombres de transportistas son texto informativo, sin enlaces/botones ficticios, rutas, distancias, métricas ni estados live.
+- **T020:** lista continua de cuatro beneficios, separadores suaves, numeración decorativa 01–04 con `aria-hidden`, títulos Manrope de 20/28 px y descripciones completas. Se diferencia de las tarjetas fotográficas sin anidar tarjetas ni añadir claims.
+- **T021:** contacto con degradado marino, CTA azul y enlaces identificables; footer marino con logo `horizontal-light` original, descripción, contactos, LinkedIn y copyright 2025. Bloques base apilados, áreas de enlace de al menos 48 px, foco visible y texto sin recortar. Se mantienen los destinos `mailto:`, `tel:` y los tres CTA a `./application.html`.
+- **Compilación:** mismo comando de PLAN §10 adaptado a `npx.cmd`, Tailwind 3.4.17 existente, código de salida 0. CSS generado de 12280 bytes y Preflight activo; ninguna dependencia nueva ni actualización. Aviso no bloqueante de caniuse-lite desactualizado. T036 permanece abierta.
+- **HTTP:** el servidor existente en localhost:3000 devuelve 200 para landing, CSS (`text/css`), tres fotos de servicios, logo claro y `application.html`. Este último conserva 0 bytes; no hay formulario funcional.
+- **Navegador:** inspección visual de servicios, cobertura, beneficios y contacto/footer; revisión de reflujo a 320/375 px sin desbordamiento horizontal ni texto oculto. Todas las imágenes del documento cargadas. Estilos calculados confirman radio de 16 px, sombra de nivel 1 y footer `rgb(3, 20, 46)`; CTA de contacto de 48 px. Navegación a Servicios activada por teclado. Las listas y destinos coinciden con los contenidos oficiales. Solo se observaron errores ajenos de la extensión Zotero, sin errores de la landing relacionados con este bloque.
+- **Preservación:** comparación con el inicio de la iteración confirma head, header y hero idénticos. Hashes sin cambios en Memory Bank, SPEC, PLAN, seis logos, cuatro fotografías, `application.html`, `validation.js` y `navigation.js`. Solo se editan `index.html`, CSS generado y este registro TASKS. No se añade JavaScript, CSS personalizado ni archivos de configuración.
+- **Pendiente:** fase 4 (T022–T026), menú y accesibilidad completa, SEO y auditorías finales. Las comprobaciones de este bloque no cierran T036 ni T043–T050. Se detiene la implementación en T021 para revisión del desarrollador.
