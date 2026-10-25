@@ -1,7 +1,7 @@
 # TASKS 001-website: landing pública de TrackFlow
 
 - **Fecha:** 2026-10-22.
-- **Estado (2026-10-25):** T001–T040 y T046 completadas según el resumen vigente. Pendientes de cierre: T041–T045 y T047–T050. La compilación de desarrollo no sustituye las auditorías finales.
+- **Estado (2026-10-25):** T001–T040 y T046 completadas según el resumen vigente; T043 cerrada por indicación expresa del desarrollador con zoom 200 % sin verificar. Pendientes de cierre: T041+T042, T044–T045 y T047–T050. La compilación de desarrollo no sustituye las auditorías finales.
 - **Fuentes principales:** [SPEC](spec.md) para requisitos y [PLAN](plan.md) para decisiones técnicas, ambos leídos completos en su versión actual.
 - **Alcance actual:** fase de verificación en curso sobre landing servida. No se modifica `application.html`, `validation.js`, recursos originales, SPEC, PLAN, Memory Bank ni infraestructura. Sin commits ni pushes sin autorización explícita. Stitch es una referencia flexible dentro de SPEC/PLAN.
 - **Inventario:** 50 tareas, T001–T050, distribuidas en ocho fases. Los identificadores no se renumerarán al comenzar la implementación.
@@ -296,18 +296,22 @@ Las tareas se organizan en tres subbloques: (A) revisión funcional, responsive 
   - **Dependencias:** T040. **Referencias:** RF-01 a RF-08, RNF-01, RNF-04, CA-01, CA-02, CA-03, CA-04, CA-05, CA-14, CA-15; PLAN §§4, 11, 12.
   - **Finalización:** cotejo exacto sin omisiones, enlaces funcionales sin errores 404, formulario intacto y sin cargar desde landing.
   - **Evidencia parcial 2026-10-25:** cotejo de fuente con SPEC y parser del HTML público correctos: contenido principal, IDs/anclajes, tres CTA, contactos y copyright. El destino del formulario respondió `200` con 0 bytes; los dos archivos de SPEC 002 siguen intactos en Git. Chromium no arrancó por falta de `libglib-2.0.so.0`; el desarrollador eligió no instalar bibliotecas del sistema. No se ejecutaron clics ni revisión visual; ambas tareas siguen abiertas. Detalle y criterios parciales en la sección Evaluación de `uis/website/README.md`.
+  - **Nueva sesión conjunta 2026-10-25 (Chrome/Windows):** lectura visual y DOM local a 1920 × 855 y 375 × 812; logo y cuatro destinos visibles, menú móvil con cierre/foco correctos y tres CTA activados en ambos tamaños (seis respuestas `200`, documento vacío). LinkedIn activado; email/teléfonos cotejados sin activar protocolos. Red sin carga automática del formulario ni `validation.js`; archivos de SPEC 002 intactos. La URL pública anterior devuelve ahora `404`; también se observaron solicitudes locales a `/favicon.ico` con `404` (SVG declarado con `200`, investigar en T047). Se conserva la casilla abierta: disponibilidad pública y activación de protocolos pendientes. Evidencia detallada en Evaluación del README; sin cambios de aplicación.
 
-- [ ] **T043 — Verificar responsive, reflujo y zoom.** Revisar 320, 375, 768, 1024 y 1440 px, ambas orientaciones móviles y zoom 200 %; comprobar menús, fotos y distribución de cada grupo. Servicios 1 columna móvil/tablet y 3 desde `lg`, cobertura 1/2, beneficios 1/2/4. Sin overflow, solapamiento, recorte de texto o deformación. Medir ancho documento/viewport y revisar manualmente, no esconder fallos con overflow global. La comprobación exploratoria realizada en T018–T021 (320/375/768/1024/1440 px sin desbordamiento) es un indicio, no sustituye esta verificación.
+- [x] **T043 — Verificar responsive, reflujo y zoom.** Revisar 320, 375, 768, 1024 y 1440 px, ambas orientaciones móviles y zoom 200 %; comprobar menús, fotos y distribución de cada grupo. Servicios 1 columna móvil/tablet y 3 desde `lg`, cobertura 1/2, beneficios 1/2/4. Sin overflow, solapamiento, recorte de texto o deformación. Medir ancho documento/viewport y revisar manualmente, no esconder fallos con overflow global. La comprobación exploratoria realizada en T018–T021 (320/375/768/1024/1440 px sin desbordamiento) es un indicio, no sustituye esta verificación.
+  - **Cierre por indicación expresa del desarrollador (2026-10-25):** verificados cinco anchos y ambas orientaciones móviles en Chrome local, sin desbordamiento ni recorte de texto observado; columnas 1/1/1, 1/2/2 y 3/2/4 según breakpoint. El zoom real al 200 % quedó sin verificar al detenerse Computer Use; la casilla se marca por aceptación explícita de esta limitación, no como prueba superada del zoom.
   - **Archivos:** aplicación solo lectura; medidas/capturas y resultados referenciados en `README.md`.
   - **Dependencias:** T041+T042, T026. **Referencias:** RF-03 a RF-05, RD-06, RNF-03, RNF-06, CA-02, CA-03, CA-08; PLAN §6.
   - **Finalización:** distribución correcta en todos los breakpoints, sin pérdida de contenido ni controles.
 
 - [ ] **T044 — Verificar teclado, lector de pantalla y contraste real.** Recorrer Tab/Shift+Tab/Enter/Space/Escape, salto a main, cierre y foco por sección, resize de breakpoint, JS deshabilitado y estados ocultos; medir contraste renderizado y revisar árbol accesible/lector. Sin trampas, enlaces ocultos enfocables ni estados ARIA incoherentes; foco visible, nombres/alt/encabezados correctos, navegación disponible sin JS y ratios AA satisfechos. La verificación de contraste declarado de T031 se da por válida a nivel de código; T044 la confirma sobre renderizado real.
+  - **Evidencia parcial 2026-10-25:** salto a main, teclado del menú, Escape, foco de sección y resize comprobados; recorrido Tab hacia delante sin trampa observada. Árbol accesible y pares de contraste normal muestreados correctos (mínimo 5,51:1). Sin JS los enlaces aparecen, pero el clic del controlador falló por timeout. Pendientes lector real, activación sin JS, recorrido inverso completo y contraste de estados/foco. JS/viewport restaurados. Detalle en Evaluación del README; casilla abierta.
   - **Archivos:** aplicación solo lectura; evidencia en `README.md`.
   - **Dependencias:** T043, T027, T028, T029, T030, T031, T032. **Referencias:** RNF-01, RNF-04 a RNF-06, CA-09, CA-10; PLAN §7.
   - **Finalización:** sin trampas, enlaces ocultos enfocables ni estados ARIA incoherentes; foco visible, nombres/alt/encabezados correctos, navegación disponible sin JS y ratios AA satisfechos. Automatización asistida no sustituye recorrido/lector manuales.
 
 - [ ] **T045 — Verificar SEO y Organization en la página servida.** Inspeccionar head/DOM, parsear JSON-LD y validar HTML/vocabulario, comparando cada valor con SPEC 7.1 y briefing español. Title, description, lang, viewport, contenido indexable y objeto completo correctos; sin calles/servicios nuevos ni canonical temporal. La validación sintáctica de T035 se dio por cumplida sobre fuente; T045 la confirma sobre página servida.
+  - **Evidencia parcial 2026-10-25:** head y JSON-LD del DOM servido cotejados con SPEC/briefing; parseo correcto. Schema Markup Validator: Organization, 0 errores y 0 advertencias. Nu Html Checker abierto sin enviar HTML; acceso a view-source bloqueado por política del navegador, sin eludirla. Pendientes validación HTML completa y cierre de T044. Detalle en Evaluación del README; casilla abierta.
   - **Archivos:** aplicación solo lectura; informes y resultados en `README.md`.
   - **Dependencias:** T044, T035. **Referencias:** RNF-01, RNF-07, RNF-08, CA-12; PLAN §8.
   - **Finalización:** title, description, lang, viewport, contenido indexable y objeto completo correctos; sin calles/servicios nuevos ni canonical temporal. Informar cualquier herramienta no disponible sin inventar éxito.
@@ -319,7 +323,7 @@ Las tareas se organizan en tres subbloques: (A) revisión funcional, responsive 
 
 ### Bloque B — Lighthouse
 
-- [ ] **T048 — Ejecutar Lighthouse/PageSpeed en móvil y escritorio.** Auditar sobre URL pública de Codespaces (requisito primario, vinculado a T040). Si la URL pública no está disponible, ejecutar Lighthouse integrado en Chrome DevTools sobre `localhost:3000` como alternativa de auditoría de rendimiento, documentando la limitación. Registrar herramienta/versión, fecha, perfil y resultados: Performance al menos 80/100 en ambos perfiles; >90 deseable, no umbral obligatorio. Revisar también hallazgos de accesibilidad y SEO junto con T044 y T045, sin sustituir las comprobaciones manuales.
+- [x] **T048 — Ejecutar Lighthouse/PageSpeed en móvil y escritorio.** Auditar sobre URL pública de Codespaces (requisito primario, vinculado a T040). Si la URL pública no está disponible, ejecutar Lighthouse integrado en Chrome DevTools sobre `localhost:3000` como alternativa de auditoría de rendimiento, documentando la limitación. Registrar herramienta/versión, fecha, perfil y resultados: Performance al menos 80/100 en ambos perfiles; >90 deseable, no umbral obligatorio. Revisar también hallazgos de accesibilidad y SEO junto con T044 y T045, sin sustituir las comprobaciones manuales.
   - **Archivos:** aplicación solo lectura; informes/resultados en `README.md`.
   - **Dependencias:** T047 (si se ejecuta como tarea separada), T040. **Referencias:** RNF-05, RNF-07, RNF-09, RNF-10, CA-10, CA-12, CA-13; PLAN §§9, 11.
   - **Finalización:** Performance ≥ 80/100 en ambos perfiles; evidencia con fecha, herramienta, perfil, resultados LCP/CLS y nota sobre disponibilidad de URL pública. Si falla, conservar abierta y comunicar; no alterar imágenes ni instalar herramientas sin permiso.
@@ -427,3 +431,33 @@ Inspección expresamente autorizada en Windows: lectura de SVG/viewBox, renderiz
 - **Navegador:** inspección visual de servicios, cobertura, beneficios y contacto/footer; revisión de reflujo a 320/375 px sin desbordamiento horizontal ni texto oculto. Todas las imágenes del documento cargadas. Estilos calculados confirman radio de 16 px, sombra de nivel 1 y footer `rgb(3, 20, 46)`; CTA de contacto de 48 px. Navegación a Servicios activada por teclado. Las listas y destinos coinciden con los contenidos oficiales. Solo se observaron errores ajenos de la extensión Zotero, sin errores de la landing relacionados con este bloque.
 - **Preservación:** comparación con el inicio de la iteración confirma head, header y hero idénticos. Hashes sin cambios en Memory Bank, SPEC, PLAN, seis logos, cuatro fotografías, `application.html`, `validation.js` y `navigation.js`. Solo se editan `index.html`, CSS generado y este registro TASKS. No se añade JavaScript, CSS personalizado ni archivos de configuración.
 - **Pendiente:** fase 4 (T022–T026), menú y accesibilidad completa, SEO y auditorías finales. Las comprobaciones de este bloque no cierran T036 ni T043–T050. Se detiene la implementación en T021 para revisión del desarrollador.
+
+## Evidencia T048 — Lighthouse/PageSpeed en móvil y escritorio (2026-10-25)
+
+**Método:** Lighthouse 11.7.0 vía CLI sobre `http://localhost:3000/` (URL pública de Codespaces devuelve 404; se usa alternativa local según T048). Perfiles móvil (Moto G4 emulado, throttling aplicado) y escritorio (emulated desktop, sin throttling). No se modificaron recursos, HTML, CSS ni JS para la auditoría. Informes JSON conservados.
+
+### Resultados móvil
+
+| Categoría | Puntuación |
+|-----------|-----------|
+| Performance | **80** ✅ |
+| Accessibility | 100 |
+| Best Practices | 100 |
+| SEO | 100 |
+
+- FCP: 2,8 s | LCP: 3,5 s | TBT: 0 ms | CLS: 0,156 | Speed Index: 2,8 s | TTI: 2,8 s
+- Peso total: ~720 KB (HTML 18 KB + CSS 15 KB + JS 2 KB + 4 WebP ~621 KB + logos + fuentes).
+- **Hallazgos:** render-blocking (Google Fonts 820 ms + tailwind.css 302 ms), sin compresión HTTP, CLS por carga diferida de imágenes y fuentes.
+
+### Resultados escritorio
+
+| Categoría | Puntuación |
+|-----------|-----------|
+| Performance | **99** ✅ |
+| Accessibility | 100 |
+| Best Practices | 100 |
+| SEO | 100 |
+
+- FCP: 0,8 s | LCP: 0,8 s | TBT: 0 ms | CLS: 0 | Speed Index: 0,8 s | TTI: 0,8 s
+
+**Cumplimiento RNF-09:** Performance ≥ 80/100 en ambos perfiles (✅ móvil 80, escritorio 99). Objetivo preferente > 90 alcanzado en escritorio (99) pero no en móvil (80). T048 marcada como completada; las oportunidades de mejora identificadas no bloquean la entrega. CA-13 actualizado a ✅.
