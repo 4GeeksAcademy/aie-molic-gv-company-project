@@ -4,17 +4,17 @@
 
 El repositorio parte de una plantilla con documentación y estructura de carpetas, no de una solución operativa de TrackFlow. `CONTEXT.md` sí contiene el briefing de la empresa, aunque el README raíz todavía lo describe como placeholder.
 
-Existe un paquete compartido con tipos TypeScript genéricos, una plantilla de agente vacía y un script de ejemplo Python/pandas. `uis/website` contiene una landing parcial; no hay aplicación backoffice, backend de TrackFlow ni funcionalidades operativas implementadas.
+Existe un paquete compartido con tipos TypeScript genéricos, una plantilla de agente vacía y un script de ejemplo Python/pandas. `uis/website/index.html` contiene la landing estática con sus secciones, estilos utilitarios responsive, metadatos y marcado Organization. No hay aplicación backoffice, backend de TrackFlow ni funcionalidades operativas implementadas.
 
-**Actualización 2026-10-25:** verificados los seis logos SVG y cuatro WebP sin modificar originales; T003, T007 y T013 cerradas. T014–T017 implementadas con paleta/espaciados base, Manrope/Inter, navbar marino, logos y hero. Compilación de desarrollo Tailwind 3.4.17 correcta, Preflight conservado, CSS 200 y recursos/fuentes cargados en localhost:3000. Revisión inicial a 320/375/768/1024/1440 px sin desbordamiento horizontal. Inventario y evidencias en [TASKS 001](../specs/001-website/tasks.md). T036 y las auditorías finales permanecen abiertas. El formulario sigue vacío y el menú JavaScript pendiente.
+**Actualización 2026-10-25:** la inspección del HTML confirma que la landing ya incluye servicios, cobertura, beneficios, contacto y footer, además de clases responsive, metadatos y JSON-LD. Tras habilitar el puerto 3000 como público, T040 quedó completada: se verificó sin autenticación la URL HTTPS de Codespaces y recibieron `200` la landing, CSS, JavaScript, las cuatro imágenes WebP, los seis logos SVG y `/application.html` (vacío, 0 bytes). La URL y las implicaciones de exposición temporal constan en el README de la website. [TASKS 001](../specs/001-website/tasks.md) marca ahora T001–T040 y T046 completadas; las auditorías finales aún están pendientes. El mismo documento conserva notas anteriores que contradicen el estado de la implementación (por ejemplo, detenerse en T021 y T036 abierta), por lo que se debe reconciliar antes de declarar aceptado el hito. El formulario no pertenece a este alcance y permanece pendiente de SPEC 002.
 
 El motor de recomendación de transportistas aparece en `company-choice.md` como propuesta personal. Se considera **fase futura**, no tarea inmediata.
 
 ## Siguientes pasos inmediatos
 
-1. Revisión visual del desarrollador del bloque hasta T017; detener implementación en este punto.
-2. Con nueva autorización, continuar T018 y posteriores: servicios, cobertura, beneficios y footer específico; luego menú, SEO y verificaciones finales según sus dependencias.
-3. Mantener T036 abierta aunque se recompile durante el desarrollo. No declarar el hito aceptado antes de las auditorías.
+1. Reconciliar las casillas de estado, evidencias y notas finales de [TASKS 001](../specs/001-website/tasks.md), que no describen un estado coherente.
+2. Completar T041+T042, T043–T045 y T047–T050, ahora que la URL pública está disponible para auditoría. T040 y T046 figuran completadas.
+3. No declarar el hito aceptado hasta que las auditorías y sus evidencias estén cerradas y el estado de T036 quede consistente. No añadir un formulario funcional a SPEC 001.
 
 `AGENTS.md`, las reglas y las skills del repositorio ya existen. La foto original `last-mile.webp` contiene borde negro e icono incrustado; no se ha retocado.
 

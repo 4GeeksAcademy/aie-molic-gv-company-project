@@ -30,7 +30,7 @@ Estos son requisitos descritos en `CONTEXT.md`; no implican que estén priorizad
 
 ## Hito web autorizado (2026-10-25)
 
-El desarrollador autoriza la landing estática de `uis/website/` según SPEC/PLAN 001 y, en el bloque actual, resolver T003/T013 e implementar T014–T017. La revisión se detiene después de T017; no incluye formulario, backend ni funcionalidades operativas. Stitch es una referencia visual flexible dentro de los requisitos. Estado y evidencias: [TASKS 001](../specs/001-website/tasks.md).
+El alcance de SPEC/PLAN 001 es la landing estática de `uis/website/`, sin formulario funcional, backend ni funcionalidades operativas; Stitch es una referencia visual flexible dentro de los requisitos. El `index.html` actual contiene las secciones de la landing, utilidades responsive, metadatos y marcado Organization. El estado de implementación y sus evidencias se registran en [TASKS 001](../specs/001-website/tasks.md), cuyo resumen marca T001–T039 y T046 completadas; sin embargo, sus notas finales todavía dicen que el trabajo se detuvo en T021 y que T036, la fase responsive, el menú y auditorías siguen pendientes. Por esta contradicción, no se considera aceptado el hito ni se da por resuelto el estado de validación hasta reconciliar ese registro.
 
 ## Alcance personal propuesto
 

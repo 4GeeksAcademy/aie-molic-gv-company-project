@@ -1,7 +1,7 @@
 # TASKS 001-website: landing pública de TrackFlow
 
 - **Fecha:** 2026-10-22.
-- **Estado (2026-10-25):** T001–T039 y T046 completadas. Pendientes: T040 (Fase 7) y T041–T050 (Fase 8, salvo T046 ya ejecutada). La compilación de desarrollo no sustituye la validación final sobre URL pública.
+- **Estado (2026-10-25):** T001–T040 y T046 completadas según el resumen vigente. Pendientes de cierre: T041–T045 y T047–T050. La compilación de desarrollo no sustituye las auditorías finales.
 - **Fuentes principales:** [SPEC](spec.md) para requisitos y [PLAN](plan.md) para decisiones técnicas, ambos leídos completos en su versión actual.
 - **Alcance actual:** fase de verificación en curso sobre landing servida. No se modifica `application.html`, `validation.js`, recursos originales, SPEC, PLAN, Memory Bank ni infraestructura. Sin commits ni pushes sin autorización explícita. Stitch es una referencia flexible dentro de SPEC/PLAN.
 - **Inventario:** 50 tareas, T001–T050, distribuidas en ocho fases. Los identificadores no se renumerarán al comenzar la implementación.
@@ -275,10 +275,11 @@ Este bloque prepara la infraestructura de verificación: compilación Tailwind, 
   - **Dependencias:** T039, T038, T015. **Referencias:** RD-03, RD-05, RNF-03, RNF-05, RNF-09, CA-06, CA-07, CA-08, CA-13; PLAN §9.
   - **Finalización:** ✅ logos correctos sobre fondos oscuros, fuentes reales cargadas, favicon añadido desde SVG oficial.
 
-- [ ] **T040 — Comprobar Codespaces y preparar auditoría pública.** Seguir README desde raíz, reenviar puerto y solicitar permiso de visibilidad pública; copiar URL real HTTPS y comprobar acceso sin sesión. Si la política del entorno o la falta de Codespaces impide la exposición pública, registrar el bloqueo explícitamente en `README.md` como limitación, sin declarar CA-13/CA-14 cumplidos solo por Lighthouse local. Lighthouse local puede utilizarse como alternativa de auditoría de rendimiento (T048), pero no acredita automáticamente el requisito de URL pública.
+- [x] **T040 — Comprobar Codespaces y preparar auditoría pública.** Seguir README desde raíz, reenviar puerto y solicitar permiso de visibilidad pública; copiar URL real HTTPS y comprobar acceso sin sesión. Si la política del entorno o la falta de Codespaces impide la exposición pública, registrar el bloqueo explícitamente en `README.md` como limitación, sin declarar CA-13/CA-14 cumplidos solo por Lighthouse local. Lighthouse local puede utilizarse como alternativa de auditoría de rendimiento (T048), pero no acredita automáticamente el requisito de URL pública.
   - **Archivos:** actualizar `README.md` con instrucciones/evidencia; no modificar `.devcontainer/` ni infraestructura.
   - **Dependencias:** T046. **Referencias:** RNF-10, CA-13, CA-14; PLAN §10.
   - **Finalización:** landing, assets y destino del formulario accesibles desde URL pública sin credenciales; exposición limitada a la web, sin secretos. Si hay bloqueo, queda documentado. Mantener exposición solo durante revisión y cerrarla al terminar.
+  - **Evidencia 2026-10-25:** tras habilitar el puerto 3000 como público, el servidor documentado devolvió `200` para la landing en la URL HTTPS de Codespaces sin autenticación. También se verificaron con `200` el CSS, el JavaScript de navegación, las cuatro imágenes WebP, los seis logos SVG y `/application.html` (0 bytes). URL temporal e implicaciones de exposición documentadas en `uis/website/README.md`. No se declara implementado el formulario ni se dan por cerrados CA-13/CA-14; esos criterios tienen verificaciones adicionales.
 
 ## Fase 8 — Verificación final y aceptación (T041–T050)
 
@@ -294,6 +295,7 @@ Las tareas se organizan en tres subbloques: (A) revisión funcional, responsive 
   - **Archivos:** solo lectura de `index.html`, `application.html` y `validation.js`; registrar resultados en `README.md`.
   - **Dependencias:** T040. **Referencias:** RF-01 a RF-08, RNF-01, RNF-04, CA-01, CA-02, CA-03, CA-04, CA-05, CA-14, CA-15; PLAN §§4, 11, 12.
   - **Finalización:** cotejo exacto sin omisiones, enlaces funcionales sin errores 404, formulario intacto y sin cargar desde landing.
+  - **Evidencia parcial 2026-10-25:** cotejo de fuente con SPEC y parser del HTML público correctos: contenido principal, IDs/anclajes, tres CTA, contactos y copyright. El destino del formulario respondió `200` con 0 bytes; los dos archivos de SPEC 002 siguen intactos en Git. Chromium no arrancó por falta de `libglib-2.0.so.0`; el desarrollador eligió no instalar bibliotecas del sistema. No se ejecutaron clics ni revisión visual; ambas tareas siguen abiertas. Detalle y criterios parciales en la sección Evaluación de `uis/website/README.md`.
 
 - [ ] **T043 — Verificar responsive, reflujo y zoom.** Revisar 320, 375, 768, 1024 y 1440 px, ambas orientaciones móviles y zoom 200 %; comprobar menús, fotos y distribución de cada grupo. Servicios 1 columna móvil/tablet y 3 desde `lg`, cobertura 1/2, beneficios 1/2/4. Sin overflow, solapamiento, recorte de texto o deformación. Medir ancho documento/viewport y revisar manualmente, no esconder fallos con overflow global. La comprobación exploratoria realizada en T018–T021 (320/375/768/1024/1440 px sin desbordamiento) es un indicio, no sustituye esta verificación.
   - **Archivos:** aplicación solo lectura; medidas/capturas y resultados referenciados en `README.md`.

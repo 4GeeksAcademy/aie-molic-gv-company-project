@@ -6,7 +6,7 @@ La estructura siguiente refleja las carpetas presentes y el propósito que les a
 
 | Ruta                                                          | Finalidad documentada                                                                                       | Estado observado                                                          |
 | ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| `uis/`                                                        | Interfaces de usuario. El README raíz propone `uis/website` y `uis/backoffice`.                             | Landing parcial en `uis/website`; backoffice pendiente.          |
+| `uis/`                                                        | Interfaces de usuario. El README raíz propone `uis/website` y `uis/backoffice`.                             | Landing estática implementada en `uis/website`; aceptación final pendiente. Backoffice pendiente. |
 | `services/`                                                   | Backend, APIs y workers.                                                                                    | Existe la carpeta y su README; no hay servicio de TrackFlow implementado. |
 | `data/raw/`, `data/pipelines/`, `data/process/`, `data/eval/` | Fuentes, transformación, salidas intermedias y evaluación.                                                  | Las carpetas existen; no se observó un pipeline de TrackFlow.             |
 | `agents/`                                                     | Agentes de IA; `_template/` proporciona una estructura inicial y `tools/` aloja herramientas reutilizables. | Existe la plantilla; `agents/_template/agent.py` está vacío.              |
@@ -29,13 +29,13 @@ README de referencia: [agents](../agents/README.md), [plantilla de agentes](../a
 - `agents/_template/agent.py` está vacío.
 - El README raíz declara que no hay un workspace runner configurado en la raíz ni aplicaciones ejecutables en la plantilla.
 
-Para la landing se han autorizado HTML5, Tailwind CSS 3.4.17 compilado por CLI y Google Fonts (Manrope/Inter); JavaScript vanilla queda reservado al menú aún pendiente. `uis/website/index.html` incorpora contenido y diseño hasta T017, con CSS generado en `assets/css/tailwind.css` y Preflight activo. No hay manifiesto de la web ni runner raíz. La compilación de desarrollo con `npx.cmd` y la carga en localhost:3000 se comprobaron en Windows el 2026-10-25; no equivalen a la validación final T036. Comandos: [PLAN §10](../specs/001-website/plan.md); alternativa Python documentada en [uis/README.es.md](../uis/README.es.md). Evidencias y límites: [TASKS](../specs/001-website/tasks.md).
+Para la landing están autorizados HTML5, Tailwind CSS 3.4.17 compilado por CLI y Google Fonts (Manrope/Inter). `uis/website/index.html` contiene las secciones hasta el footer, utilidades responsive, metadatos y JSON-LD Organization, y referencia la hoja CSS compilada y el script de navegación. No hay manifiesto de la web ni runner raíz. [TASKS 001](../specs/001-website/tasks.md) marca T027–T029 como implementadas y registra la compilación de Tailwind y comprobaciones en localhost, pero también conserva notas que contradicen ese estado (incluidos el menú y T036 como pendientes); hay que reconciliar esas evidencias antes de afirmar la validación de esas funciones. Las auditorías finales de aceptación siguen pendientes. Comandos: [PLAN §10](../specs/001-website/plan.md); alternativa Python documentada en [uis/README.es.md](../uis/README.es.md). Evidencias y límites: [TASKS](../specs/001-website/tasks.md).
 
 No hay backend de TrackFlow, almacenamiento, despliegue o proveedor de IA adoptados por este cambio. FastAPI sigue siendo una recomendación de la plantilla.
 
 ## Ubicaciones previstas y límites
 
-- Interfaces: `uis/website` existe con una landing parcial; `uis/backoffice` sigue siendo una ubicación prevista, sin aplicación implementada.
+- Interfaces: `uis/website` contiene la landing estática; su aceptación final no está acreditada. `uis/backoffice` sigue siendo una ubicación prevista, sin aplicación implementada.
 - Backend: `services/`, según el README raíz y `services/README.md`. La documentación raíz recomienda una API central FastAPI, pero la tecnología y arquitectura concretas siguen pendientes de decisión.
 - Datos, agentes, skills, MCP, workflows y demás áreas se ubican en las carpetas indicadas en la tabla y sus README; su presencia no acredita funcionalidad implementada.
 - El README menciona `docker-compose.yml` como parte de la plantilla, pero ese archivo no está presente en la raíz actual.
