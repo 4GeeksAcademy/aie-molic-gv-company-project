@@ -439,12 +439,12 @@ Inspección expresamente autorizada en Windows: lectura de SVG/viewBox, renderiz
 
 ### Resultados móvil
 
-| Categoría | Puntuación |
-|-----------|-----------|
-| Performance | **80** ✅ |
-| Accessibility | 100 |
-| Best Practices | 100 |
-| SEO | 100 |
+| Categoría      | Puntuación |
+| -------------- | ---------- |
+| Performance    | **80** ✅  |
+| Accessibility  | 100        |
+| Best Practices | 100        |
+| SEO            | 100        |
 
 - FCP: 2,8 s | LCP: 3,5 s | TBT: 0 ms | CLS: 0,156 | Speed Index: 2,8 s | TTI: 2,8 s
 - Peso total: ~720 KB (HTML 18 KB + CSS 15 KB + JS 2 KB + 4 WebP ~621 KB + logos + fuentes).
@@ -452,12 +452,12 @@ Inspección expresamente autorizada en Windows: lectura de SVG/viewBox, renderiz
 
 ### Resultados escritorio
 
-| Categoría | Puntuación |
-|-----------|-----------|
-| Performance | **99** ✅ |
-| Accessibility | 100 |
-| Best Practices | 100 |
-| SEO | 100 |
+| Categoría      | Puntuación |
+| -------------- | ---------- |
+| Performance    | **99** ✅  |
+| Accessibility  | 100        |
+| Best Practices | 100        |
+| SEO            | 100        |
 
 - FCP: 0,8 s | LCP: 0,8 s | TBT: 0 ms | CLS: 0 | Speed Index: 0,8 s | TTI: 0,8 s
 
