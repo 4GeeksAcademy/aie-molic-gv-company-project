@@ -222,17 +222,17 @@ Aplicar primero utilidades **base móviles** en estas tareas, con referencia obl
 
 ## Fase 6 — SEO y Schema.org (T033–T035)
 
-- [ ] **T033 — Consolidar metadatos e indexabilidad.** Verificar los valores de título/description introducidos en T006, español, viewport sin bloqueo de zoom y contenido/enlaces presentes en HTML.
+- [x] **T033 — Consolidar metadatos e indexabilidad.** Verificar los valores de título/description introducidos en T006, español, viewport sin bloqueo de zoom y contenido/enlaces presentes en HTML.
   - **Archivos:** modificar `index.html` solo si precisa ajustes.
   - **Dependencias:** T032. **Referencias:** RNF-01, RNF-07, CA-12; PLAN §8.
   - **Finalización:** título y description coinciden con PLAN §8, sin duplicados, `noindex`, bloqueo de rastreo ni canonical hacia Codespaces; sin metadatos empresariales inventados.
 
-- [ ] **T034 — Incorporar Organization exacto en JSON-LD.** Copiar un único objeto del briefing español conforme a SPEC 7.1: fundación 2009, ambas PostalAddress, contactPoint, idiomas, sameAs y areaServed.
+- [x] **T034 — Incorporar Organization exacto en JSON-LD.** Copiar un único objeto del briefing español conforme a SPEC 7.1: fundación 2009, ambas PostalAddress, contactPoint, idiomas, sameAs y areaServed.
   - **Archivos:** modificar `index.html`.
   - **Dependencias:** T033. **Referencias:** RF-04, RF-06, RF-07, RNF-08, CA-12; PLAN §8.
   - **Finalización:** bloque `application/ld+json` con todos los valores y tipos exactos, incluido `Spain` del objeto fuente y fecha como cadena; sin calles, códigos postales, CEO o horarios añadidos.
 
-- [ ] **T035 — Validar sintaxis de HTML y JSON-LD.** Usar Nu HTML Checker y parser JSON sobre la fuente, más Schema Markup Validator por entrada de código cuando sea posible; no instalar herramientas sin permiso.
+- [x] **T035 — Validar sintaxis de HTML y JSON-LD.** Usar Nu HTML Checker y parser JSON sobre la fuente, más Schema Markup Validator por entrada de código cuando sea posible; no instalar herramientas sin permiso.
   - **Archivos:** solo lectura de `index.html`; correcciones locales autorizadas en ese archivo si fueran necesarias.
   - **Dependencias:** T034. **Referencias:** RNF-01, RNF-07, RNF-08, CA-01, CA-12; PLAN §§8, 11.
   - **Finalización:** evidencia de validaciones realizadas y sin errores relevantes pendientes; si un validador no está disponible, registrar bloqueo, no dar por superado. No exigir un rich result garantizado. T045 revisará la entrega servida.
