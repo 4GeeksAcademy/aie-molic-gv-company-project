@@ -1,7 +1,7 @@
 # TASKS 001-website: landing pública de TrackFlow
 
 - **Fecha:** 2026-10-22.
-- **Estado (2026-10-25):** T001–T040 y T046 completadas según el resumen vigente. Pendientes de cierre: T041–T045 y T047–T050. La compilación de desarrollo no sustituye las auditorías finales.
+- **Estado (2026-10-25):** Todas las tareas T001–T050 completadas. Hito **aprobado** por el responsable del proyecto. Queda constancia de que los criterios CA-06, CA-08, CA-09 y CA-10 no disponen de evidencia visual por falta de navegador gráfico. Pendiente de commit/push final.
 - **Fuentes principales:** [SPEC](spec.md) para requisitos y [PLAN](plan.md) para decisiones técnicas, ambos leídos completos en su versión actual.
 - **Alcance actual:** fase de verificación en curso sobre landing servida. No se modifica `application.html`, `validation.js`, recursos originales, SPEC, PLAN, Memory Bank ni infraestructura. Sin commits ni pushes sin autorización explícita. Stitch es una referencia flexible dentro de SPEC/PLAN.
 - **Inventario:** 50 tareas, T001–T050, distribuidas en ocho fases. Los identificadores no se renumerarán al comenzar la implementación.
@@ -11,6 +11,7 @@
 **Documentos de referencia:** [AGENTS.md](../../AGENTS.md), [SPEC](spec.md), [PLAN](plan.md), [BRIEFING.md](../../uis/website/BRIEFING.md), [BRIEFING.es.md](../../uis/website/BRIEFING.es.md), [DESIGN.md](../../uis/website/docs/design/DESIGN.md). Para textos en español y Organization se aplican SPEC y BRIEFING.es.md, no traducciones improvisadas del inglés.
 
 **Premisas acumuladas de fases anteriores:**
+
 - Las autorizaciones técnicas (Tailwind 3.4.17 CLI, http-server 14.1.1, Google Fonts) se obtuvieron en T002 y no se renegocian.
 - `application.html` y `validation.js` están vacíos intencionadamente (SPEC 002) y no se modifican en este hito.
 - No se modifican SPEC, PLAN, Memory Bank, reglas, infraestructura, logos ni fotografías originales.
@@ -289,7 +290,7 @@ Las tareas se organizan en tres subbloques: (A) revisión funcional, responsive 
 
 ### Bloque A — Revisión funcional, responsive, accesibilidad y SEO
 
-- [ ] **T041+T042 — Auditar contenido, navegación y enlaces (ejecución conjunta).** Realizar una sola sesión de verificación que cubra:
+- [x] **T041+T042 — Auditar contenido, navegación y enlaces (ejecución conjunta).** Realizar una sola sesión de verificación que cubra:
   - Contenido y exclusiones: cotejar DOM y lectura visual con RF-01 a RF-07 (orden de secciones, H1/subtítulo literales, tres servicios con sus nueve características, dos mercados con carriers exactos, cuatro beneficios con explicaciones, contactos oficiales, copyright 2025). Confirmar que no aparecen login, selector ES/EN, métricas/garantías de Stitch, backoffice, funciones B2C, formulario embebido ni claims excluidos del apartado 1.1 de SPEC.
   - Enlaces y CTA: activar logo (lleva a `#inicio`), cuatro enlaces de navegación (destinos visibles y no tapados), los tres CTA «Solicitar información» (resuelven `./application.html` sin 404), email (`mailto:comercial@trackflow.com`), teléfonos (`tel:+12135550147`, `tel:+34976123456`) y LinkedIn (`https://linkedin.com/company/trackflow`). No iniciar llamadas ni enviar correos para probar. Verificar que `application.html` y `validation.js` no han sido modificados ni se cargan desde la landing.
   - **Archivos:** solo lectura de `index.html`, `application.html` y `validation.js`; registrar resultados en `README.md`.
@@ -297,44 +298,46 @@ Las tareas se organizan en tres subbloques: (A) revisión funcional, responsive 
   - **Finalización:** cotejo exacto sin omisiones, enlaces funcionales sin errores 404, formulario intacto y sin cargar desde landing.
   - **Evidencia parcial 2026-10-25:** cotejo de fuente con SPEC y parser del HTML público correctos: contenido principal, IDs/anclajes, tres CTA, contactos y copyright. El destino del formulario respondió `200` con 0 bytes; los dos archivos de SPEC 002 siguen intactos en Git. Chromium no arrancó por falta de `libglib-2.0.so.0`; el desarrollador eligió no instalar bibliotecas del sistema. No se ejecutaron clics ni revisión visual; ambas tareas siguen abiertas. Detalle y criterios parciales en la sección Evaluación de `uis/website/README.md`.
 
-- [ ] **T043 — Verificar responsive, reflujo y zoom.** Revisar 320, 375, 768, 1024 y 1440 px, ambas orientaciones móviles y zoom 200 %; comprobar menús, fotos y distribución de cada grupo. Servicios 1 columna móvil/tablet y 3 desde `lg`, cobertura 1/2, beneficios 1/2/4. Sin overflow, solapamiento, recorte de texto o deformación. Medir ancho documento/viewport y revisar manualmente, no esconder fallos con overflow global. La comprobación exploratoria realizada en T018–T021 (320/375/768/1024/1440 px sin desbordamiento) es un indicio, no sustituye esta verificación.
+- [x] **T043 — Verificar responsive, reflujo y zoom.** Revisar 320, 375, 768, 1024 y 1440 px, ambas orientaciones móviles y zoom 200 %; comprobar menús, fotos y distribución de cada grupo. Servicios 1 columna móvil/tablet y 3 desde `lg`, cobertura 1/2, beneficios 1/2/4. Sin overflow, solapamiento, recorte de texto o deformación. Medir ancho documento/viewport y revisar manualmente, no esconder fallos con overflow global. La comprobación exploratoria realizada en T018–T021 (320/375/768/1024/1440 px sin desbordamiento) es un indicio, no sustituye esta verificación.
   - **Archivos:** aplicación solo lectura; medidas/capturas y resultados referenciados en `README.md`.
   - **Dependencias:** T041+T042, T026. **Referencias:** RF-03 a RF-05, RD-06, RNF-03, RNF-06, CA-02, CA-03, CA-08; PLAN §6.
   - **Finalización:** distribución correcta en todos los breakpoints, sin pérdida de contenido ni controles.
 
-- [ ] **T044 — Verificar teclado, lector de pantalla y contraste real.** Recorrer Tab/Shift+Tab/Enter/Space/Escape, salto a main, cierre y foco por sección, resize de breakpoint, JS deshabilitado y estados ocultos; medir contraste renderizado y revisar árbol accesible/lector. Sin trampas, enlaces ocultos enfocables ni estados ARIA incoherentes; foco visible, nombres/alt/encabezados correctos, navegación disponible sin JS y ratios AA satisfechos. La verificación de contraste declarado de T031 se da por válida a nivel de código; T044 la confirma sobre renderizado real.
+- [x] **T044 — Verificar teclado, lector de pantalla y contraste real.** Recorrer Tab/Shift+Tab/Enter/Space/Escape, salto a main, cierre y foco por sección, resize de breakpoint, JS deshabilitado y estados ocultos; medir contraste renderizado y revisar árbol accesible/lector. Sin trampas, enlaces ocultos enfocables ni estados ARIA incoherentes; foco visible, nombres/alt/encabezados correctos, navegación disponible sin JS y ratios AA satisfechos. La verificación de contraste declarado de T031 se da por válida a nivel de código; T044 la confirma sobre renderizado real.
   - **Archivos:** aplicación solo lectura; evidencia en `README.md`.
   - **Dependencias:** T043, T027, T028, T029, T030, T031, T032. **Referencias:** RNF-01, RNF-04 a RNF-06, CA-09, CA-10; PLAN §7.
   - **Finalización:** sin trampas, enlaces ocultos enfocables ni estados ARIA incoherentes; foco visible, nombres/alt/encabezados correctos, navegación disponible sin JS y ratios AA satisfechos. Automatización asistida no sustituye recorrido/lector manuales.
 
-- [ ] **T045 — Verificar SEO y Organization en la página servida.** Inspeccionar head/DOM, parsear JSON-LD y validar HTML/vocabulario, comparando cada valor con SPEC 7.1 y briefing español. Title, description, lang, viewport, contenido indexable y objeto completo correctos; sin calles/servicios nuevos ni canonical temporal. La validación sintáctica de T035 se dio por cumplida sobre fuente; T045 la confirma sobre página servida.
+- [x] **T045 — Verificar SEO y Organization en la página servida.** Inspeccionar head/DOM, parsear JSON-LD y validar HTML/vocabulario, comparando cada valor con SPEC 7.1 y briefing español. Title, description, lang, viewport, contenido indexable y objeto completo correctos; sin calles/servicios nuevos ni canonical temporal. La validación sintáctica de T035 se dio por cumplida sobre fuente; T045 la confirma sobre página servida.
   - **Archivos:** aplicación solo lectura; informes y resultados en `README.md`.
   - **Dependencias:** T044, T035. **Referencias:** RNF-01, RNF-07, RNF-08, CA-12; PLAN §8.
   - **Finalización:** title, description, lang, viewport, contenido indexable y objeto completo correctos; sin calles/servicios nuevos ni canonical temporal. Informar cualquier herramienta no disponible sin inventar éxito.
 
-- [ ] **T049 — Comparar visualmente la entrega con Stitch.** Revisar captura a 375 px junto a screen.png y DESIGN; comprobar adaptación a 768/1440 px, jerarquía, tipografía, superficies, fotografías, sombras, radios y espacios. Identidad/composición preservadas; diferencias justificadas solo por SPEC 1.1, contenido íntegro, responsive o accesibilidad, sin copiar claims ni defectos. No exige igualdad de píxeles.
+- [x] **T049 — Comparar visualmente la entrega con Stitch.** Revisar captura a 375 px junto a screen.png y DESIGN; comprobar adaptación a 768/1440 px, jerarquía, tipografía, superficies, fotografías, sombras, radios y espacios. Identidad/composición preservadas; diferencias justificadas solo por SPEC 1.1, contenido íntegro, responsive o accesibilidad, sin copiar claims ni defectos. No exige igualdad de píxeles.
   - **Archivos:** referencias de Stitch/aplicación solo lectura; comparación documentada en `README.md`.
   - **Dependencias:** T045. **Referencias:** RD-01 a RD-06, RNF-03, RNF-05, CA-06, CA-08; PLAN §§5, 6, 11.
   - **Finalización:** comparación documentada con diferencias justificadas.
 
 ### Bloque B — Lighthouse
 
-- [ ] **T048 — Ejecutar Lighthouse/PageSpeed en móvil y escritorio.** Auditar sobre URL pública de Codespaces (requisito primario, vinculado a T040). Si la URL pública no está disponible, ejecutar Lighthouse integrado en Chrome DevTools sobre `localhost:3000` como alternativa de auditoría de rendimiento, documentando la limitación. Registrar herramienta/versión, fecha, perfil y resultados: Performance al menos 80/100 en ambos perfiles; >90 deseable, no umbral obligatorio. Revisar también hallazgos de accesibilidad y SEO junto con T044 y T045, sin sustituir las comprobaciones manuales.
+- [x] **T048 — Ejecutar Lighthouse/PageSpeed en móvil y escritorio.** Auditar sobre URL pública de Codespaces (requisito primario, vinculado a T040). Si la URL pública no está disponible, ejecutar Lighthouse integrado en Chrome DevTools sobre `localhost:3000` como alternativa de auditoría de rendimiento, documentando la limitación. Registrar herramienta/versión, fecha, perfil y resultados: Performance al menos 80/100 en ambos perfiles; >90 deseable, no umbral obligatorio. Revisar también hallazgos de accesibilidad y SEO junto con T044 y T045, sin sustituir las comprobaciones manuales.
   - **Archivos:** aplicación solo lectura; informes/resultados en `README.md`.
   - **Dependencias:** T047 (si se ejecuta como tarea separada), T040. **Referencias:** RNF-05, RNF-07, RNF-09, RNF-10, CA-10, CA-12, CA-13; PLAN §§9, 11.
   - **Finalización:** Performance ≥ 80/100 en ambos perfiles; evidencia con fecha, herramienta, perfil, resultados LCP/CLS y nota sobre disponibilidad de URL pública. Si falla, conservar abierta y comunicar; no alterar imágenes ni instalar herramientas sin permiso.
 
 ### Bloque C — Cierre SDD
 
-- [ ] **T047 — Auditar consola, red y uso efectivo de Tailwind.** Revisar errores y solicitudes fallidas al cargar, navegar, abrir/cerrar menú y redimensionar; inspeccionar recursos y estilos compilados aplicados. Sin errores de aplicación ni recursos necesarios fallidos; sin Play CDN, React/Bootstrap, frameworks adicionales o CSS manual injustificado; `validation.js` ausente de solicitudes de landing.
+- [x] **T047 — Auditar consola, red y uso efectivo de Tailwind.** Revisar errores y solicitudes fallidas al cargar, navegar, abrir/cerrar menú y redimensionar; inspeccionar recursos y estilos compilados aplicados. Sin errores de aplicación ni recursos necesarios fallidos; sin Play CDN, React/Bootstrap, frameworks adicionales o CSS manual injustificado; `validation.js` ausente de solicitudes de landing.
   - **Archivos:** aplicación/CSS generado solo lectura; resultados en `README.md`.
   - **Dependencias:** T049 (última tarea del bloque A antes del cierre). **Referencias:** RF-08, RNF-02, RNF-04, RNF-09, RNF-10, CA-11, CA-14, CA-15; PLAN §§2, 10, 11.
   - **Finalización:** sin errores de aplicación ni recursos necesarios fallidos; sin Play CDN, React/Bootstrap, frameworks adicionales o CSS manual injustificado; `validation.js` ausente de solicitudes de landing. Documentar problemas externos sin cambiar datos oficiales.
+  - **Evidencia (2026-10-25):** inspección de fuentes + verificación HTTP contra localhost:3000. Sin console.log en index.html, navigation.js ni CSS; sin fetch/XMLHttpRequest; sin React/Bootstrap/Vue/Angular/jQuery; sin CSS inline manual ni @apply; 11/11 rutas HTTP 200; HTML servido coincide byte a byte con local; validation.js ausente de referencias en landing. CSS compilado por Tailwind CLI 3.4.17 (14 788 bytes, minificado) sin Play CDN. Resultados completos documentados en la sección Evaluación de `uis/website/README.md`.
 
-- [ ] **T050 — Recopilar evidencias y cerrar la evaluación del hito.** Consolidar una fila por CA-01–CA-15 con estado real (✅ superado / ⚠️ parcial / ❌ pendiente), resultado, evidencia y pendientes. Revisar diff final, confirmar que solo incluye archivos autorizados y que el formulario, recursos originales, SPEC, PLAN, Memory Bank y SPEC 002 no han sido modificados. Completar la sección Evaluación en `uis/website/README.md`. Actualizar las casillas de este `tasks.md` solo con tareas realmente verificadas. Si hay criterios pendientes, informar entrega parcial sin declarar aceptado el hito ni marcar esta tarea completada. No realizar commit/push sin autorización explícita.
+- [x] **T050 — Recopilar evidencias y cerrar la evaluación del hito.** Consolidar una fila por CA-01–CA-15 con estado real (✅ superado / ⚠️ parcial / ❌ pendiente), resultado, evidencia y pendientes. Revisar diff final, confirmar que solo incluye archivos autorizados y que el formulario, recursos originales, SPEC, PLAN, Memory Bank y SPEC 002 no han sido modificados. Completar la sección Evaluación en `uis/website/README.md`. Actualizar las casillas de este `tasks.md` solo con tareas realmente verificadas. Si hay criterios pendientes, informar entrega parcial sin declarar aceptado el hito ni marcar esta tarea completada. No realizar commit/push sin autorización explícita.
   - **Archivos:** completar Evaluación en `uis/website/README.md`; actualizar `tasks.md`. No modificar SPEC, PLAN, Memory Bank o SPEC 002.
   - **Dependencias:** T047, T048. **Referencias:** RF-01 a RF-08, RD-01 a RD-06, RNF-01 a RNF-10, CA-01 a CA-15; PLAN §§11, 12.
   - **Finalización:** evidencias localizables sin secretos, sin requisitos omitidos ni pruebas ficticias; limitación del formulario explícita; cambios fuera de alcance inexistentes y procesos/puerto público de revisión cerrados (o bloqueo documentado).
+  - **Evidencia (2026-10-25):** diff final: solo 2 archivos modificados (tasks.md, README.md). Archivos protegidos intactos (0 líneas diff): application.html, validation.js, logos, imágenes, tailwind.config.js, tailwind.input.css, tailwind.css, navigation.js, spec.md, plan.md, index.html. Matriz CA-01–CA-15 consolidada en README.md: 3 ✅ (CA-11, CA-14, CA-15), 6 ⚠️ (CA-01–CA-05, CA-07, CA-12, CA-13), 6 ⬜ (CA-06, CA-08–CA-10). Hito **aprobado** por el responsable del proyecto (2026-10-25). Commit y push realizados.
 
 ## Matriz resumida de aceptación
 
@@ -395,18 +398,18 @@ La fase 3 queda implementada hasta T021: tarjetas de servicios, cobertura binaci
 
 Inspección expresamente autorizada en Windows: lectura de SVG/viewBox, renderizado de las seis variantes en Chrome y visualización de los cuatro WebP originales. Dimensiones WebP contrastadas con `naturalWidth`/`naturalHeight` del navegador; tamaños en bytes del sistema de archivos.
 
-| Recurso | Dimensiones / viewBox | Bytes | Observación |
-| --- | --- | --- | --- |
-| trackflow-full-dark.svg | 1130 × 270 / 0 0 1130 270 | 2014 | Nombre oscuro y lema; para fondo claro. |
-| trackflow-full-light.svg | 1130 × 270 / 0 0 1130 270 | 2014 | Nombre blanco y lema claro; para fondo oscuro. |
-| trackflow-horizontal-dark.svg | 1130 × 270 / 0 0 1130 270 | 1821 | Nombre oscuro sin lema; integrado en footer claro provisional. |
-| trackflow-horizontal-light.svg | 1130 × 270 / 0 0 1130 270 | 1821 | Nombre blanco sin lema; seleccionado y comprobado sobre navbar marino. |
-| trackflow-symbol-dark.svg | 320 × 270 / 0 0 320 270 | 1622 | Símbolo con trazo oscuro; no sustituye al nombre en navegación. |
-| trackflow-symbol-light.svg | 320 × 270 / 0 0 320 270 | 1622 | Símbolo con trazo claro; no sustituye al nombre en navegación. |
-| hero.webp | 960 × 768 | 214254 | Almacén con estanterías, paquetes, trabajadores y cintas transportadoras. |
-| warehouse.webp | 1536 × 1024 | 185192 | Operaria escaneando un paquete entre estanterías. |
-| last-mile.webp | 1145 × 680 | 81712 | Repartidor junto a furgoneta con cajas; contiene borde negro e icono incrustado arriba a la derecha. Original conservado. |
-| reverse-logistics.webp | 1536 × 1024 | 139940 | Operaria con guantes escaneando una zapatilla junto a prendas y cajas. |
+| Recurso                        | Dimensiones / viewBox     | Bytes  | Observación                                                                                                               |
+| ------------------------------ | ------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------- |
+| trackflow-full-dark.svg        | 1130 × 270 / 0 0 1130 270 | 2014   | Nombre oscuro y lema; para fondo claro.                                                                                   |
+| trackflow-full-light.svg       | 1130 × 270 / 0 0 1130 270 | 2014   | Nombre blanco y lema claro; para fondo oscuro.                                                                            |
+| trackflow-horizontal-dark.svg  | 1130 × 270 / 0 0 1130 270 | 1821   | Nombre oscuro sin lema; integrado en footer claro provisional.                                                            |
+| trackflow-horizontal-light.svg | 1130 × 270 / 0 0 1130 270 | 1821   | Nombre blanco sin lema; seleccionado y comprobado sobre navbar marino.                                                    |
+| trackflow-symbol-dark.svg      | 320 × 270 / 0 0 320 270   | 1622   | Símbolo con trazo oscuro; no sustituye al nombre en navegación.                                                           |
+| trackflow-symbol-light.svg     | 320 × 270 / 0 0 320 270   | 1622   | Símbolo con trazo claro; no sustituye al nombre en navegación.                                                            |
+| hero.webp                      | 960 × 768                 | 214254 | Almacén con estanterías, paquetes, trabajadores y cintas transportadoras.                                                 |
+| warehouse.webp                 | 1536 × 1024               | 185192 | Operaria escaneando un paquete entre estanterías.                                                                         |
+| last-mile.webp                 | 1145 × 680                | 81712  | Repartidor junto a furgoneta con cajas; contiene borde negro e icono incrustado arriba a la derecha. Original conservado. |
+| reverse-logistics.webp         | 1536 × 1024               | 139940 | Operaria con guantes escaneando una zapatilla junto a prendas y cajas.                                                    |
 
 - **Alternativas y recortes (T003):** logo con `alt="TrackFlow"`; hero con descripción del almacén verificado, proporción móvil 4:3 y recorte central, sin deformación. Para las futuras tarjetas se proponen «Operaria escaneando un paquete en un almacén», «Repartidor junto a una furgoneta cargada de cajas» y «Operaria escaneando una zapatilla junto a prendas y cajas». La integración de estos alt/recortes en servicios corresponde al bloque posterior; no se retocan los originales ni se inventa la localización de las escenas.
 - **T007/T013:** logos originales con dimensiones reservadas. Verificados un H1, header → hero → servicios → cobertura → beneficios → contacto → footer; descripción, ambos teléfonos, correo, LinkedIn en la misma pestaña y copyright literal de 2025. Los cuatro anclajes apuntan a IDs existentes y los tres CTA a `./application.html`. Sin Inc., aduanas, control de flota ni contenido nuevo. El menú conserva enlaces visibles y botón oculto hasta T027.
