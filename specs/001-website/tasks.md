@@ -1,31 +1,33 @@
 # TASKS 001-website: landing pública de TrackFlow
 
 - **Fecha:** 2026-10-22.
-- **Estado (2026-10-25):** T001–T021 completadas en su alcance de implementación. T018–T021 verificadas en Windows a 320 y 375 px. T022–T050 abiertas, incluida T036; la compilación de desarrollo no sustituye su validación final.
+- **Estado (2026-10-25):** T001–T039 y T046 completadas. Pendientes: T040 (Fase 7) y T041–T050 (Fase 8, salvo T046 ya ejecutada). La compilación de desarrollo no sustituye la validación final sobre URL pública.
 - **Fuentes principales:** [SPEC](spec.md) para requisitos y [PLAN](plan.md) para decisiones técnicas, ambos leídos completos en su versión actual.
-- **Alcance actual:** el desarrollador autoriza exclusivamente T018–T021 y la recompilación de Tailwind 3.4.17 con `npx.cmd`, sin instalar nuevas dependencias. Conservar los cambios previos y el Memory Bank; no adelantar la fase 4 ni el menú JavaScript. Detenerse después de T021. Sin commits ni pushes. Stitch es una referencia flexible dentro de SPEC/PLAN.
+- **Alcance actual:** fase de verificación en curso sobre landing servida. No se modifica `application.html`, `validation.js`, recursos originales, SPEC, PLAN, Memory Bank ni infraestructura. Sin commits ni pushes sin autorización explícita. Stitch es una referencia flexible dentro de SPEC/PLAN.
 - **Inventario:** 50 tareas, T001–T050, distribuidas en ocho fases. Los identificadores no se renumerarán al comenzar la implementación.
 
-## Contexto, precedencia y condiciones previas
+## Contexto y premisas vigentes
 
-Se han revisado [AGENTS.md](../../AGENTS.md), [la regla global](../../.agents/rules/trackflow-development.md), los tres documentos del Memory Bank ([resumen](../../memory-bank/projectbrief.md), [contexto técnico](../../memory-bank/techContext.md), [progreso](../../memory-bank/progress.md)), [BRIEFING.md](../../uis/website/BRIEFING.md), [DESIGN.md](../../uis/website/docs/design/DESIGN.md) y visualmente [screen.png](../../uis/website/docs/design/screen.png). Para los textos en español y Organization se aplican SPEC y su referencia [BRIEFING.es.md](../../uis/website/BRIEFING.es.md), no traducciones improvisadas del inglés.
+**Documentos de referencia:** [AGENTS.md](../../AGENTS.md), [SPEC](spec.md), [PLAN](plan.md), [BRIEFING.md](../../uis/website/BRIEFING.md), [BRIEFING.es.md](../../uis/website/BRIEFING.es.md), [DESIGN.md](../../uis/website/docs/design/DESIGN.md). Para textos en español y Organization se aplican SPEC y BRIEFING.es.md, no traducciones improvisadas del inglés.
 
-No se detectan contradicciones funcionales o arquitectónicas bloqueantes entre SPEC y PLAN. La petición actual autoriza TASKS aunque los documentos anteriores conserven los límites de sus respectivas fases. No se modifican sus estados. El PLAN todavía denomina propuestas a PT-02, PT-05 y PT-06; redactar tareas no demuestra su aprobación para descargar o integrar herramientas/proveedores. T002 conserva esa condición de entrada.
+**Premisas acumuladas de fases anteriores:**
+- Las autorizaciones técnicas (Tailwind 3.4.17 CLI, http-server 14.1.1, Google Fonts) se obtuvieron en T002 y no se renegocian.
+- `application.html` y `validation.js` están vacíos intencionadamente (SPEC 002) y no se modifican en este hito.
+- No se modifican SPEC, PLAN, Memory Bank, reglas, infraestructura, logos ni fotografías originales.
+- La landing está servida y verificada en localhost:3000. La URL pública (T040) está pendiente.
 
-La inspección actual confirma `index.html`, `application.html`, `validation.js`, los briefings, las referencias de Stitch, seis SVG y cuatro WebP en `uis/website/`. El PLAN documentó los tres archivos de código como vacíos; se comprobará de nuevo en T001 antes de implementarlos, sin asumir que ese estado persiste. El Memory Bank está desactualizado y no se modifica. No se ha localizado una plantilla TASKS adicional en `.agents/`; se sigue la organización por funcionalidad y referencias identificadas de SPEC/PLAN.
-
-### Reglas de ejecución futura
+### Reglas de ejecución vigentes
 
 - Las tareas no marcadas permanecen pendientes. Marcar una casilla únicamente después de ejecutar su acción y comprobar su condición de finalización; si está bloqueada, conservarla abierta y registrar el motivo.
 - Las dependencias se refieren a tareas anteriores; son acumulativas. Las fases agrupan responsabilidades, no autorizaciones para ejecutarlas ahora.
-- Las tareas de estructura y estilos se cierran mediante inspección de fuentes cuando así se indique. Esa revisión no acredita comportamiento renderizado: las pruebas de navegador quedan explícitamente en las fases 7 y 8, después de compilar y servir.
-- Durante IMPLEMENT, recompilar al cambiar clases tras T036 y repetir solo la comprobación afectada; no marcar una prueba visual o interactiva por inspección de código. No añadir tests o dependencias de pruebas sin autorización. Respetar el límite de dos intentos de corrección ante errores y comunicar bloqueos.
+- Las tareas de estructura, estilos y verificación se cierran con la evidencia correspondiente (inspección de fuentes, navegador o herramientas autorizadas). Las comprobaciones sobre página servida están en las fases 7 y 8.
+- Recompilar Tailwind al cambiar clases y repetir solo la comprobación afectada. No añadir tests o dependencias de pruebas sin autorización. Respetar el límite de dos intentos de corrección ante errores y comunicar bloqueos.
 - No modificar `application.html`, `validation.js`, logos, fotografías, Stitch, SPEC, PLAN, reglas, Memory Bank, infraestructura ni manifiestos. Las referencias a esos archivos en tareas de revisión significan lectura, no permiso de edición.
-- Los archivos de implementación enumerados a continuación son futuros, no creados en esta fase. Al completar tareas autorizadas podrá actualizarse el progreso en este documento, sin cambiar requisitos ni atribuir resultados no ejecutados.
+- Al completar tareas autorizadas se actualiza el progreso en este documento, sin cambiar requisitos ni atribuir resultados no ejecutados.
 
 ### Convenciones de rutas y evidencias
 
-En cada tarea, las rutas de implementación se expresan relativas a `uis/website/`. «Sin cambios» significa que solo se inspeccionan los archivos indicados. Las fuentes SPEC/PLAN son referencias de lectura en todas las tareas. Las verificaciones registrarán evidencia en la futura sección **Evaluación** de `uis/website/README.md`, sin crear otra estructura de informes por defecto. Se podrán enlazar informes/capturas accesibles y sin datos sensibles, cuya conservación local adicional requerirá acordar la ruta antes de crear archivos.
+En cada tarea, las rutas de implementación se expresan relativas a `uis/website/`. «Sin cambios» significa que solo se inspeccionan los archivos indicados. Las fuentes SPEC/PLAN son referencias de lectura en todas las tareas. Las verificaciones registran evidencia en la sección **Evaluación** de `uis/website/README.md`, sin crear otra estructura de informes por defecto. Se podrán enlazar informes/capturas accesibles y sin datos sensibles, cuya conservación local adicional requerirá acordar la ruta antes de crear archivos.
 
 ## Fase 1 — Preparación técnica (T001–T005)
 
