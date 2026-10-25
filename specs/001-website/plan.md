@@ -67,9 +67,9 @@ Crear primero el esqueleto y los textos completos de RF-01 a RF-07; después apl
 | Cobertura  | `section id="cobertura"` con H2. Conservar el énfasis binacional de Stitch mediante una franja oscura con ambas ciudades, sin avión, ruta, distancia o datos en vivo. Dos artículos de mercado con H3 y listas de almacén, cobertura y carriers exactos de RF-04. Los carriers son etiquetas informativas, no botones ni «integraciones».  | RF-04; CA-03, CA-15 |
 | Beneficios | Sección con H2 «Por qué TrackFlow» y lista de cuatro elementos con H3 y explicaciones de RF-05. Sin textos adicionales sobre facturación, horario bilingüe, Shopify, predicción u otras capacidades de Stitch.                                                                                                                             | RF-05; CA-03        |
 | Contacto   | `section id="contacto"` con H2, franja oscura y CTA. Email y teléfonos como enlaces identificables y bloques que se apilan cuando falta espacio; no tarjetas anidadas. Sin formulario embebido, plazos de atención ni promesas nuevas.                                                                                                     | RF-06; CA-05        |
-| Footer     | Logo legible, descripción breve limitada al briefing, contactos oficiales, LinkedIn y copyright literal de 2025. Enlaces externos en la misma pestaña por defecto; si se justifica otra pestaña, indicar el comportamiento y usar `rel="noopener noreferrer"`.                                                                             | RF-07; CA-05        |
+| Footer     | Logo legible, descripción breve limitada al briefing, LinkedIn y copyright literal de 2025. Enlaces externos en la misma pestaña por defecto; si se justifica otra pestaña, indicar el comportamiento y usar `rel="noopener noreferrer"`.                                                                             | RF-07; CA-05        |
 
-Un `main id="contenido"` contendrá las secciones; un enlace de salto al inicio del documento llevará a ese destino enfocable. Contacto y footer usarán los destinos exactos `mailto:comercial@trackflow.com`, `tel:+12135550147`, `tel:+34976123456` y `https://linkedin.com/company/trackflow`.
+Un `main id="contenido"` contendrá las secciones; un enlace de salto al inicio del documento llevará a ese destino enfocable. Los contactos oficiales aparecen una sola vez en `section#contacto`, junto al CTA, y no se repiten en `footer`. Ambos elementos conservan su semántica y comparten un fondo sólido `#06295D`, sin borde de separación y con espaciado continuo compacto. Contacto usa los destinos `mailto:comercial@trackflow.com`, `tel:+12135550147`, `tel:+34976123456`; footer conserva `https://linkedin.com/company/trackflow`.
 
 ## 5. Integración del sistema visual de Stitch
 
@@ -79,7 +79,7 @@ Aplicar la decisión de SPEC 1.1: fondo base `#F6F5F1`, tarjetas blancas y apoyo
 
 Usar `#0758BD` para CTA/enlaces y `#00DCCF` o `#00CFFF` para acentos discretos. Texto principal `#03142E`, secundario `#526578`, divisores `#ECEFF1` o borde `rgba(82,101,120,0.16)`. No introducir otra familia de colores.
 
-En Tailwind 3, utilizar utilidades literales como `bg-[#F6F5F1]`, `text-[#03142E]`, `border-[#526578]/[0.16]`. Header con `bg-gradient-to-r from-[#03142E] via-[#06295D] to-[#03142E]`; iluminación suave mediante transparencias lineales azul/turquesa integradas en su fondo. Sin orbes, nuevas ilustraciones ni capas que tapen texto o reciban eventos. Contacto/footer podrán repetir ese tratamiento de forma contenida. El contraste se medirá en el punto más desfavorable del degradado.
+En Tailwind 3, utilizar utilidades literales como `bg-[#F6F5F1]`, `text-[#03142E]`, `border-[#526578]/[0.16]`. Header con `bg-gradient-to-r from-[#03142E] via-[#06295D] to-[#03142E]`; iluminación suave mediante transparencias lineales azul/turquesa integradas en su fondo. Sin orbes, nuevas ilustraciones ni capas que tapen texto o reciban eventos. Contacto/footer usan el fondo sólido compartido `#06295D` aprobado para unificar visualmente el cierre. El contraste se medirá en el punto más desfavorable del degradado.
 
 ### Tipografía, dimensiones y componentes
 

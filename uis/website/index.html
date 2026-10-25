@@ -10,19 +10,22 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700;800&amp;display=swap">
+		<script src="./assets/js/navigation.js" defer></script>
 	</head>
 	<body class="bg-[#F6F5F1] font-['Inter',sans-serif] text-[0.9375rem] leading-6 tracking-normal text-[#03142E]">
+		<a href="#contenido" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:inline-flex focus:min-h-12 focus:items-center focus:rounded-lg focus:bg-white focus:px-4 focus:text-[#03142E] focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-[#0758BD]">Saltar al contenido principal</a>
 		<!-- Cabecera y navegación principal -->
 		<header class="border-b border-[#00DCCF]/20 bg-gradient-to-r from-[#03142E] via-[#06295D] to-[#03142E] text-white">
-			<div class="mx-auto flex w-full max-w-[1440px] flex-col gap-4 px-4 py-4 md:px-8 lg:flex-row lg:items-center lg:gap-6 lg:px-12">
+			<div class="mx-auto grid w-full max-w-[1440px] grid-cols-[1fr_auto] items-center gap-4 px-4 py-4 md:px-8 lg:grid-cols-[auto_1fr_auto] lg:gap-6 lg:px-12">
 				<a href="#inicio" aria-label="TrackFlow, ir al inicio" class="inline-flex min-h-12 w-fit items-center rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00CFFF]">
 					<img src="./assets/logos/trackflow-horizontal-light.svg" alt="TrackFlow" width="1130" height="270" class="h-auto w-48 max-w-full sm:w-56">
 				</a>
 
-				<!-- Sin JavaScript los enlaces permanecen visibles. El disclosure llega en T027. -->
-				<nav aria-label="Navegación principal" class="lg:ml-auto">
+				<!-- Sin JavaScript los enlaces permanecen visibles; contents conserva el orden del grid. -->
+				<nav aria-label="Navegación principal" class="contents">
 					<button
 						id="menu-toggle"
+						class="min-h-12 justify-self-end rounded-lg border border-[#00CFFF] px-4 text-sm font-medium hover:text-[#00DCCF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00CFFF]"
 						type="button"
 						aria-controls="menu-panel"
 						aria-expanded="false"
@@ -31,7 +34,7 @@
 						Menú
 					</button>
 
-					<div id="menu-panel">
+					<div id="menu-panel" class="col-span-2 lg:col-span-1 lg:justify-self-end">
 						<ul class="grid grid-cols-2 gap-x-4 gap-y-1 sm:grid-cols-4 lg:flex lg:gap-6">
 							<li><a href="#inicio" class="flex min-h-12 items-center rounded-lg px-2 text-sm font-medium hover:text-[#00DCCF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00CFFF] lg:min-h-11">Inicio</a></li>
 							<li><a href="#servicios" class="flex min-h-12 items-center rounded-lg px-2 text-sm font-medium hover:text-[#00DCCF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00CFFF] lg:min-h-11">Servicios</a></li>
@@ -41,13 +44,13 @@
 					</div>
 				</nav>
 
-				<a href="./application.html" class="inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-[#0758BD] px-6 py-3 text-center text-sm font-semibold text-white hover:bg-[#06295D] active:bg-[#03142E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00CFFF] sm:w-fit lg:min-h-11">Solicitar información</a>
+				<a href="./application.html" class="col-span-2 inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-[#0758BD] px-6 py-3 text-center text-sm font-semibold text-white hover:bg-[#06295D] active:bg-[#03142E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00CFFF] sm:w-fit lg:col-span-1 lg:min-h-11">Solicitar información</a>
 			</div>
 		</header>
 
-		<main id="contenido">
+		<main id="contenido" tabindex="-1" class="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[#0758BD]">
 			<!-- Presentación principal -->
-			<section id="inicio" aria-labelledby="titulo-principal" class="mx-auto w-full max-w-[1440px] px-4 py-10 md:px-8 lg:px-12 lg:py-20">
+			<section id="inicio" tabindex="-1" aria-labelledby="titulo-principal" class="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[#0758BD] mx-auto w-full max-w-[1440px] px-4 py-10 md:px-8 lg:px-12 lg:py-20">
 				<!-- Base móvil: 36/44 px. lg amplía el titular sin cambiar el orden del contenido. -->
 				<h1 id="titulo-principal" class="max-w-3xl font-['Manrope',sans-serif] text-4xl font-extrabold leading-[2.75rem] tracking-normal lg:text-[3.5rem] lg:leading-[4rem]">Logística que escala con tu e-commerce</h1>
 				<p class="mt-6 max-w-3xl text-lg leading-7 text-[#526578]">
@@ -69,7 +72,7 @@
 			</section>
 
 			<!-- Servicios de TrackFlow -->
-			<section id="servicios" aria-labelledby="titulo-servicios" class="mx-auto w-full max-w-[1440px] space-y-6 px-4 py-10 md:px-8 lg:px-12 lg:py-16">
+			<section id="servicios" tabindex="-1" aria-labelledby="titulo-servicios" class="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[#0758BD] mx-auto w-full max-w-[1440px] space-y-6 px-4 py-10 md:px-8 lg:px-12 lg:py-16">
 				<h2 id="titulo-servicios" class="font-['Manrope',sans-serif] text-[1.75rem] font-bold leading-9 lg:text-[2.5rem] lg:leading-[3rem]">Servicios</h2>
 
 				<!-- Servicios: una columna hasta tablet y tres desde lg (1024 px). -->
@@ -131,7 +134,7 @@
 			</section>
 
 			<!-- Presencia binacional: las ciudades indican sedes, no una ruta de transporte. -->
-			<section id="cobertura" aria-labelledby="titulo-cobertura" class="mx-auto w-full max-w-[1440px] space-y-6 px-4 py-10 md:px-8 lg:px-12 lg:py-16">
+			<section id="cobertura" tabindex="-1" aria-labelledby="titulo-cobertura" class="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[#0758BD] mx-auto w-full max-w-[1440px] space-y-6 px-4 py-10 md:px-8 lg:px-12 lg:py-16">
 				<h2 id="titulo-cobertura" class="font-['Manrope',sans-serif] text-[1.75rem] font-bold leading-9 lg:text-[2.5rem] lg:leading-[3rem]">Cobertura</h2>
 				<div class="rounded-2xl bg-gradient-to-r from-[#03142E] to-[#06295D] p-6 text-white">
 					<ul class="grid grid-cols-1 divide-y divide-white/15 md:grid-cols-2 md:divide-x md:divide-y-0">
@@ -202,8 +205,8 @@
 			</section>
 
 			<!-- Franja de contacto en el flujo de la página; no contiene un formulario. -->
-			<section id="contacto" aria-labelledby="titulo-contacto" class="mt-10 bg-gradient-to-r from-[#03142E] via-[#06295D] to-[#03142E] text-white">
-				<div class="mx-auto w-full max-w-[1440px] space-y-6 px-4 py-10 md:px-8 lg:px-12 lg:py-16">
+			<section id="contacto" tabindex="-1" aria-labelledby="titulo-contacto" class="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[#00CFFF] mt-10 bg-gradient-to-r from-[#03142E] via-[#06295D] to-[#03142E] text-white">
+				<div class="mx-auto w-full max-w-[1440px] space-y-6 px-4 pb-6 pt-10 md:px-8 lg:px-12">
 					<h2 id="titulo-contacto" class="font-['Manrope',sans-serif] text-[1.75rem] font-bold leading-9 lg:text-[2.5rem] lg:leading-[3rem]">Contacto</h2>
 					<address class="not-italic">
 						<ul class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -220,33 +223,22 @@
 					</address>
 					<a href="./application.html"
 						class="inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-[#0758BD] px-6 py-3 text-center font-semibold text-white
-							hover:bg-[#06295D] active:bg-[#03142E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00CFFF] sm:w-fit lg:min-h-11">
+							hover:bg-[#03142E] active:bg-[#03142E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00CFFF] sm:w-fit lg:min-h-11">
 						Solicitar información
 					</a>
 				</div>
 			</section>
 		</main>
 
-		<!-- Mismo logo claro del navbar, sin alterar sus colores ni proporciones. -->
-		<footer class="border-t border-white/15 bg-[#03142E] text-white">
-			<div class="mx-auto grid w-full max-w-[1440px] grid-cols-1 gap-6 md:grid-cols-2 md:gap-x-10 px-4 py-10 md:px-8 lg:px-12 lg:py-16">
-				<img src="./assets/logos/trackflow-horizontal-light.svg" alt="TrackFlow" width="1130" height="270" class="h-auto w-48 max-w-full sm:w-56">
-				<p class="max-w-xl text-white/80">Gestión de almacenes, entregas de última milla y logística inversa en Estados Unidos y España.</p>
-				<address class="min-w-0 not-italic md:col-start-2 md:row-span-3 md:row-start-1">
-					<ul class="space-y-4">
-						<li><a href="mailto:comercial@trackflow.com" class="inline-block min-h-12 max-w-full break-words py-3 rounded-sm underline decoration-white/30 underline-offset-4 hover:text-[#00DCCF] hover:decoration-[#00DCCF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#00CFFF]">comercial@trackflow.com</a></li>
-						<li>
-							<span class="block text-sm text-white/70">Los Ángeles:</span>
-							<a href="tel:+12135550147" class="inline-flex min-h-12 items-center rounded-sm underline decoration-white/30 underline-offset-4 hover:text-[#00DCCF] hover:decoration-[#00DCCF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#00CFFF]">+1 213 555 0147</a>
-						</li>
-						<li>
-							<span class="block text-sm text-white/70">Zaragoza:</span>
-							<a href="tel:+34976123456" class="inline-flex min-h-12 items-center rounded-sm underline decoration-white/30 underline-offset-4 hover:text-[#00DCCF] hover:decoration-[#00DCCF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#00CFFF]">+34 976 123 456</a>
-						</li>
-					</ul>
-				</address>
-				<a href="https://linkedin.com/company/trackflow" class="inline-flex min-h-12 items-center rounded-sm underline decoration-white/30 underline-offset-4 hover:text-[#00DCCF] hover:decoration-[#00DCCF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#00CFFF]">LinkedIn</a>
-				<p class="border-t border-white/15 pt-6 md:col-span-2 text-sm text-white/70">© 2025 TrackFlow. Todos los derechos reservados.</p>
+		<!-- El mismo degradado horizontal y ancho mantienen la continuidad con Contacto. -->
+		<footer class="bg-gradient-to-r from-[#03142E] via-[#06295D] to-[#03142E] text-white">
+			<div class="mx-auto w-full max-w-[1440px] px-4 pb-8 pt-6 md:px-8 lg:px-12">
+				<div class="grid grid-cols-1 items-center gap-4 md:grid-cols-[auto_1fr_auto] md:gap-8">
+					<img src="./assets/logos/trackflow-horizontal-light.svg" alt="TrackFlow" width="1130" height="270" class="h-auto w-48 max-w-full sm:w-56">
+					<p class="max-w-xl text-white/80">Gestión de almacenes, entregas de última milla y logística inversa en Estados Unidos y España.</p>
+					<a href="https://linkedin.com/company/trackflow" class="inline-flex min-h-12 w-fit items-center rounded-sm underline decoration-white/30 underline-offset-4 hover:text-[#00DCCF] hover:decoration-[#00DCCF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#00CFFF]">LinkedIn</a>
+				</div>
+				<p class="mt-6 text-sm text-white/70">© 2025 TrackFlow. Todos los derechos reservados.</p>
 			</div>
 		</footer>
 	</body>

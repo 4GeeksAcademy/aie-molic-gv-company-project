@@ -144,7 +144,9 @@ No se añaden direcciones postales, horarios, plazos de respuesta ni promesas co
 
 ### RF-07. Footer
 
-Contendrá el logo oficial legible sobre el fondo elegido, una descripción breve limitada a los tres servicios y la presencia en Estados Unidos y España, los contactos oficiales de RF-06, el enlace **LinkedIn** a `https://linkedin.com/company/trackflow` y el texto **«© 2025 TrackFlow. Todos los derechos reservados.»**. No se reutilizará la descripción de aduanas y flota de la captura. Los enlaces externos tendrán nombre accesible y protección apropiada si abren otra pestaña.
+Contendrá el logo oficial legible sobre el fondo elegido, una descripción breve limitada a los tres servicios y la presencia en Estados Unidos y España, el enlace **LinkedIn** a `https://linkedin.com/company/trackflow` y el texto **«© 2025 TrackFlow. Todos los derechos reservados.»**. No se reutilizará la descripción de aduanas y flota de la captura. Los enlaces externos tendrán nombre accesible y protección apropiada si abren otra pestaña.
+
+Los contactos oficiales de RF-06 aparecen una sola vez en `section#contacto`, junto al CTA; no se repiten en `footer`. Ambos elementos conservan su semántica y forman un único bloque visual compacto y responsive con fondo continuo `#06295D`, sin separación marcada.
 
 ### RF-08. Contrato de enlace con 002-website-form
 

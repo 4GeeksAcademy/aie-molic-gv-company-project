@@ -112,7 +112,7 @@ En cada tarea, las rutas de implementación se expresan relativas a `uis/website
   - **Dependencias:** T011. **Referencias:** RF-06, RF-08, CA-04, CA-05; PLAN §4.
   - **Finalización:** nombres, números visibles y destinos coinciden con RF-06 (`mailto:comercial@trackflow.com`, `tel:+12135550147`, `tel:+34976123456`); sin formulario embebido, horarios ni plazo de respuesta.
 
-- [x] **T013 — Completar el footer y el orden de contenido.** Añadir logo, descripción limitada al briefing, contactos, LinkedIn y copyright literal de 2025; comprobar la secuencia completa de secciones. **Verificada:** contenido, orden y logo oficial comprobados tras T003.
+- [x] **T013 — Completar el footer y el orden de contenido.** Añadir logo, descripción limitada al briefing, LinkedIn y copyright literal de 2025; mantener los contactos oficiales únicamente en Contacto según el ajuste aprobado de RF-07; comprobar la secuencia completa de secciones. **Verificada:** contenido, orden y logo oficial comprobados tras T003.
   - **Archivos:** modificar `index.html`.
   - **Dependencias:** T012. **Referencias:** RF-01, RF-07, RF-08, CA-01, CA-05, CA-15; PLAN §4.
   - **Finalización:** Header → Hero → Servicios → Cobertura → Por qué TrackFlow → Contacto → Footer; LinkedIn oficial, sin denominación «Inc.», aduanas ni control de flota. Enlace externo en la misma pestaña salvo justificación del comportamiento alternativo y protección correspondiente.
@@ -190,32 +190,32 @@ Aplicar primero utilidades **base móviles** en estas tareas, con referencia obl
 
 ## Fase 5 — Navegación y accesibilidad (T027–T032)
 
-- [ ] **T027 — Implementar el disclosure y la mejora progresiva.** Enlazar `navigation.js` con `defer`, inicializar elementos existentes y alternar botón/panel por debajo de 1024 px; sincronizar `hidden` y `aria-expanded`.
+- [x] **T027 — Implementar el disclosure y la mejora progresiva.** Enlazar `navigation.js` con `defer`, inicializar elementos existentes y alternar botón/panel por debajo de 1024 px; sincronizar `hidden` y `aria-expanded`.
   - **Archivos:** modificar `assets/js/navigation.js` e `index.html`.
   - **Dependencias:** T005, T026. **Referencias:** RF-01, RF-08, RNF-04, CA-04, CA-09, CA-15; PLAN §7, pasos 1–3.
   - **Finalización:** inspección confirma botones nativos, apertura/cierre por click sin doble evento de Enter/Space, enlaces ocultos fuera de foco y navegación HTML visible si no inicializa JS. Sin `innerHTML`, lógica del formulario ni trampa de foco. T044 comprobará el comportamiento.
 
-- [ ] **T028 — Implementar Escape y foco al elegir sección.** Limitar Escape al disclosure abierto, cerrar y volver al botón; al seleccionar sección, trasladar foco a destino antes de ocultar su enlace y conservar el fragmento. No interceptar los CTA al formulario.
+- [x] **T028 — Implementar Escape y foco al elegir sección.** Limitar Escape al disclosure abierto, cerrar y volver al botón; al seleccionar sección, trasladar foco a destino antes de ocultar su enlace y conservar el fragmento. No interceptar los CTA al formulario.
   - **Archivos:** modificar `assets/js/navigation.js` e `index.html`.
   - **Dependencias:** T027. **Referencias:** RF-01, RF-08, RNF-04, CA-04, CA-09; PLAN §7, pasos 4–5.
   - **Finalización:** manejadores y destinos con `tabindex="-1"` resuelven las transiciones indicadas sin foco en enlaces ocultos; prueba de teclado pendiente de T044.
 
-- [ ] **T029 — Sincronizar menú y foco al cambiar de breakpoint.** Usar `matchMedia('(min-width: 1024px)')`: escritorio visible y botón oculto; volver a móvil cerrado; rescatar foco solo si el cambio lo deja oculto.
+- [x] **T029 — Sincronizar menú y foco al cambiar de breakpoint.** Usar `matchMedia('(min-width: 1024px)')`: escritorio visible y botón oculto; volver a móvil cerrado; rescatar foco solo si el cambio lo deja oculto.
   - **Archivos:** modificar `assets/js/navigation.js`.
   - **Dependencias:** T028. **Referencias:** RNF-03, RNF-04, CA-08, CA-09; PLAN §7, paso 6.
   - **Finalización:** estados iniciales y listener coherentes con `lg`; clases literales cubiertas por el escaneo Tailwind y sin traslado a un botón oculto. Resize se verificará en T044.
 
-- [ ] **T030 — Incorporar salto a contenido y estados de foco.** Añadir enlace de salto, destino main enfocable y estilos `focus-visible` de 2 px con offset; ajustar targets 48 px móvil/44 px escritorio y movimiento reducido si hay transiciones.
+- [x] **T030 — Incorporar salto a contenido y estados de foco.** Añadir enlace de salto, destino main enfocable y estilos `focus-visible` de 2 px con offset; ajustar targets 48 px móvil/44 px escritorio y movimiento reducido si hay transiciones.
   - **Archivos:** modificar `index.html`.
   - **Dependencias:** T029. **Referencias:** RNF-04, RNF-05, RNF-06, CA-09, CA-10; PLAN §7.
   - **Finalización:** salto precede a navegación, no hay tabindex positivo y todos los controles tienen foco visible previsto, sin contornos recortados ni animación esencial; recorrido efectivo en T044.
 
-- [ ] **T031 — Revisar los pares de contraste y los indicadores.** Comprobar colores declarados y estados sobre claro/oscuro, incluido extremo desfavorable del degradado; evitar texto blanco pequeño en turquesa e información solo por color.
+- [x] **T031 — Revisar los pares de contraste y los indicadores.** Comprobar colores declarados y estados sobre claro/oscuro, incluido extremo desfavorable del degradado; evitar texto blanco pequeño en turquesa e información solo por color.
   - **Archivos:** modificar utilidades en `index.html` si es necesario.
   - **Dependencias:** T030. **Referencias:** RD-02, RD-06, RNF-05, CA-06, CA-10; PLAN §§5, 7.
   - **Finalización:** pares declarados alcanzan 4,5:1 texto normal y 3:1 texto grande/componentes pertinentes mediante comprobador permitido; conservar paleta y confirmar sobre render real en T044.
 
-- [ ] **T032 — Revisar alternativas, nombres y jerarquía semántica.** Cotejar alt con sujetos verificados en T003, logo con nombre TrackFlow sin duplicación, H1/H2/H3, landmarks y ARIA mínima.
+- [x] **T032 — Revisar alternativas, nombres y jerarquía semántica.** Cotejar alt con sujetos verificados en T003, logo con nombre TrackFlow sin duplicación, H1/H2/H3, landmarks y ARIA mínima.
   - **Archivos:** modificar `index.html` y atributos de navegación en `assets/js/navigation.js` solo si procede.
   - **Dependencias:** T031, T003. **Referencias:** RF-01 a RF-07, RNF-01, RNF-05, CA-01, CA-07, CA-10; PLAN §7.
   - **Finalización:** inspección de fuentes sin saltos arbitrarios, nombres vacíos ni ARIA contradictoria; decorativas con alt vacío justificado, informativas con descripción real. Lectura asistida pendiente de T044.
