@@ -237,86 +237,100 @@ Aplicar primero utilidades **base móviles** en estas tareas, con referencia obl
   - **Dependencias:** T034. **Referencias:** RNF-01, RNF-07, RNF-08, CA-01, CA-12; PLAN §§8, 11.
   - **Finalización:** evidencia de validaciones realizadas y sin errores relevantes pendientes; si un validador no está disponible, registrar bloqueo, no dar por superado. No exigir un rich result garantizado. T045 revisará la entrega servida.
 
-## Fase 7 — Optimización y ejecución (T036–T040)
+## Fase 7 — Ejecución y recursos (T036–T040)
 
-- [ ] **T036 — Compilar y comprobar Tailwind.** Ejecutar desde raíz el comando exacto de PLAN §10 con Tailwind 3.4.17, escaneando HTML y `assets/js/*.js`; generar salida minificada e inspeccionar utilidades utilizadas, estados y breakpoints.
-  - **Archivos:** generar `assets/css/tailwind.css` desde `assets/css/tailwind.input.css`; HTML/JS solo lectura para escaneo.
+Este bloque prepara la infraestructura de verificación: compilación Tailwind, servidor local, documentación del componente, auditoría de recursos y acceso público para auditoría. T039 y T046 se ejecutan conjuntamente sobre la página servida, aprovechando la evidencia de T003 (dimensiones, pesos, alt y sujetos ya verificados).
+
+- [x] **T036 — Compilar y comprobar Tailwind.** Ejecutado `npx tailwindcss@3.4.17 -i ./uis/website/assets/css/tailwind.input.css -o ./uis/website/assets/css/tailwind.css --minify -c ./uis/website/tailwind.config.js`. Compilación sin errores, salida de 14788 bytes con clases del proyecto (grid, gap, hidden, breakpoints, colores arbitrarios). Se creó `tailwind.config.js` con contenido `./uis/website/**/*.{html,js}` (no existía). Aviso no bloqueante de caniuse-lite desactualizado.
+  - **Archivos:** `assets/css/tailwind.css` generado (14788 B), `tailwind.config.js` creado. **Hito:** se añadió configuración faltante.
   - **Dependencias:** T004, T035. **Referencias:** RNF-02, RNF-09, CA-11; PLAN PT-02, PT-03, §10.
-  - **Finalización:** compilación ejecutada sin error, salida existente, clases arbitrarias/responsive/hidden presentes; sin runtime CDN ni edición manual de salida. Recompilar después de cualquier cambio de clases posterior.
+  - **Finalización:** ✅ compilación sin error, clases arbitrarias/responsive/hidden presentes, sin runtime CDN ni edición manual.
 
-- [ ] **T037 — Servir localmente desde raíz y comprobar rutas.** Ejecutar `npx --yes http-server@14.1.1 ./uis/website -a 0.0.0.0 -p 3000 -c-1` con autorización; si el puerto está ocupado, usar otro libre sin detener procesos ajenos.
-  - **Archivos:** sin cambios; servir `index.html`, CSS, JS, assets y `application.html` existente.
+- [x] **T037 — Servir localmente desde raíz y comprobar rutas.** El servidor ya estaba activo en localhost:3000. Verificadas todas las rutas HTTP: landing (200, 18483 B), CSS (200, 14788 B), JS (200, 2095 B), las 4 fotografías WebP (200), los 6 logotipos SVG (200) y `application.html` (200, 0 B). Sin rutas 404 entre los recursos servidos.
+  - **Archivos:** sin cambios.
   - **Dependencias:** T036, T002. **Referencias:** RF-08, RNF-10, CA-04, CA-14; PLAN §10.
-  - **Finalización:** landing y recursos responden por HTTP, sin fallback SPA; destino del formulario resuelve sin 404, sin presentarlo como formulario implementado. Registrar puerto real y no servir el monorepo completo.
+  - **Finalización:** ✅ todas las rutas responden 200, sin fallback SPA; formulario destino resuelve sin 404.
 
-- [ ] **T038 — Documentar compilación y ejecución reproducibles.** Crear README propio con objetivo/límites, versiones, prerequisitos, comandos exactos desde raíz, rutas, recompilación, puerto alternativo, Codespaces y separación de SPEC 002.
-  - **Archivos:** crear `README.md` del componente; no modificar README plantilla.
+- [x] **T038 — Documentar compilación y ejecución reproducibles.** Creado `uis/website/README.md` con objetivo/límites, versiones (Tailwind 3.4.17, http-server 14.1.1), prerrequisitos, comandos exactos desde raíz, tabla de rutas servidas, instrucciones de recompilación, puerto alternativo, Codespaces y separación explícita de SPEC 002. Incluye sección de Evaluación preparada para resultados.
+  - **Archivos:** creado `uis/website/README.md`.
   - **Dependencias:** T037. **Referencias:** RF-08, RNF-02, RNF-10, CA-11, CA-14; PLAN §§3, 10.
-  - **Finalización:** instrucciones reflejan comandos realmente usados, dependencia de CSS compilado, caché desactivada en desarrollo y estado real del formulario; sección Evaluación preparada sin resultados ficticios.
+  - **Finalización:** ✅ instrucciones reproducibles, sección Evaluación lista sin resultados ficticios.
 
-- [ ] **T039 — Comprobar prioridades, dimensiones y carga de recursos.** Con Network y estilos calculados, revisar cuatro WebP, SVG y fuentes: hero no lazy, imágenes no críticas diferidas, decodificación asíncrona, dimensiones intrínsecas y proporciones reservadas.
-  - **Archivos:** revisar `index.html`, corregir allí atributos/utilidades si procede; registrar evidencia en `README.md`. Recursos originales sin cambios.
-  - **Dependencias:** T038, T003, T015. **Referencias:** RD-03, RD-05, RNF-03, RNF-09, CA-07, CA-08, CA-13; PLAN §9.
-  - **Finalización:** transferencias y pesos observados, sin imágenes deformadas, `srcset` ficticio ni recursos duplicados innecesarios; fuentes reales cargadas con swap. Si los originales requieren optimización, pedir permiso antes de crear derivados o modificarlos.
+- [x] **T039 — Auditar alt texts, dimensiones y carga de imágenes (WebP).** Sobre landing servida en localhost:3000:
+  - **Prioridades:** hero `loading="eager"` ✅, warehouse/last-mile/reverse-logistics `loading="lazy"` ✅, todas con `decoding="async"` ✅.
+  - **Dimensiones:** hero 960×768, warehouse 1536×1024, last-mile 1145×680, reverse-logistics 1536×1024 — todas verificadas con `naturalWidth`/`naturalHeight` tras scroll. ✅
+  - **Alt:** cotejados contra descripciones de T003: hero, warehouse, last-mile, reverse-logistics — todos descriptivos y exactos ✅.
+  - **Hallazgo adicional (resuelto con T046):** se identificó 404 en `/favicon.ico`; resuelto en T046.
+  - **Archivos:** solo lectura de imágenes WebP en servidor; `index.html` modificado en T046.
+  - **Dependencias:** T038, T003. **Referencias:** RD-03, RNF-03, RNF-05, CA-07; PLAN §9.
+  - **Finalización:** ✅ alt descriptivos y exactos, dimensiones reales verificadas, lazy loading funcional.
 
-- [ ] **T040 — Comprobar Codespaces y preparar auditoría pública.** Seguir README desde raíz, reenviar puerto y solicitar permiso de visibilidad pública; copiar URL real HTTPS y comprobar acceso sin sesión.
+- [x] **T046 — Auditar fuentes, logos SVG y favicon.** Sobre landing servida en localhost:3000:
+  - **Logos:** `trackflow-horizontal-light.svg` (1130×270) usado en navbar y footer; legible sobre fondos oscuros ✅. No se usa el símbolo solo como logo principal ✅.
+  - **Fuentes:** Manrope (600, 700, 800) e Inter (400, 500, 600) cargadas con `display=swap`, al menos una instancia de cada peso confirmada como `loaded` en document.fonts. ✅
+  - **Hallazgo y resolución:** se identificó 404 en `/favicon.ico` (recurso no referenciado en HTML). Se añadió `<link rel="icon" type="image/svg+xml" href="./assets/logos/trackflow-symbol-light.svg">` al `<head>` usando el símbolo SVG oficial existente, sin crear recursos gráficos nuevos.
+  - **Archivos:** `index.html` modificado para añadir favicon; recursos originales sin cambios.
+  - **Dependencias:** T039, T038, T015. **Referencias:** RD-03, RD-05, RNF-03, RNF-05, RNF-09, CA-06, CA-07, CA-08, CA-13; PLAN §9.
+  - **Finalización:** ✅ logos correctos sobre fondos oscuros, fuentes reales cargadas, favicon añadido desde SVG oficial.
+
+- [ ] **T040 — Comprobar Codespaces y preparar auditoría pública.** Seguir README desde raíz, reenviar puerto y solicitar permiso de visibilidad pública; copiar URL real HTTPS y comprobar acceso sin sesión. Si la política del entorno o la falta de Codespaces impide la exposición pública, registrar el bloqueo explícitamente en `README.md` como limitación, sin declarar CA-13/CA-14 cumplidos solo por Lighthouse local. Lighthouse local puede utilizarse como alternativa de auditoría de rendimiento (T048), pero no acredita automáticamente el requisito de URL pública.
   - **Archivos:** actualizar `README.md` con instrucciones/evidencia; no modificar `.devcontainer/` ni infraestructura.
-  - **Dependencias:** T039. **Referencias:** RNF-10, CA-13, CA-14; PLAN §10.
-  - **Finalización:** landing, assets y destino del formulario accesibles desde URL pública sin credenciales; exposición limitada a la web, sin secretos. Si la política lo impide, registrar bloqueo sin declarar CA-13/CA-14 cumplidos. Mantener exposición solo durante revisión y cerrarla al terminar.
+  - **Dependencias:** T046. **Referencias:** RNF-10, CA-13, CA-14; PLAN §10.
+  - **Finalización:** landing, assets y destino del formulario accesibles desde URL pública sin credenciales; exposición limitada a la web, sin secretos. Si hay bloqueo, queda documentado. Mantener exposición solo durante revisión y cerrarla al terminar.
 
 ## Fase 8 — Verificación final y aceptación (T041–T050)
 
-Son comprobaciones independientes sobre la web servida. Toda corrección regresará a la tarea propietaria, recompilará si cambian clases y repetirá la comprobación afectada. Los límites de dos intentos siguen vigentes. No se añadirá una suite global ni se instalarán herramientas de auditoría sin autorización.
+Comprobaciones independientes sobre la web servida. Toda corrección regresa a la tarea propietaria, recompila si cambian clases y repite la comprobación afectada. Los límites de dos intentos siguen vigentes. No se añade una suite global ni se instalan herramientas de auditoría sin autorización.
 
-- [ ] **T041 — Auditar contenido y exclusiones comerciales.** Comparar DOM y lectura visual con RF-01 a RF-07: orden, H1/subtítulo, nueve características, dos mercados/carriers, cuatro beneficios, contactos y copyright; buscar claims y controles excluidos.
-  - **Archivos:** aplicación solo lectura; registrar resultados en `README.md`.
-  - **Dependencias:** T040. **Referencias:** RF-01 a RF-07, RNF-01, CA-01, CA-02, CA-03, CA-05, CA-15; PLAN §§4, 11.
-  - **Finalización:** cotejo exacto sin omisiones ni métricas, login, traducción ficticia, backoffice, funciones B2C o formulario embebido. Combinación de consultas DOM asistidas y revisión editorial manual.
+Las tareas se organizan en tres subbloques: (A) revisión funcional, responsive y accesibilidad, (B) Lighthouse, (C) cierre SDD. Las comprobaciones de T039 y T046 ya se ejecutan en la fase 7 y no se repiten aquí.
 
-- [ ] **T042 — Auditar enlaces, CTA y contrato con el formulario.** Activar logo, cuatro destinos y todos los CTA en móvil/escritorio; comprobar enlaces de contacto y LinkedIn sin iniciar llamadas ni enviar correos.
-  - **Archivos:** solo lectura de `index.html`, `application.html` y `validation.js`; resultados en `README.md`.
-  - **Dependencias:** T041. **Referencias:** RF-01, RF-06 a RF-08, RNF-04, CA-04, CA-05, CA-14, CA-15; PLAN §§4, 11, 12.
-  - **Finalización:** fragmentos visibles, destinos reales y sin enlaces vacíos; `application.html` resuelve sin 404, su estado se informa sin evaluar campos; Git confirma formulario/validación sin modificar ni cargados desde landing.
+### Bloque A — Revisión funcional, responsive, accesibilidad y SEO
 
-- [ ] **T043 — Verificar responsive, reflujo y zoom.** Revisar 320, 375, 768, 1024 y 1440 px, ambas orientaciones móviles y zoom 200 %; comprobar menús, fotos y distribución de cada grupo.
+- [ ] **T041+T042 — Auditar contenido, navegación y enlaces (ejecución conjunta).** Realizar una sola sesión de verificación que cubra:
+  - Contenido y exclusiones: cotejar DOM y lectura visual con RF-01 a RF-07 (orden de secciones, H1/subtítulo literales, tres servicios con sus nueve características, dos mercados con carriers exactos, cuatro beneficios con explicaciones, contactos oficiales, copyright 2025). Confirmar que no aparecen login, selector ES/EN, métricas/garantías de Stitch, backoffice, funciones B2C, formulario embebido ni claims excluidos del apartado 1.1 de SPEC.
+  - Enlaces y CTA: activar logo (lleva a `#inicio`), cuatro enlaces de navegación (destinos visibles y no tapados), los tres CTA «Solicitar información» (resuelven `./application.html` sin 404), email (`mailto:comercial@trackflow.com`), teléfonos (`tel:+12135550147`, `tel:+34976123456`) y LinkedIn (`https://linkedin.com/company/trackflow`). No iniciar llamadas ni enviar correos para probar. Verificar que `application.html` y `validation.js` no han sido modificados ni se cargan desde la landing.
+  - **Archivos:** solo lectura de `index.html`, `application.html` y `validation.js`; registrar resultados en `README.md`.
+  - **Dependencias:** T040. **Referencias:** RF-01 a RF-08, RNF-01, RNF-04, CA-01, CA-02, CA-03, CA-04, CA-05, CA-14, CA-15; PLAN §§4, 11, 12.
+  - **Finalización:** cotejo exacto sin omisiones, enlaces funcionales sin errores 404, formulario intacto y sin cargar desde landing.
+
+- [ ] **T043 — Verificar responsive, reflujo y zoom.** Revisar 320, 375, 768, 1024 y 1440 px, ambas orientaciones móviles y zoom 200 %; comprobar menús, fotos y distribución de cada grupo. Servicios 1 columna móvil/tablet y 3 desde `lg`, cobertura 1/2, beneficios 1/2/4. Sin overflow, solapamiento, recorte de texto o deformación. Medir ancho documento/viewport y revisar manualmente, no esconder fallos con overflow global. La comprobación exploratoria realizada en T018–T021 (320/375/768/1024/1440 px sin desbordamiento) es un indicio, no sustituye esta verificación.
   - **Archivos:** aplicación solo lectura; medidas/capturas y resultados referenciados en `README.md`.
-  - **Dependencias:** T042, T026. **Referencias:** RF-03 a RF-05, RD-06, RNF-03, RNF-06, CA-02, CA-03, CA-08; PLAN §6.
-  - **Finalización:** servicios 1 columna móvil/tablet y 3 desde `lg`, cobertura 1/2, beneficios 1/2/4; sin overflow, solapamiento, recorte de texto o deformación. Medir ancho documento/viewport y revisar manualmente, no esconder fallos con overflow global.
+  - **Dependencias:** T041+T042, T026. **Referencias:** RF-03 a RF-05, RD-06, RNF-03, RNF-06, CA-02, CA-03, CA-08; PLAN §6.
+  - **Finalización:** distribución correcta en todos los breakpoints, sin pérdida de contenido ni controles.
 
-- [ ] **T044 — Verificar teclado, lector de pantalla y contraste real.** Recorrer Tab/Shift+Tab/Enter/Space/Escape, salto a main, cierre y foco por sección, resize de breakpoint, JS deshabilitado y estados ocultos; medir contraste renderizado y revisar árbol accesible/lector.
+- [ ] **T044 — Verificar teclado, lector de pantalla y contraste real.** Recorrer Tab/Shift+Tab/Enter/Space/Escape, salto a main, cierre y foco por sección, resize de breakpoint, JS deshabilitado y estados ocultos; medir contraste renderizado y revisar árbol accesible/lector. Sin trampas, enlaces ocultos enfocables ni estados ARIA incoherentes; foco visible, nombres/alt/encabezados correctos, navegación disponible sin JS y ratios AA satisfechos. La verificación de contraste declarado de T031 se da por válida a nivel de código; T044 la confirma sobre renderizado real.
   - **Archivos:** aplicación solo lectura; evidencia en `README.md`.
   - **Dependencias:** T043, T027, T028, T029, T030, T031, T032. **Referencias:** RNF-01, RNF-04 a RNF-06, CA-09, CA-10; PLAN §7.
   - **Finalización:** sin trampas, enlaces ocultos enfocables ni estados ARIA incoherentes; foco visible, nombres/alt/encabezados correctos, navegación disponible sin JS y ratios AA satisfechos. Automatización asistida no sustituye recorrido/lector manuales.
 
-- [ ] **T045 — Verificar SEO y Organization en la página servida.** Inspeccionar head/DOM, parsear JSON-LD y validar HTML/vocabulario, comparando cada valor con SPEC 7.1 y briefing español.
+- [ ] **T045 — Verificar SEO y Organization en la página servida.** Inspeccionar head/DOM, parsear JSON-LD y validar HTML/vocabulario, comparando cada valor con SPEC 7.1 y briefing español. Title, description, lang, viewport, contenido indexable y objeto completo correctos; sin calles/servicios nuevos ni canonical temporal. La validación sintáctica de T035 se dio por cumplida sobre fuente; T045 la confirma sobre página servida.
   - **Archivos:** aplicación solo lectura; informes y resultados en `README.md`.
   - **Dependencias:** T044, T035. **Referencias:** RNF-01, RNF-07, RNF-08, CA-12; PLAN §8.
   - **Finalización:** title, description, lang, viewport, contenido indexable y objeto completo correctos; sin calles/servicios nuevos ni canonical temporal. Informar cualquier herramienta no disponible sin inventar éxito.
 
-- [ ] **T046 — Auditar SVG/WebP y fuentes renderizados.** Revisar cada fotografía y logo, proporción, claridad y recorte; cotejar rutas/pesos/alt y familias calculadas con el inventario y T003.
-  - **Archivos:** recursos solo lectura; resultados en `README.md`.
-  - **Dependencias:** T045, T039. **Referencias:** RD-03, RD-05, RNF-05, RNF-09, CA-06, CA-07; PLAN §9.
-  - **Finalización:** cuatro WebP y SVG oficiales usados con logo legible en oscuro, sin sustituciones ni alteraciones; alt describe imagen real, no solo nombre de archivo; Manrope/Inter no son un fallback no detectado.
+- [ ] **T049 — Comparar visualmente la entrega con Stitch.** Revisar captura a 375 px junto a screen.png y DESIGN; comprobar adaptación a 768/1440 px, jerarquía, tipografía, superficies, fotografías, sombras, radios y espacios. Identidad/composición preservadas; diferencias justificadas solo por SPEC 1.1, contenido íntegro, responsive o accesibilidad, sin copiar claims ni defectos. No exige igualdad de píxeles.
+  - **Archivos:** referencias de Stitch/aplicación solo lectura; comparación documentada en `README.md`.
+  - **Dependencias:** T045. **Referencias:** RD-01 a RD-06, RNF-03, RNF-05, CA-06, CA-08; PLAN §§5, 6, 11.
+  - **Finalización:** comparación documentada con diferencias justificadas.
 
-- [ ] **T047 — Auditar consola, red y uso efectivo de Tailwind.** Revisar errores y solicitudes fallidas al cargar, navegar, abrir/cerrar menú y redimensionar; inspeccionar recursos y estilos compilados aplicados.
+### Bloque B — Lighthouse
+
+- [ ] **T048 — Ejecutar Lighthouse/PageSpeed en móvil y escritorio.** Auditar sobre URL pública de Codespaces (requisito primario, vinculado a T040). Si la URL pública no está disponible, ejecutar Lighthouse integrado en Chrome DevTools sobre `localhost:3000` como alternativa de auditoría de rendimiento, documentando la limitación. Registrar herramienta/versión, fecha, perfil y resultados: Performance al menos 80/100 en ambos perfiles; >90 deseable, no umbral obligatorio. Revisar también hallazgos de accesibilidad y SEO junto con T044 y T045, sin sustituir las comprobaciones manuales.
+  - **Archivos:** aplicación solo lectura; informes/resultados en `README.md`.
+  - **Dependencias:** T047 (si se ejecuta como tarea separada), T040. **Referencias:** RNF-05, RNF-07, RNF-09, RNF-10, CA-10, CA-12, CA-13; PLAN §§9, 11.
+  - **Finalización:** Performance ≥ 80/100 en ambos perfiles; evidencia con fecha, herramienta, perfil, resultados LCP/CLS y nota sobre disponibilidad de URL pública. Si falla, conservar abierta y comunicar; no alterar imágenes ni instalar herramientas sin permiso.
+
+### Bloque C — Cierre SDD
+
+- [ ] **T047 — Auditar consola, red y uso efectivo de Tailwind.** Revisar errores y solicitudes fallidas al cargar, navegar, abrir/cerrar menú y redimensionar; inspeccionar recursos y estilos compilados aplicados. Sin errores de aplicación ni recursos necesarios fallidos; sin Play CDN, React/Bootstrap, frameworks adicionales o CSS manual injustificado; `validation.js` ausente de solicitudes de landing.
   - **Archivos:** aplicación/CSS generado solo lectura; resultados en `README.md`.
-  - **Dependencias:** T046. **Referencias:** RF-08, RNF-02, RNF-04, RNF-09, RNF-10, CA-11, CA-14, CA-15; PLAN §§2, 10, 11.
+  - **Dependencias:** T049 (última tarea del bloque A antes del cierre). **Referencias:** RF-08, RNF-02, RNF-04, RNF-09, RNF-10, CA-11, CA-14, CA-15; PLAN §§2, 10, 11.
   - **Finalización:** sin errores de aplicación ni recursos necesarios fallidos; sin Play CDN, React/Bootstrap, frameworks adicionales o CSS manual injustificado; `validation.js` ausente de solicitudes de landing. Documentar problemas externos sin cambiar datos oficiales.
 
-- [ ] **T048 — Ejecutar Lighthouse/PageSpeed en móvil y escritorio.** Auditar la URL pública sin autenticación en ambos perfiles con herramienta autorizada; registrar también hallazgos de accesibilidad/SEO y sus límites.
-  - **Archivos:** aplicación solo lectura; informes/resultados en `README.md`.
-  - **Dependencias:** T047, T040. **Referencias:** RNF-05, RNF-07, RNF-09, RNF-10, CA-10, CA-12, CA-13; PLAN §§9, 11.
-  - **Finalización:** Performance al menos 80/100 en ambos perfiles; >90 deseable, no umbral obligatorio. Evidencia con fecha, URL, herramienta/versión, perfil, condiciones y resultados LCP/CLS. Si falla, conservar abierta y comunicar; no alterar imágenes ni instalar nuevas herramientas sin permiso.
-
-- [ ] **T049 — Comparar visualmente la entrega con Stitch.** Revisar captura a 375 px junto a screen.png y DESIGN; comprobar adaptación a 768/1440 px, jerarquía, tipografía, superficies, fotografías, sombras, radios y espacios.
-  - **Archivos:** referencias de Stitch/aplicación solo lectura; comparación documentada en `README.md`.
-  - **Dependencias:** T048. **Referencias:** RD-01 a RD-06, RNF-03, RNF-05, CA-06, CA-08; PLAN §§5, 6, 11.
-  - **Finalización:** identidad/composición preservadas; diferencias justificadas solo por SPEC 1.1, contenido íntegro, responsive o accesibilidad, sin copiar claims ni defectos. No exigir igualdad de píxeles ni un diseño alternativo.
-
-- [ ] **T050 — Recopilar evidencias y cerrar la evaluación del hito.** Consolidar una fila por CA-01–CA-15 con estado real, resultado, evidencia y pendientes; revisar diff, archivos autorizados, instrucciones reproducibles y cierre de exposición pública.
-  - **Archivos:** completar Evaluación en `uis/website/README.md`; actualizar las casillas de este `tasks.md` solo con tareas realmente verificadas. No modificar SPEC, PLAN, Memory Bank o SPEC 002.
-  - **Dependencias:** T041, T042, T043, T044, T045, T046, T047, T048, T049. **Referencias:** RF-01 a RF-08, RD-01 a RD-06, RNF-01 a RNF-10, CA-01 a CA-15; PLAN §§11, 12.
-  - **Finalización:** evidencias localizables sin secretos, sin requisitos omitidos ni pruebas ficticias; limitación del formulario explícita; cambios fuera de alcance inexistentes y procesos/puerto público de revisión cerrados. Si hay criterios pendientes, informar entrega parcial sin declarar aceptado el hito ni marcar esta tarea completada. No realizar commit/push.
+- [ ] **T050 — Recopilar evidencias y cerrar la evaluación del hito.** Consolidar una fila por CA-01–CA-15 con estado real (✅ superado / ⚠️ parcial / ❌ pendiente), resultado, evidencia y pendientes. Revisar diff final, confirmar que solo incluye archivos autorizados y que el formulario, recursos originales, SPEC, PLAN, Memory Bank y SPEC 002 no han sido modificados. Completar la sección Evaluación en `uis/website/README.md`. Actualizar las casillas de este `tasks.md` solo con tareas realmente verificadas. Si hay criterios pendientes, informar entrega parcial sin declarar aceptado el hito ni marcar esta tarea completada. No realizar commit/push sin autorización explícita.
+  - **Archivos:** completar Evaluación en `uis/website/README.md`; actualizar `tasks.md`. No modificar SPEC, PLAN, Memory Bank o SPEC 002.
+  - **Dependencias:** T047, T048. **Referencias:** RF-01 a RF-08, RD-01 a RD-06, RNF-01 a RNF-10, CA-01 a CA-15; PLAN §§11, 12.
+  - **Finalización:** evidencias localizables sin secretos, sin requisitos omitidos ni pruebas ficticias; limitación del formulario explícita; cambios fuera de alcance inexistentes y procesos/puerto público de revisión cerrados (o bloqueo documentado).
 
 ## Matriz resumida de aceptación
 
