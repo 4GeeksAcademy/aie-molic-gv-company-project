@@ -21,7 +21,7 @@
 
 ## Fase 1 — Preparación (WF-01)
 
-- [ ] **WF-01 — Verificar línea base, archivos destino y cobertura Tailwind**
+- [x] **WF-01 — Verificar línea base, archivos destino y cobertura Tailwind**
 
 Comprobar que `application.html` y `validation.js` existen, están vacíos y sin modificar. Confirmar que `index.html` y `navigation.js` no han cambiado y que los CTA de la landing siguen apuntando a `./application.html`. Verificar que `tailwind.config.js` (en `uis/website/`) escanea `./uis/website/**/*.{html,js}`, cubriendo ambos archivos del formulario. Ejecutar una compilación de prueba para confirmar que el comando funciona:
 
@@ -41,7 +41,7 @@ npx tailwindcss@3.4.17 \
 
 ## Fase 2 — Estructura HTML y Tailwind del wizard (WF-02 a WF-04)
 
-- [ ] **WF-02 — Crear `application.html` con cabecera, footer y recursos**
+- [x] **WF-02 — Crear `application.html` con cabecera, footer y recursos**
 
 Crear la página HTML5 completa con:
 
@@ -58,7 +58,7 @@ Crear la página HTML5 completa con:
 - **Dependencias:** WF-01.
 - **Finalización:** página válida, recursos enlazados, cabecera y footer coherentes con la landing, form sin envío HTTP.
 
-- [ ] **WF-03 — Implementar las 4 etapas + resumen con todos los campos**
+- [x] **WF-03 — Implementar las 4 etapas + resumen con todos los campos**
 
 Dentro del `<form>`, crear una sección por etapa. Cada etapa es un `<div>` (o `<fieldset>` donde agrupe campos) que se muestra/oculta con JavaScript:
 
@@ -82,7 +82,7 @@ Cada campo debe tener:
 - **Dependencias:** WF-02.
 - **Finalización:** 12 campos con tipos, opciones, placeholders y textos exactos del briefing. Errores preparados. Resumen con huecos para rellenar desde JS. Indicador de progreso presente.
 
-- [ ] **WF-04 — Aplicar estilos Tailwind al wizard**
+- [x] **WF-04 — Aplicar estilos Tailwind al wizard**
 
 Añadir las clases Tailwind necesarias para que el wizard sea visualmente coherente con la landing, siguiendo la paleta Corporate Tech Premium (DESIGN.md, PLAN §6.1):
 
@@ -102,7 +102,7 @@ Añadir las clases Tailwind necesarias para que el wizard sea visualmente cohere
 
 ## Fase 3 — Navegación del wizard en `validation.js` (WF-05 a WF-06)
 
-- [ ] **WF-05 — Implementar estado, navegación e indicador de progreso**
+- [x] **WF-05 — Implementar estado, navegación e indicador de progreso**
 
 En `validation.js`, crear:
 
@@ -132,7 +132,7 @@ En `validation.js`, crear:
 - **Dependencias:** WF-03.
 - **Finalización:** se navega por las 4 etapas + resumen; datos preservados; indicador de progreso refleja el estado en todo momento.
 
-- [ ] **WF-06 — Gestionar el foco al navegar entre etapas**
+- [x] **WF-06 — Gestionar el foco al navegar entre etapas**
 
 Implementar el desplazamiento del foco (PF-04, PLAN §4.4):
 
@@ -150,7 +150,7 @@ Implementar el desplazamiento del foco (PF-04, PLAN §4.4):
 
 ## Fase 4 — Validaciones (WF-07 a WF-08)
 
-- [ ] **WF-07 — Implementar las 12 funciones de validación (V-01 a V-12)**
+- [x] **WF-07 — Implementar las 12 funciones de validación (V-01 a V-12)**
 
 Crear en `validation.js` una función por regla de validación, cada una recibiendo el valor del campo y devolviendo `{ isValid: boolean, message: string }`:
 
@@ -175,7 +175,7 @@ Declarar el arreglo `VALIDATIONS` con objetos `{ campo, etapa, fn, mensaje }` qu
 - **Dependencias:** WF-05.
 - **Finalización:** 12 funciones implementadas con mensajes exactos del briefing. Arreglo `VALIDATIONS` definido.
 
-- [ ] **WF-08 — Implementar validación por etapa, global y contador de caracteres**
+- [x] **WF-08 — Implementar validación por etapa, global y contador de caracteres**
 
 Crear en `validation.js`:
 
@@ -254,7 +254,7 @@ En `validation.js`:
 
 ## Fase 6 — Verificación final (WF-11 a WF-12)
 
-- [ ] **WF-11 — Recompilar Tailwind y verificar responsive y accesibilidad**
+- [x] **WF-11 — Recompilar Tailwind y verificar responsive y accesibilidad**
 
 Ejecutar la compilación de Tailwind para incluir las nuevas clases del wizard en `tailwind.css`. Verificar que `application.html` carga el CSS sin errores 404.
 
@@ -273,7 +273,7 @@ A continuación, comprobar (manual, con herramientas del navegador):
 - **Dependencias:** WF-04, WF-06.
 - **Finalización:** Tailwind compila sin errores; checklist de accesibilidad y responsive superado.
 
-- [ ] **WF-12 — Verificar integridad y ausencia de regresiones**
+- [x] **WF-12 — Verificar integridad y ausencia de regresiones**
 
 Comprobar:
 

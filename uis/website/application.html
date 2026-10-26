@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TrackFlow | Solicitar información — Logística e-commerce</title>
+  <meta name="description" content="Solicita información sobre los servicios de logística e-commerce de TrackFlow: gestión de almacenes, entregas de última milla y logística inversa en Estados Unidos y España.">
+  <!-- CSS compilado de Tailwind (mismo que la landing) -->
+  <link rel="stylesheet" href="./assets/css/tailwind.css">
+  <!-- Google Fonts: Manrope e Inter (mismos que la landing) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700;800&amp;display=swap">
+  <!-- Favicon SVG claro (mismo que la landing) -->
+  <link rel="icon" type="image/svg+xml" href="./assets/logos/trackflow-symbol-light.svg">
+  <!-- JavaScript del formulario: cargado con defer, sin navigation.js -->
+  <script src="./validation.js" defer></script>
+</head>
+<body class="bg-[#F6F5F1] font-['Inter',sans-serif] text-[0.9375rem] leading-6 tracking-normal text-[#03142E]">
+
+  <!-- Skip link: acceso rápido al contenido principal -->
+  <a href="#contenido-principal" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:inline-flex focus:min-h-12 focus:items-center focus:rounded-lg focus:bg-white focus:px-4 focus:text-[#03142E] focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-[#0758BD]">
+    Saltar al contenido principal
+  </a>
+
+  <!-- ============================================================ -->
+  <!-- CABECERA SIMPLIFICADA (PF-08)                                -->
+  <!-- Mismo degradado marino, logo horizontal claro, sin menú.     -->
+  <!-- ============================================================ -->
+  <header class="border-b border-[#00DCCF]/20 bg-gradient-to-r from-[#03142E] via-[#06295D] to-[#03142E] text-white">
+    <div class="mx-auto flex w-full max-w-[1440px] items-center justify-between gap-4 px-4 py-4 md:px-8 lg:px-12">
+      <a href="./index.html" aria-label="TrackFlow, volver al inicio" class="inline-flex min-h-12 w-fit items-center rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00CFFF]">
+        <img src="./assets/logos/trackflow-horizontal-light.svg" alt="TrackFlow" width="1130" height="270" class="h-auto w-48 max-w-full sm:w-56">
+      </a>
+      <a href="./index.html" class="inline-flex min-h-12 items-center rounded-lg px-4 text-sm font-medium hover:text-[#00DCCF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00CFFF]">
+        Volver al inicio
+      </a>
+    </div>
+  </header>
+
+  <!-- ============================================================ -->
+  <!-- CONTENIDO PRINCIPAL: WIZARD                                  -->
+  <!-- ============================================================ -->
+  <main id="contenido-principal" tabindex="-1" class="mx-auto w-full max-w-[1440px] px-4 py-10 md:px-8 lg:px-12 lg:py-16">
+
+    <!--
+      Indicador de progreso del wizard.
+      Lista ordenada con 5 elementos (4 etapas + resumen).
+      Las clases active / completed / pending se aplican desde JavaScript.
+    -->
+    <nav aria-label="Progreso del formulario" class="mb-10">
+      <ol class="flex items-center justify-center gap-0">
+        <!-- E-1: Empresa -->
+        <li class="flex items-center">
+          <span class="flex h-8 w-8 items-center justify-center rounded-full bg-[#526578] text-sm font-semibold text-white" aria-label="Paso 1 de 5: Datos de la empresa" aria-current="step">1</span>
+          <span class="ml-2 hidden text-sm font-medium text-[#526578] sm:inline">Empresa</span>
+          <!-- Conector visual -->
+          <svg class="mx-2 h-0.5 w-8 text-[#526578]" fill="currentColor" viewBox="0 0 32 2" aria-hidden="true">
+            <rect width="32" height="2" rx="1" />
+          </svg>
+        </li>
+        <!-- E-2: Contacto -->
+        <li class="flex items-center">
+          <span class="flex h-8 w-8 items-center justify-center rounded-full bg-[#526578] text-sm font-semibold text-white" aria-label="Paso 2 de 5: Información de contacto">2</span>
+          <span class="ml-2 hidden text-sm font-medium text-[#526578] sm:inline">Contacto</span>
+          <svg class="mx-2 h-0.5 w-8 text-[#526578]" fill="currentColor" viewBox="0 0 32 2" aria-hidden="true">
+            <rect width="32" height="2" rx="1" />
+          </svg>
+        </li>
+        <!-- E-3: Operación -->
+        <li class="flex items-center">
+          <span class="flex h-8 w-8 items-center justify-center rounded-full bg-[#526578] text-sm font-semibold text-white" aria-label="Paso 3 de 5: Datos de operación">3</span>
+          <span class="ml-2 hidden text-sm font-medium text-[#526578] sm:inline">Operación</span>
+          <svg class="mx-2 h-0.5 w-8 text-[#526578]" fill="currentColor" viewBox="0 0 32 2" aria-hidden="true">
+            <rect width="32" height="2" rx="1" />
+          </svg>
+        </li>
+        <!-- E-4: Comentarios -->
+        <li class="flex items-center">
+          <span class="flex h-8 w-8 items-center justify-center rounded-full bg-[#526578] text-sm font-semibold text-white" aria-label="Paso 4 de 5: Comentarios y privacidad">4</span>
+          <span class="ml-2 hidden text-sm font-medium text-[#526578] sm:inline">Comentarios</span>
+          <svg class="mx-2 h-0.5 w-8 text-[#526578]" fill="currentColor" viewBox="0 0 32 2" aria-hidden="true">
+            <rect width="32" height="2" rx="1" />
+          </svg>
+        </li>
+        <!-- Resumen -->
+        <li class="flex items-center">
+          <span class="flex h-8 w-8 items-center justify-center rounded-full bg-[#526578] text-sm font-semibold text-white" aria-label="Paso 5 de 5: Resumen">5</span>
+          <span class="ml-2 hidden text-sm font-medium text-[#526578] sm:inline">Resumen</span>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- ============================================================ -->
+    <!-- FORMULARIO                                                   -->
+    <!-- Sin action ni method (PF-07: envío simulado con JS).         -->
+    <!-- ============================================================ -->
+    <form id="form-solicitud" novalidate class="mx-auto max-w-2xl">
+
+      <!-- Tarjeta contenedora del wizard -->
+      <div class="rounded-2xl border border-[#526578]/[0.16] bg-white shadow-[0_1px_3px_rgba(3,20,46,0.04),0_6px_16px_rgba(3,20,46,0.03)]">
+
+        <!-- ========================================================== -->
+        <!-- ETAPA 1: DATOS DE LA EMPRESA (E-1)                          -->
+        <!-- ========================================================== -->
+        <section id="step-empresa" class="step-panel space-y-6 p-6 md:p-8" data-step="0">
+          <h2 class="font-['Manrope',sans-serif] text-[1.5rem] font-semibold leading-8">Datos de la empresa</h2>
+
+          <!-- F-01: Nombre de la empresa -->
+          <div>
+            <label for="f01" class="mb-1 block font-['Inter',sans-serif] text-sm font-semibold leading-5 tracking-[0.01em]">
+              Nombre de la empresa <span class="text-[#ba1a1a]" aria-hidden="true">*</span>
+            </label>
+            <input type="text" id="f01" name="f01" required
+              placeholder="Ej: TrackFlow S.L."
+              class="h-11 w-full rounded-lg border border-[#526578]/[0.24] bg-white px-3 text-[0.9375rem] leading-6 text-[#03142E] placeholder:text-[#526578]/60 focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-[#0758BD]">
+            <span id="f01-error" class="mt-1 flex items-center gap-1 text-sm text-[#ba1a1a]" role="alert"></span>
+          </div>
+
+          <!-- F-05: Sitio web de la empresa -->
+          <div>
+            <label for="f05" class="mb-1 block font-['Inter',sans-serif] text-sm font-semibold leading-5 tracking-[0.01em]">
+              Sitio web de la empresa
+            </label>
+            <input type="url" id="f05" name="f05"
+              placeholder="Ej: https://tutienda.com"
+              class="h-11 w-full rounded-lg border border-[#526578]/[0.24] bg-white px-3 text-[0.9375rem] leading-6 text-[#03142E] placeholder:text-[#526578]/60 focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-[#0758BD]">
+            <span id="f05-error" class="mt-1 flex items-center gap-1 text-sm text-[#ba1a1a]" role="alert"></span>
+          </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- ETAPA 2: INFORMACIÓN DE CONTACTO (E-2)                      -->
+        <!-- ========================================================== -->
+        <section id="step-contacto" class="step-panel hidden space-y-6 p-6 md:p-8" data-step="1">
+          <h2 class="font-['Manrope',sans-serif] text-[1.5rem] font-semibold leading-8">Información de contacto</h2>
+
+          <!-- F-02: Persona de contacto -->
+          <div>
+            <label for="f02" class="mb-1 block font-['Inter',sans-serif] text-sm font-semibold leading-5 tracking-[0.01em]">
+              Persona de contacto <span class="text-[#ba1a1a]" aria-hidden="true">*</span>
+            </label>
+            <input type="text" id="f02" name="f02" required
+              placeholder="Ej: Ana García López"
+              class="h-11 w-full rounded-lg border border-[#526578]/[0.24] bg-white px-3 text-[0.9375rem] leading-6 text-[#03142E] placeholder:text-[#526578]/60 focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-[#0758BD]">
+            <span id="f02-error" class="mt-1 flex items-center gap-1 text-sm text-[#ba1a1a]" role="alert"></span>
+          </div>
+
+          <!-- F-03: Email corporativo -->
+          <div>
+            <label for="f03" class="mb-1 block font-['Inter',sans-serif] text-sm font-semibold leading-5 tracking-[0.01em]">
+              Email corporativo <span class="text-[#ba1a1a]" aria-hidden="true">*</span>
+            </label>
+            <input type="email" id="f03" name="f03" required
+              placeholder="Ej: nombre@empresa.com"
+              class="h-11 w-full rounded-lg border border-[#526578]/[0.24] bg-white px-3 text-[0.9375rem] leading-6 text-[#03142E] placeholder:text-[#526578]/60 focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-[#0758BD]">
+            <span id="f03-error" class="mt-1 flex items-center gap-1 text-sm text-[#ba1a1a]" role="alert"></span>
+          </div>
+
+          <!-- F-04: Teléfono -->
+          <div>
+            <label for="f04" class="mb-1 block font-['Inter',sans-serif] text-sm font-semibold leading-5 tracking-[0.01em]">
+              Teléfono <span class="text-[#ba1a1a]" aria-hidden="true">*</span>
+            </label>
+            <input type="tel" id="f04" name="f04" required
+              placeholder="Ej: +1 213 555 0147"
+              class="h-11 w-full rounded-lg border border-[#526578]/[0.24] bg-white px-3 text-[0.9375rem] leading-6 text-[#03142E] placeholder:text-[#526578]/60 focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-[#0758BD]">
+            <span id="f04-error" class="mt-1 flex items-center gap-1 text-sm text-[#ba1a1a]" role="alert"></span>
+          </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- ETAPA 3: DATOS DE OPERACIÓN (E-3)                           -->
+        <!-- ========================================================== -->
+        <section id="step-operacion" class="step-panel hidden space-y-6 p-6 md:p-8" data-step="2">
+          <h2 class="font-['Manrope',sans-serif] text-[1.5rem] font-semibold leading-8">Datos de operación</h2>
+
+          <!-- F-06: País de operación principal -->
+          <div>
+            <label for="f06" class="mb-1 block font-['Inter',sans-serif] text-sm font-semibold leading-5 tracking-[0.01em]">
+              País de operación principal <span class="text-[#ba1a1a]" aria-hidden="true">*</span>
+            </label>
+            <select id="f06" name="f06" required
+              class="h-11 w-full rounded-lg border border-[#526578]/[0.24] bg-white px-3 text-[0.9375rem] leading-6 text-[#03142E] focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-[#0758BD]">
+              <option value="">Selecciona una opción</option>
+              <option value="Estados Unidos">Estados Unidos</option>
+              <option value="España">España</option>
+              <option value="Ambos">Ambos</option>
+              <option value="Otro">Otro</option>
+            </select>
+            <span id="f06-error" class="mt-1 flex items-center gap-1 text-sm text-[#ba1a1a]" role="alert"></span>
+          </div>
+
+          <!-- F-07: Tipo de producto -->
+          <div>
+            <label for="f07" class="mb-1 block font-['Inter',sans-serif] text-sm font-semibold leading-5 tracking-[0.01em]">
+              Tipo de producto <span class="text-[#ba1a1a]" aria-hidden="true">*</span>
+            </label>
+            <select id="f07" name="f07" required
+              class="h-11 w-full rounded-lg border border-[#526578]/[0.24] bg-white px-3 text-[0.9375rem] leading-6 text-[#03142E] focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-[#0758BD]">
+              <option value="">Selecciona una opción</option>
+              <option value="Moda">Moda</option>
+              <option value="Electrónica">Electrónica</option>
+              <option value="Cosmética">Cosmética</option>
+              <option value="Alimentación">Alimentación</option>
+              <option value="Otro">Otro</option>
+            </select>
+            <span id="f07-error" class="mt-1 flex items-center gap-1 text-sm text-[#ba1a1a]" role="alert"></span>
+          </div>
+
+          <!-- F-08: Volumen mensual estimado -->
+          <div>
+            <label for="f08" class="mb-1 block font-['Inter',sans-serif] text-sm font-semibold leading-5 tracking-[0.01em]">
+              Volumen mensual estimado de envíos <span class="text-[#ba1a1a]" aria-hidden="true">*</span>
+            </label>
+            <select id="f08" name="f08" required
+              class="h-11 w-full rounded-lg border border-[#526578]/[0.24] bg-white px-3 text-[0.9375rem] leading-6 text-[#03142E] focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-[#0758BD]">
+              <option value="">Selecciona una opción</option>
+              <option value="0-100">0-100</option>
+              <option value="101-500">101-500</option>
+              <option value="501-2000">501-2000</option>
+              <option value="2000+">2000+</option>
+              <option value="No estoy seguro">No estoy seguro</option>
+            </select>
+            <span id="f08-error" class="mt-1 flex items-center gap-1 text-sm text-[#ba1a1a]" role="alert"></span>
+          </div>
+
+          <!-- F-09: Servicios de interés (checkbox múltiple) -->
+          <fieldset class="border-0 p-0">
+            <legend class="mb-1 block font-['Inter',sans-serif] text-sm font-semibold leading-5 tracking-[0.01em]">
+              Servicios de interés <span class="text-[#ba1a1a]" aria-hidden="true">*</span>
+            </legend>
+            <div class="flex flex-col gap-3 pt-1">
+              <label class="flex items-center gap-3 text-[0.9375rem] leading-6 text-[#03142E]">
+                <input type="checkbox" id="f09-almacenaje" name="f09" value="Almacenaje"
+                  class="h-[18px] w-[18px] rounded border border-[#526578] text-[#0758BD] focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-[#0758BD]">
+                Almacenaje
+              </label>
+              <label class="flex items-center gap-3 text-[0.9375rem] leading-6 text-[#03142E]">
+                <input type="checkbox" id="f09-ultimamilla" name="f09" value="Última milla"
+                  class="h-[18px] w-[18px] rounded border border-[#526578] text-[#0758BD] focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-[#0758BD]">
+                Última milla
+              </label>
+              <label class="flex items-center gap-3 text-[0.9375rem] leading-6 text-[#03142E]">
+                <input type="checkbox" id="f09-logistica-inversa" name="f09" value="Logística inversa"
+                  class="h-[18px] w-[18px] rounded border border-[#526578] text-[#0758BD] focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-[#0758BD]">
+                Logística inversa
+              </label>
+            </div>
+            <span id="f09-error" class="mt-1 flex items-center gap-1 text-sm text-[#ba1a1a]" role="alert"></span>
+          </fieldset>
+
+          <!-- F-10: ¿Actualmente trabajas con otro 3PL? (radio) -->
+          <fieldset class="border-0 p-0">
+            <legend class="mb-1 block font-['Inter',sans-serif] text-sm font-semibold leading-5 tracking-[0.01em]">
+              ¿Actualmente trabajas con otro 3PL? <span class="text-[#ba1a1a]" aria-hidden="true">*</span>
+            </legend>
+            <div class="flex flex-col gap-3 pt-1">
+              <label class="flex items-center gap-3 text-[0.9375rem] leading-6 text-[#03142E]">
+                <input type="radio" id="f10-si" name="f10" value="Sí"
+                  class="h-[18px] w-[18px] border border-[#526578] text-[#0758BD] focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-[#0758BD]">
+                Sí
+              </label>
+              <label class="flex items-center gap-3 text-[0.9375rem] leading-6 text-[#03142E]">
+                <input type="radio" id="f10-no" name="f10" value="No"
+                  class="h-[18px] w-[18px] border border-[#526578] text-[#0758BD] focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-[#0758BD]">
+                No
+              </label>
+              <label class="flex items-center gap-3 text-[0.9375rem] leading-6 text-[#03142E]">
+                <input type="radio" id="f10-evaluando" name="f10" value="Estoy evaluando opciones"
+                  class="h-[18px] w-[18px] border border-[#526578] text-[#0758BD] focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-[#0758BD]">
+                Estoy evaluando opciones
+              </label>
+            </div>
+            <span id="f10-error" class="mt-1 flex items-center gap-1 text-sm text-[#ba1a1a]" role="alert"></span>
+          </fieldset>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- ETAPA 4: COMENTARIOS Y PRIVACIDAD (E-4)                     -->
+        <!-- ========================================================== -->
+        <section id="step-comentarios" class="step-panel hidden space-y-6 p-6 md:p-8" data-step="3">
+          <h2 class="font-['Manrope',sans-serif] text-[1.5rem] font-semibold leading-8">Comentarios y privacidad</h2>
+
+          <!-- F-11: Comentarios o necesidades -->
+          <div>
+            <label for="f11" class="mb-1 block font-['Inter',sans-serif] text-sm font-semibold leading-5 tracking-[0.01em]">
+              Comentarios o necesidades específicas
+            </label>
+            <textarea id="f11" name="f11" rows="4" maxlength="500"
+              placeholder="Cuéntanos más sobre tu proyecto"
+              class="w-full rounded-lg border border-[#526578]/[0.24] bg-white px-3 py-2 text-[0.9375rem] leading-6 text-[#03142E] placeholder:text-[#526578]/60 focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-[#0758BD]"></textarea>
+            <div class="mt-1 flex items-center justify-between">
+              <span id="f11-error" class="flex items-center gap-1 text-sm text-[#ba1a1a]" role="alert"></span>
+              <span id="contador-f11" class="text-sm text-[#526578]">Quedan 500 caracteres</span>
+            </div>
+          </div>
+
+          <!-- F-12: Acepto política de privacidad -->
+          <div>
+            <label class="flex items-start gap-3 text-[0.9375rem] leading-6 text-[#03142E]">
+              <input type="checkbox" id="f12" name="f12" value="aceptada" required
+                class="mt-1 h-[18px] w-[18px] rounded border border-[#526578] text-[#0758BD] focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-[#0758BD]">
+              <span>
+                Acepto la
+                <!--
+                  TODO: DP-01 — Política de privacidad pendiente.
+                  Cuando exista la página real, sustituir este <span> por un <a>
+                  con el href correspondiente. No crear una página ficticia.
+                -->
+                <span class="text-[#0758BD] underline decoration-[#0758BD]/30 underline-offset-4">política de privacidad</span>
+              </span>
+            </label>
+            <span id="f12-error" class="mt-1 flex items-center gap-1 text-sm text-[#ba1a1a]" role="alert"></span>
+          </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- ETAPA 5: RESUMEN (SOLO LECTURA)                             -->
+        <!-- ========================================================== -->
+        <section id="step-resumen" class="step-panel hidden space-y-6 p-6 md:p-8" data-step="4">
+          <h2 class="font-['Manrope',sans-serif] text-[1.5rem] font-semibold leading-8">Revisa tu solicitud</h2>
+          <p class="text-[#526578]">Revisa que todos los datos sean correctos antes de enviar tu solicitud.</p>
+
+          <!-- Datos de la empresa -->
+          <div class="rounded-xl border border-[#526578]/[0.16] bg-white p-4 md:p-6">
+            <div class="flex items-center justify-between">
+              <h3 class="font-['Manrope',sans-serif] text-lg font-semibold leading-7">Datos de la empresa</h3>
+              <a href="#" class="editar-etapa text-sm font-semibold text-[#0758BD] hover:text-[#06295D] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0758BD]" data-etapa="0">Editar</a>
+            </div>
+            <dl class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
+              <div>
+                <dt class="text-sm font-medium text-[#526578]">Nombre de la empresa</dt>
+                <dd id="resumen-f01" class="text-[0.9375rem] text-[#03142E]">—</dd>
+              </div>
+              <div>
+                <dt class="text-sm font-medium text-[#526578]">Sitio web</dt>
+                <dd id="resumen-f05" class="text-[0.9375rem] text-[#03142E]">—</dd>
+              </div>
+            </dl>
+          </div>
+
+          <!-- Información de contacto -->
+          <div class="rounded-xl border border-[#526578]/[0.16] bg-white p-4 md:p-6">
+            <div class="flex items-center justify-between">
+              <h3 class="font-['Manrope',sans-serif] text-lg font-semibold leading-7">Información de contacto</h3>
+              <a href="#" class="editar-etapa text-sm font-semibold text-[#0758BD] hover:text-[#06295D] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0758BD]" data-etapa="1">Editar</a>
+            </div>
+            <dl class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-3">
+              <div>
+                <dt class="text-sm font-medium text-[#526578]">Persona de contacto</dt>
+                <dd id="resumen-f02" class="text-[0.9375rem] text-[#03142E]">—</dd>
+              </div>
+              <div>
+                <dt class="text-sm font-medium text-[#526578]">Email corporativo</dt>
+                <dd id="resumen-f03" class="text-[0.9375rem] text-[#03142E]">—</dd>
+              </div>
+              <div>
+                <dt class="text-sm font-medium text-[#526578]">Teléfono</dt>
+                <dd id="resumen-f04" class="text-[0.9375rem] text-[#03142E]">—</dd>
+              </div>
+            </dl>
+          </div>
+
+          <!-- Datos de operación -->
+          <div class="rounded-xl border border-[#526578]/[0.16] bg-white p-4 md:p-6">
+            <div class="flex items-center justify-between">
+              <h3 class="font-['Manrope',sans-serif] text-lg font-semibold leading-7">Datos de operación</h3>
+              <a href="#" class="editar-etapa text-sm font-semibold text-[#0758BD] hover:text-[#06295D] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0758BD]" data-etapa="2">Editar</a>
+            </div>
+            <dl class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
+              <div>
+                <dt class="text-sm font-medium text-[#526578]">País de operación</dt>
+                <dd id="resumen-f06" class="text-[0.9375rem] text-[#03142E]">—</dd>
+              </div>
+              <div>
+                <dt class="text-sm font-medium text-[#526578]">Tipo de producto</dt>
+                <dd id="resumen-f07" class="text-[0.9375rem] text-[#03142E]">—</dd>
+              </div>
+              <div>
+                <dt class="text-sm font-medium text-[#526578]">Volumen mensual</dt>
+                <dd id="resumen-f08" class="text-[0.9375rem] text-[#03142E]">—</dd>
+              </div>
+              <div>
+                <dt class="text-sm font-medium text-[#526578]">Servicios de interés</dt>
+                <dd id="resumen-f09" class="text-[0.9375rem] text-[#03142E]">—</dd>
+              </div>
+              <div class="md:col-span-2">
+                <dt class="text-sm font-medium text-[#526578]">¿Trabajas con otro 3PL?</dt>
+                <dd id="resumen-f10" class="text-[0.9375rem] text-[#03142E]">—</dd>
+              </div>
+            </dl>
+          </div>
+
+          <!-- Comentarios y privacidad -->
+          <div class="rounded-xl border border-[#526578]/[0.16] bg-white p-4 md:p-6">
+            <div class="flex items-center justify-between">
+              <h3 class="font-['Manrope',sans-serif] text-lg font-semibold leading-7">Comentarios y privacidad</h3>
+              <a href="#" class="editar-etapa text-sm font-semibold text-[#0758BD] hover:text-[#06295D] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0758BD]" data-etapa="3">Editar</a>
+            </div>
+            <dl class="mt-4 grid grid-cols-1 gap-4">
+              <div>
+                <dt class="text-sm font-medium text-[#526578]">Comentarios</dt>
+                <dd id="resumen-f11" class="text-[0.9375rem] text-[#03142E]">—</dd>
+              </div>
+              <div>
+                <dt class="text-sm font-medium text-[#526578]">Privacidad</dt>
+                <dd id="resumen-f12" class="text-[0.9375rem] text-[#03142E]">—</dd>
+              </div>
+            </dl>
+          </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- BOTONES DE NAVEGACIÓN                                       -->
+        <!-- Se muestran/ocultan desde JavaScript según la etapa activa. -->
+        <!-- ========================================================== -->
+        <div class="flex flex-col-reverse gap-3 border-t border-[#526578]/[0.16] px-6 py-4 md:flex-row md:justify-between md:px-8">
+
+          <!-- Botón Anterior (oculto en E-1) -->
+          <button type="button" id="btn-anterior"
+            class="hidden min-h-12 w-full items-center justify-center rounded-lg border border-[#526578]/[0.24] bg-transparent px-6 text-sm font-semibold text-[#06295D] hover:bg-[#ECEFF1] active:bg-[#D1D5DB] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0758BD] md:w-auto">
+            Anterior
+          </button>
+
+          <!-- Botón Siguiente / Revisar solicitud / Enviar solicitud -->
+          <button type="button" id="btn-siguiente"
+            class="min-h-12 w-full items-center justify-center rounded-lg bg-[#0758BD] px-6 text-sm font-semibold text-white hover:bg-[#06295D] active:bg-[#03142E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0758BD] md:w-auto">
+            Siguiente
+          </button>
+        </div>
+
+      </div><!-- /.rounded-2xl (tarjeta contenedora) -->
+    </form>
+
+    <!-- ============================================================ -->
+    <!-- MODAL DE ADVERTENCIA DE VOLUMEN BAJO (RF-04)                 -->
+    <!-- Superposición que se muestra desde JS si F-08 = "0-100".     -->
+    <!-- ============================================================ -->
+    <div id="modal-volumen" class="fixed inset-0 z-50 hidden items-center justify-center bg-[#03142E]/60 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="modal-volumen-titulo">
+      <div class="mx-4 max-w-lg rounded-2xl bg-white p-6 shadow-[0_20px_32px_-4px_rgba(3,20,46,0.12),0_8px_16px_-2px_rgba(3,20,46,0.06)] md:p-8">
+        <h3 id="modal-volumen-titulo" class="font-['Manrope',sans-serif] text-lg font-semibold leading-7">Aviso de volumen</h3>
+        <p class="mt-4 text-[0.9375rem] leading-6 text-[#526578]">
+          Para volúmenes menores a 100 envíos mensuales, nuestros servicios podrían no ser la solución más eficiente. ¿Seguro que quieres continuar?
+        </p>
+        <div class="mt-6 flex flex-col-reverse gap-3 md:flex-row md:justify-end">
+          <button type="button" id="modal-volumen-cancelar"
+            class="min-h-11 w-full rounded-lg border border-[#526578]/[0.24] bg-transparent px-6 text-sm font-semibold text-[#06295D] hover:bg-[#ECEFF1] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0758BD] md:w-auto">
+            Cancelar
+          </button>
+          <button type="button" id="modal-volumen-continuar"
+            class="min-h-11 w-full rounded-lg bg-[#0758BD] px-6 text-sm font-semibold text-white hover:bg-[#06295D] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0758BD] md:w-auto">
+            Continuar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- MENSAJE DE ÉXITO (RF-05)                                      -->
+    <!-- Se muestra desde JS tras la simulación de envío.              -->
+    <!-- ============================================================ -->
+    <div id="mensaje-exito" class="hidden mx-auto max-w-2xl rounded-2xl border border-[#0758BD]/30 bg-white p-6 shadow-[0_1px_3px_rgba(3,20,46,0.04),0_6px_16px_rgba(3,20,46,0.03)] md:p-8" role="status" tabindex="-1">
+      <h2 class="font-['Manrope',sans-serif] text-[1.5rem] font-semibold leading-8 text-[#03142E]">¡Gracias por tu interés en TrackFlow!</h2>
+      <p class="mt-4 text-[0.9375rem] leading-6 text-[#526578]">
+        Hemos recibido tu solicitud. Nuestro equipo comercial revisará tu información y te contactará en las próximas 24-48 horas para agendar una llamada y conocer tus necesidades logísticas en detalle.
+      </p>
+      <p class="mt-4 text-[0.9375rem] leading-6 text-[#526578]">
+        Si tienes alguna consulta urgente, escríbenos directamente a <a href="mailto:comercial@trackflow.com" class="font-semibold text-[#0758BD] underline decoration-[#0758BD]/30 underline-offset-4 hover:text-[#06295D]">comercial@trackflow.com</a>.
+      </p>
+      <div class="mt-6">
+        <a href="./index.html" class="inline-flex min-h-12 items-center justify-center rounded-lg bg-[#0758BD] px-6 text-sm font-semibold text-white hover:bg-[#06295D] active:bg-[#03142E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0758BD]">
+          Volver a la página principal
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ============================================================ -->
+  <!-- FOOTER SIMPLIFICADO (PF-08)                                   -->
+  <!-- Mismo degradado marino, logo horizontal claro, copyright.     -->
+  <!-- ============================================================ -->
+  <footer class="bg-gradient-to-r from-[#03142E] via-[#06295D] to-[#03142E] text-white">
+    <div class="mx-auto w-full max-w-[1440px] px-4 pb-8 pt-6 md:px-8 lg:px-12">
+      <div class="flex flex-col items-start gap-4 md:flex-row md:items-center md:gap-8">
+        <img src="./assets/logos/trackflow-horizontal-light.svg" alt="TrackFlow" width="1130" height="270" class="h-auto w-48 max-w-full sm:w-56">
+      </div>
+      <p class="mt-6 text-sm text-white/70">© 2025 TrackFlow. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
