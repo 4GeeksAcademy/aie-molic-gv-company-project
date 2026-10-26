@@ -14,6 +14,20 @@ Esta regla complementa las instrucciones generales de [`AGENTS.md`](../../AGENTS
 - No crees aplicaciones, backends ni copias paralelas en la raíz, dentro de otra aplicación o en carpetas ajenas a estas responsabilidades.
 - Antes de añadir una aplicación o servicio, comprueba la estructura existente y su guía de carpeta. La carpeta `services/` y las rutas de UI indican ubicación, no una tecnología aprobada.
 
+### Compilación de Tailwind CSS
+
+- **La web de TrackFlow (`uis/website/`) usa Tailwind CSS 3.4.17 compilado por CLI.**
+- **Compila Tailwind siempre con la bandera `-c` apuntando al archivo de configuración.** El único comando autorizado desde la raíz del monorepo es:
+
+  ```bash
+  npx tailwindcss@3.4.17 -i ./uis/website/assets/css/tailwind.input.css -o ./uis/website/assets/css/tailwind.css --minify -c ./uis/website/tailwind.config.js
+  ```
+
+- Ejecutar Tailwind sin `-c ./uis/website/tailwind.config.js` puede usar una configuración por defecto o de otro proyecto y generar CSS incorrecto, dejando la web sin estilos.
+- Recompilar después de cualquier cambio de clases en HTML o JS.
+- La configuración escanea `./uis/website/**/*.{html,js}` para detectar clases.
+- **No uses Play CDN** en producción. El CSS debe compilarse localmente con el comando documentado.
+
 ## Contratos y datos
 
 - Antes de cambiar un contrato, campo, esquema o formato de datos, localiza y revisa sus definiciones y usos actuales en el componente y en sus consumidores.

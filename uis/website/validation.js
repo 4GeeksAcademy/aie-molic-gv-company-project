@@ -896,6 +896,154 @@ function gestionarFocoNavegacion(nuevoIndice, indiceAnterior) {
 }
 
 // ============================================================
+// LIMPIAR FORMULARIO
+// ============================================================
+
+/**
+ * Reinicia todos los campos del formulario a su estado inicial:
+ * - Vacía wizardState.data.
+ * - Limpia todos los errores del DOM.
+ * - Resetea los valores de todos los inputs, selects, textarea, checkboxes y radios.
+ * - Vuelve a la primera etapa (paso 0).
+ * - Actualiza progreso, botones y contador F-11.
+ * - No envía información ni recarga la página.
+ */
+function limpiarFormulario() {
+  // 1. Restaurar wizardState.data a valores iniciales
+  wizardState.data = {
+    f01: '', f02: '', f03: '', f04: '', f05: '',
+    f06: '', f07: '', f08: '', f09: '', f10: '',
+    f11: '', f12: ''
+  };
+
+  // 2. Limpiar todos los errores del DOM
+  VALIDATIONS.forEach(function (regla) {
+    limpiarError(regla.campo);
+  });
+
+  // 3. Resetear físicamente los campos del formulario
+  var formulario = document.getElementById('form-solicitud');
+  if (formulario) formulario.reset();
+
+  // 4. Restaurar el contador de F-11
+  var contador = document.getElementById('contador-f11');
+  if (contador) contador.textContent = 'Quedan 500 caracteres';
+
+  // 5. Asegurar que F-09 (checkboxes) y F-12 estén desmarcados
+  //    (form.reset() los desmarca, pero por seguridad)
+  document.querySelectorAll('input[name="f09"]').forEach(function (cb) {
+    cb.checked = false;
+  });
+  var chkF12 = document.getElementById('f12');
+  if (chkF12) chkF12.checked = false;
+
+  // 6. Si estamos en el resumen (paso 4), restaurar guiones en resumen
+  document.querySelectorAll('[id^="resumen-"]').forEach(function (dd) {
+    dd.textContent = '—';
+  });
+
+  // 7. Navegar a la primera etapa si no estamos ya en ella
+  if (wizardState.currentStep !== 0) {
+    irAEtapa(0);
+  } else {
+    // Si ya estamos en paso 0, forzar actualización visual
+    actualizarProgreso();
+    actualizarBotones();
+  }
+
+  // 8. Enfocar el primer campo
+  var primerCampo = document.getElementById('f01');
+  if (primerCampo) primerCampo.focus();
+}
+
+// ============================================================
+// VALIDACIÓN EN TIEMPO REAL
+// ============================================================
+
+/**
+ * Conecta eventos input, blur y change a los campos del formulario
+ * para validar en tiempo real, reutilizando las funciones V-01 a V-12.
+ *
+ * Reglas:
+ * - input: para text, email, tel, url.
+ * - change: para select, checkbox, radio.
+ * - blur adicional en text fields para validar al salir del campo.
+ * - No se muestran errores si el campo está vacío en blur
+ *   (evita errores prematuros en carga inicial).
+ */
+function conectarValidacionTiempoReal() {
+  // Mapa de tipo de evento por campo
+  var eventos = [
+    { id: 'f01', evento: 'input' },
+    { id: 'f02', evento: 'input' },
+    { id: 'f03', evento: 'input' },
+    { id: 'f04', evento: 'input' },
+    { id: 'f05', evento: 'blur' },
+    { id: 'f06', evento: 'change' },
+    { id: 'f07', evento: 'change' },
+    { id: 'f08', evento: 'change' },
+    { id: 'f09', evento: 'change' },
+    { id: 'f10', evento: 'change' },
+    { id: 'f12', evento: 'change' }
+  ];
+
+  // Tabla de búsqueda: id → función de validación
+  var mapaValidacion = {};
+  VALIDATIONS.forEach(function (r) {
+    mapaValidacion[r.campo] = r.fn;
+  });
+
+  eventos.forEach(function (cfg) {
+    var fnValida = mapaValidacion[cfg.id];
+    if (!fnValida) return;
+
+    var fnHandler = function () {
+      var valor = obtenerValorCampo(cfg.id);
+      var resultado = fnValida(valor);
+      if (resultado.isValid) {
+        limpiarError(cfg.id);
+      } else {
+        mostrarError(cfg.id, resultado.message);
+      }
+    };
+
+    if (cfg.id === 'f09') {
+      document.querySelectorAll('input[name="f09"]').forEach(function (el) {
+        el.addEventListener(cfg.evento, fnHandler);
+      });
+    } else if (cfg.id === 'f10') {
+      document.querySelectorAll('input[name="f10"]').forEach(function (el) {
+        el.addEventListener(cfg.evento, fnHandler);
+      });
+    } else {
+      var el = document.getElementById(cfg.id);
+      if (el) el.addEventListener(cfg.evento, fnHandler);
+    }
+  });
+
+  // Blur adicional en campos de texto: validar al perder el foco
+  // Solo muestra error si el campo no está vacío (evita errores
+  // prematuros al tabular por campos opcionales sin rellenar).
+  ['f01', 'f02', 'f03', 'f04', 'f05'].forEach(function (campoId) {
+    var el = document.getElementById(campoId);
+    if (!el) return;
+    var fnValida = mapaValidacion[campoId];
+    if (!fnValida) return;
+
+    el.addEventListener('blur', function () {
+      var valor = obtenerValorCampo(campoId);
+      var resultado = fnValida(valor);
+      if (!resultado.isValid) {
+        var txt = (typeof valor === 'string' ? valor : '').trim();
+        if (txt.length > 0) {
+          mostrarError(campoId, resultado.message);
+        }
+      }
+    });
+  });
+}
+
+// ============================================================
 // INICIALIZACIÓN
 // ============================================================
 
@@ -988,6 +1136,15 @@ function initWizard() {
 
   // Inicializar contador de caracteres de F-11
   inicializarContador();
+
+  // Botón Limpiar formulario
+  var btnLimpiar = document.getElementById('btn-limpiar');
+  if (btnLimpiar) {
+    btnLimpiar.addEventListener('click', limpiarFormulario);
+  }
+
+  // Conectar validación en tiempo real (input, blur, change)
+  conectarValidacionTiempoReal();
 
   // Prevenir envío del formulario (sin action/method por PF-07)
   if (form) {

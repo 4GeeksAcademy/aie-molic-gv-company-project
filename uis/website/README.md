@@ -1,80 +1,233 @@
-# TrackFlow — Landing Page
+# TrackFlow — Website
 
-Landing corporativa de TrackFlow, operador logístico especializado en e-commerce con infraestructura en Estados Unidos y España.
+> **Idioma:** documentación técnica en español. No existe aún una traducción inglesa de este README.
 
-## Objetivo y límites
+Este README documenta el website de TrackFlow (`uis/website/`): una landing corporativa y un formulario multipaso de solicitud de información.
 
-- **Especificación:** [SPEC 001](../../specs/001-website/spec.md) — Landing page informativa
-- **Alcance:** Presentación de servicios, cobertura binacional, beneficios y contacto. Sin formulario funcional, backoffice, login ni selector de idioma.
-- **SPEC 002:** El archivo `application.html` y `validation.js` pertenecen a una especificación posterior (formulario de solicitud) y están vacíos intencionadamente. No forman parte de esta entrega.
+---
 
-## Versiones
+## Índice
 
-| Herramienta        | Versión                                |
-| ------------------ | -------------------------------------- |
-| Tailwind CSS       | 3.4.17                                 |
-| http-server        | 14.1.1                                 |
-| Node.js            | 24.21.0                                |
-| Navegador objetivo | Chrome 130+ / Firefox 130+ / Edge 130+ |
+- [Visión general](#visión-general)
+- [Páginas](#páginas)
+- [Tecnologías](#tecnologías)
+- [Estructura del proyecto](#estructura-del-proyecto)
+- [Comandos](#comandos)
+- [Entrega a 4Geeks](#entrega-a-4geeks)
+- [Evaluación](#evaluación)
+- [Documentación relacionada](#documentación-relacionada)
 
-## Prerrequisitos
+---
 
-- Node.js ≥ 18 (para Tailwind CLI y http-server)
-- npm (incluido con Node.js)
+## Visión general
 
-## Comandos desde la raíz del monorepo
+TrackFlow es una empresa de logística de última milla y gestión de almacenes con operaciones en Estados Unidos (Los Ángeles) y España (Zaragoza). El website tiene dos páginas:
 
-### 1. Compilar Tailwind (generar CSS)
+| Página                              | Propósito                                                                          | Documentación                                                                                  |
+| ----------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| **Landing** (`index.html`)          | Presentar servicios, cobertura y beneficios. Dirigir visitantes al formulario.     | [SPEC 001](../../specs/001-website/spec.md), [PLAN](../../specs/001-website/plan.md)           |
+| **Formulario** (`application.html`) | Formulario multipaso (SPEC 002) para que empresas soliciten información logística. | [SPEC 002](../../specs/002-website-form/spec.md), [PLAN](../../specs/002-website-form/plan.md) |
+
+## Páginas
+
+### Landing (`index.html`)
+
+Landing corporativa con las secciones: Header, Hero, Servicios, Cobertura, Por qué TrackFlow, Contacto, Footer. Incluye enlace de salto al contenido, menú responsive, marcado JSON-LD Organization y Google Fonts (Manrope + Inter).
+
+### Formulario (`application.html`)
+
+Formulario de solicitud de información (SPEC 002) con **cuatro etapas de entrada y un resumen** (cinco pasos en el indicador):
+
+| Paso | Contenido | Campos |
+| --- | --- | --- |
+| 1 | Datos de la empresa | F-01 (Nombre de empresa), F-05 (Web) |
+| 2 | Información de contacto | F-02 (Persona de contacto), F-03 (Email), F-04 (Teléfono) |
+| 3 | Datos de operación | F-06 (País), F-07 (Tipo de producto), F-08 (Volumen), F-09 (Servicios), F-10 (3PL actual) |
+| 4 | Comentarios y privacidad | F-11 (Comentarios), F-12 (Privacidad) |
+| 5 | Resumen | Revisar, editar y solicitar envío simulado |
+
+Tras el envío simulado se muestra una pantalla de éxito, que **no** constituye un sexto paso. No se transmite ni almacena información en un backend; la política de privacidad real (DP-01) sigue pendiente.
+
+Los 12 campos incluyen validación (V-01 a V-12), validación en tiempo real (input/blur/change), botón de limpiar, contador de caracteres para F-11 y aviso de volumen bajo para ≤100 envíos/mes.
+
+## Tecnologías
+
+| Tecnología         | Versión                                | Propósito                                            |
+| ------------------ | -------------------------------------- | ---------------------------------------------------- |
+| HTML5              | —                                      | Estructura semántica, ARIA                           |
+| Tailwind CSS       | 3.4.17                                 | CSS utilitario, compilado por CLI, sin Play CDN      |
+| JavaScript vanilla | —                                      | Navegación wizard, validación, lógica del formulario |
+| Google Fonts       | Manrope 600/700/800, Inter 400/500/600 | Tipografía (cargada con `display=swap`)              |
+| http-server        | 14.1.1                                 | Previsualización local (vía npx)                     |
+
+### Compilación de Tailwind CSS
+
+Tailwind se compila vía CLI **siempre con el archivo de configuración explícito**. El único comando autorizado desde la raíz del monorepo es:
 
 ```bash
 npx tailwindcss@3.4.17 -i ./uis/website/assets/css/tailwind.input.css -o ./uis/website/assets/css/tailwind.css --minify -c ./uis/website/tailwind.config.js
 ```
 
-> **Nota:** Recompilar después de cualquier cambio de clases en HTML o JS. La configuración de Tailwind escanea `./uis/website/**/*.{html,js}`.
+> ⚠️ **IMPORTANTE:** Usa siempre `-c ./uis/website/tailwind.config.js`. Ejecutar Tailwind sin la bandera `-c` puede generar CSS incorrecto y dejar la web sin estilos. La configuración escanea `./uis/website/**/*.{html,js}` para detectar clases.
 
-### 2. Servir la landing localmente
+## Estructura del proyecto
 
-```bash
-npx http-server@14.1.1 ./uis/website -a 0.0.0.0 -p 3000 -c-1
+```
+uis/website/
+├── index.html                  # Landing page (SPEC 001)
+├── application.html            # Formulario multipaso (SPEC 002)
+├── validation.js               # Validación y lógica del wizard
+├── README.md                   # Este archivo
+├── BRIEFING.md                 # Requisitos del proyecto (inglés)
+├── BRIEFING.es.md              # Requisitos del proyecto (español)
+├── tailwind.config.js          # Configuración de Tailwind
+├── assets/
+│   ├── css/
+│   │   ├── tailwind.input.css  # Entrada Tailwind (3 directivas)
+│   │   └── tailwind.css        # Salida compilada (no editar)
+│   ├── js/
+│   │   └── navigation.js       # Menú móvil (landing)
+│   ├── images/                 # 4 fotografías WebP
+│   └── logos/                  # 6 variantes SVG del logotipo
+└── docs/
+    └── design/
+        ├── DESIGN.md           # Sistema de diseño visual
+        └── screen.png          # Composición visual aprobada (Stitch)
 ```
 
-- **Puerto predeterminado:** 3000
-- **Puerto alternativo:** Si el 3000 está ocupado, usar otro (ej. `-p 3001`).
-- **Caché:** Desactivada con `-c-1` para desarrollo.
+> Para artefactos de auditoría (capturas Lighthouse, pruebas responsive), ver [Documentación de entrega](#documentación-de-entrega).
 
-### 3. Acceder
+## Comandos
 
-Abrir en el navegador: [http://localhost:3000](http://localhost:3000)
+Todos los comandos se ejecutan desde la **raíz del monorepo**.
 
-### 4. Codespaces (despliegue para revisión)
+**Requisitos:** navegador moderno (objetivos documentados: Chrome 130+, Firefox 130+ o Edge 130+) y Node.js ≥ 18 con npm/npx para Tailwind CLI y http-server. La alternativa Python requiere únicamente Python 3 para servir los archivos existentes. No hay `package.json` ni scripts npm de arranque en esta web.
 
-1. Seguir los pasos 1 y 2 dentro del Codespaces.
-2. Una vez sirviendo, reenviar el puerto 3000 a público.
+Los comandos con npx pueden descargar paquetes y dependencias a la caché de npm si faltan; requieren acceso al registro y autorización para esa descarga. `--yes` acepta automáticamente la pregunta de descarga de http-server; no añade dependencias al monorepo.
+
+### Compilar Tailwind CSS
+
+Utiliza exclusivamente el comando documentado en [Compilación de Tailwind CSS](#compilación-de-tailwind-css), desde la raíz del monorepo.
+
+Recompilar tras cualquier cambio de clases en HTML o JS.
+
+### Servir la web localmente
+
+```bash
+npx --yes http-server@14.1.1 ./uis/website -a 0.0.0.0 -p 3000 -c-1
+```
+
+- Puerto predeterminado: 3000. Si ocupado, usar `-p 3001`.
+- Caché desactivada con `-c-1`.
+- Abrir en: [http://localhost:3000](http://localhost:3000)
+
+#### Alternativa: servidor de Python
+
+Para previsualizar sin instalar un servidor npm, utiliza la biblioteca estándar de Python 3 desde la misma raíz:
+
+```bash
+python3 -m http.server 3000 --bind 0.0.0.0 --directory uis/website
+```
+
+Esta alternativa sirve únicamente `uis/website/`, no compila Tailwind y utiliza la misma URL local. La compilación de CSS es un paso separado: si el CSS existe y las clases no han cambiado, no hace falta recompilar para arrancar el servidor. `0.0.0.0` permite el reenvío de puertos; no es la dirección que debes abrir en el navegador.
+
+Mantén abierta la terminal del servidor y detenlo con **Ctrl+C**. No ejecutes ambos servidores simultáneamente en el mismo puerto ni detengas procesos ajenos. Si usas otro puerto, cambia `3000` por `3001` en Python (o `-p 3000` por `-p 3001` en http-server) y actualiza la URL y el reenvío.
+
+#### Acceso alternativo: Ports en VS Code Dev Containers
+
+1. Mantén el servidor elegido ejecutándose en la terminal del Dev Container.
+2. Abre **Ports** en el panel inferior; si no aparece, usa **Ports: Focus on Ports View** en la paleta de comandos.
+3. Localiza el puerto **3000**; si no se detecta, pulsa **Forward a Port** e introduce el puerto.
+4. Pulsa **Open in Browser** y utiliza la dirección local reenviada que muestre VS Code, normalmente `http://localhost:3000/`. Si asigna otro puerto local, usa el indicado.
+
+Dev Containers no presupone las opciones de visibilidad pública/privada de Codespaces. Al terminar, detén el servidor con **Ctrl+C** y, si procede, elimina el reenvío desde Ports.
+
+### Codespaces (revisión pública)
+
+Para previsualización privada, mantén el servidor ejecutándose dentro del Codespace, abre **Ports**, localiza o reenvía el puerto **3000** y pulsa **Open in Browser**. Usa la URL HTTPS generada y conserva la visibilidad privada si está disponible. Publicar el puerto es un paso distinto, sujeto a autorización y a las políticas de la organización:
+
+1. Compilar Tailwind y arrancar el servidor (pasos anteriores).
+2. Una vez sirviendo, reenviar el puerto 3000 y hacerlo **público**.
 3. Compartir la URL HTTPS generada (ej. `https://<hash>-3000.app.github.dev`).
+4. Mantener público solo durante la revisión; volver a privado al terminar.
 
-### Estado de revisión en Codespaces (2026-10-25)
+> ⚠️ La URL es temporal. Cualquier persona con la URL puede acceder mientras esté público. El servidor está limitado a `uis/website/`.
 
-- El puerto 3000 sirve únicamente `uis/website/` con el comando documentado. La landing respondió `200` tanto en `localhost` como desde la URL HTTPS de Codespaces, sin autenticación:
-  [https://curly-engine-xjw775j647gfp75g-3000.app.github.dev/](https://curly-engine-xjw775j647gfp75g-3000.app.github.dev/)
-- Verificados sin sesión: CSS compilado, JavaScript de navegación, las cuatro imágenes WebP, los seis logos SVG y `/application.html`; todos respondieron `200`. `application.html` está vacío (0 bytes), según el alcance pendiente de SPEC 002.
-- La URL es temporal y no es el dominio corporativo. Mientras el puerto esté configurado como público, cualquiera que tenga la URL puede consultar la web y los recursos servidos. El servidor está limitado al directorio `uis/website/`; no se sirve la raíz del monorepo. Mantener el puerto público solo durante la revisión y volverlo privado al terminar.
-- **T040 completada** para la disponibilidad pública y el acceso anónimo comprobado. La autorización de auditoría pública no equivale a aceptar los criterios restantes ni a afirmar que el formulario esté implementado.
+### Rutas servidas
 
-## Rutas servidas
+| Ruta                       | Recurso                              | Estado       |
+| -------------------------- | ------------------------------------ | ------------ |
+| `/`                        | Landing page (`index.html`)          | Implementado |
+| `/assets/css/tailwind.css` | CSS compilado por Tailwind           | Implementado |
+| `/assets/js/navigation.js` | Menú móvil (JavaScript vanilla)      | Implementado |
+| `/assets/images/*.webp`    | Cuatro fotografías                   | Implementado |
+| `/assets/logos/*.svg`      | Seis variantes de logotipo           | Implementado |
+| `/application.html`        | Formulario multipaso (SPEC 002)      | Implementado |
+| `/validation.js`           | Validación del formulario (SPEC 002) | Implementado |
 
-| Ruta                       | Recurso                                                            | Estado          |
-| -------------------------- | ------------------------------------------------------------------ | --------------- |
-| `/`                        | Landing page (`index.html`)                                        | Implementado    |
-| `/assets/css/tailwind.css` | CSS compilado por Tailwind                                         | Implementado    |
-| `/assets/js/navigation.js` | Menú móvil (JavaScript vanilla)                                    | Implementado    |
-| `/assets/images/*.webp`    | Cuatro fotografías (hero, warehouse, last-mile, reverse-logistics) | Implementado    |
-| `/assets/logos/*.svg`      | Seis variantes de logotipo TrackFlow                               | Implementado    |
-| `/application.html`        | Destino del formulario (vacío, SPEC 002)                           | No implementado |
-| `/validation.js`           | Validación del formulario (vacío, SPEC 002)                        | No implementado |
+## Entrega a 4Geeks
+
+### Estado de la evidencia
+
+**Prueba manual confirmada por el desarrollador (2026-10-26):** el formulario multipaso funciona correctamente, incluidas las validaciones y el botón «Limpiar formulario». Esta confirmación no constituye una auditoría de accesibilidad ni una medición Lighthouse.
+
+**Pendiente para la versión actual:** verificar la URL pública activa del Codespace y ejecutar Lighthouse de nuevo después de los cambios en el formulario y CSS; no sustituir estas pruebas con las puntuaciones históricas del 2026-10-25.
+
+### Artefactos requeridos para el PR
+
+Estos elementos deben incluirse en la descripción del Pull Request:
+
+| Artefacto                                                                             | Dónde incluirlo                       | Formato                  |
+| ------------------------------------------------------------------------------------- | ------------------------------------- | ------------------------ |
+| URL pública de Codespaces (puerto 3000, verificada funcional)                         | Descripción del PR                    | URL HTTPS                |
+| Resultados Lighthouse/PageSpeed (Performance ≥ 80 móvil)                              | Descripción del PR + reporte guardado | Captura o tabla markdown |
+| Pruebas responsive (≥ 3 breakpoints + ambas orientaciones)                            | Descripción del PR                    | Tabla o notas            |
+| Validación de campos (todos los campos, mensajes de error, validación en tiempo real) | Descripción del PR                    | Lista de verificación    |
+
+### Documentación de entrega
+
+Directorio propuesto para artefactos de auditoría:
+
+```
+uis/website/docs/audits/
+└── lighthouse/
+    ├── lighthouse-mobile-YYYY-MM-DD.png
+    └── lighthouse-desktop-YYYY-MM-DD.png
+```
+
+Sigue el patrón existente de `uis/website/docs/design/` para documentación específica del componente.
+
+### Plantilla para descripción del PR
+
+```markdown
+## TrackFlow Website — Milestone Delivery
+
+### Public URL
+
+https://<codespace-hash>-3000.app.github.dev/
+
+### Audit Results
+
+- **Lighthouse Mobile:** Performance XX, Accessibility XX, Best Practices XX, SEO XX
+- **Lighthouse Desktop:** Performance XX, Accessibility XX, Best Practices XX, SEO XX
+- **Responsive:** Verified at 320px, 768px, 1024px, 1440px + both orientations
+- **Validation:** All 12 fields validated with real-time feedback, error messages confirmed
+
+### Changes
+
+- Landing page with HTML5 semantic structure, Tailwind CSS, responsive design
+- Multi-step information request form with complete validation
+
+### Pending
+
+- [Any remaining open items]
+```
 
 ## Evaluación
 
-### T050 — Evaluación consolidada del hito y aprobación (2026-10-25)
+### T050 — Evaluación histórica de la landing (2026-10-25)
+
+**Alcance temporal:** evidencia histórica de la landing tal como estaba el 2026-10-25 (cuando el formulario aún estaba vacío). No valida automáticamente la versión actual.
 
 **Método:** consolidación de todas las verificaciones ejecutadas (T001–T049) mediante inspección de fuentes, verificación HTTP directa contra localhost:3000, parser HTML, sesión Chrome/Windows local, Lighthouse 11.7.0 CLI y cotejo con SPEC, PLAN y DESIGN.
 
@@ -110,11 +263,11 @@ Abrir en el navegador: [http://localhost:3000](http://localhost:3000)
 | **CA-14** — Sin errores de aplicación ni recursos fallidos   | ✅ Superado  | 11/11 rutas HTTP 200, sin 4xx/5xx                                        | T047: verificación HTTP completa + T048: sin errores              | Hallazgo favicon.ico 404                          |
 | **CA-15** — Sin console.log, fetch, validation.js en landing | ✅ Superado  | 0 console.log, 0 fetch/API, validation.js no referido                    | T047: inspección fuentes + grep + T041+T042: red local            | —                                                 |
 
-**Resumen final:** 10 ✅ superados, 5 ⚠️ parciales, 1 ⬜ pendiente. La entrega es **parcial** pero el responsable del proyecto ha autorizado la aprobación del hito.
+**Balance de la matriz (15 criterios):** 9 ✅ superados, 5 ⚠️ parciales y 1 ⬜ pendiente, según los estados mostrados arriba. La aprobación histórica consta a continuación, pero hay limitaciones y comprobaciones actuales de entrega pendientes.
 
 ### Aprobación del hito (2026-10-25)
 
-El responsable del proyecto **aprueba la entrega** y da por finalizada la landing page de TrackFlow con el alcance y limitaciones documentadas. Queda constancia de las limitaciones: CA-06 sin evidencia; CA-04 sin URL pública verificada; CA-05 sin activación de protocolos; CA-08 sin zoom 200 % real; CA-09 y CA-10 pendientes de lector de pantalla y activación sin JS. Se autoriza el cierre del hito 001-website y la publicación de los cambios.
+El responsable del proyecto **aprobó el hito 001** y dio por finalizada la landing page de TrackFlow con el alcance y limitaciones documentadas. Queda constancia de las limitaciones: CA-06 sin evidencia; CA-04 sin URL pública verificada; CA-05 sin activación de protocolos; CA-08 sin zoom 200 % real; CA-09 y CA-10 pendientes de lector de pantalla y activación sin JS. Se autoriza el cierre del hito 001-website y la publicación de los cambios.
 
 ### T041+T042 — Antecedente: auditoría de fuente (2026-10-25)
 
@@ -263,3 +416,20 @@ Sin desbordamiento, sin recorte de texto, `object-fit: cover` sin deformación.
 `application.html`, `validation.js`, `assets/logos/*`, `assets/images/*`, `tailwind.config.js`, `tailwind.input.css`, `tailwind.css`, `navigation.js`, `spec.md`, `plan.md`, `index.html`
 
 _Leyenda: ✅ Superado / ⚠️ Parcial / ❌ Pendiente / 🚫 Bloqueado_
+
+---
+
+## Documentación relacionada
+
+| Documento     | Ubicación                                | Propósito                                                |
+| ------------- | ---------------------------------------- | -------------------------------------------------------- |
+| SPEC 001      | `specs/001-website/spec.md`              | Especificación de requisitos de la landing               |
+| PLAN 001      | `specs/001-website/plan.md`              | Plan de tareas del hito 001                              |
+| SPEC 002      | `specs/002-website-form/spec.md`         | Especificación del formulario multipaso                  |
+| PLAN 002      | `specs/002-website-form/plan.md`         | Plan de tareas del hito 002                              |
+| BRIEFING      | `uis/website/BRIEFING.md`                | Briefing del proyecto (inglés)                           |
+| BRIEFING (ES) | `uis/website/BRIEFING.es.md`             | Briefing del proyecto (español)                          |
+| Design System | `uis/website/docs/design/DESIGN.md`      | Sistema de diseño visual (paleta, tipografía, espaciado) |
+| Stitch        | `uis/website/docs/design/screen.png`     | Composición visual de referencia                         |
+| UIs index     | `uis/README.md`                          | Índice de todos los proyectos UI del monorepo            |
+| Agent Rules   | `.agents/rules/trackflow-development.md` | Reglas de arquitectura y dominio para agentes            |

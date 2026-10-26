@@ -1,9 +1,9 @@
-# Proyecto de Compañía - Ingeniería de IA — Plantilla para estudiantes
+# TrackFlow — Proyecto de Compañía de Ingeniería de IA
 
 [![4Geeks Academy](https://img.shields.io/badge/4Geeks-Academy-blue)](https://4geeksacademy.com)
 [![AI Engineering](https://img.shields.io/badge/track-AI%20Engineering-green)](https://4geeksacademy.com/es/programas-de-carrera/ingenieria-ia)
 
-_Plantilla base para proyectos transversales del Programa de Carrera en Ingeniería de IA — 4Geeks Academy._
+_Monorepo de TrackFlow, basado en la plantilla de proyectos transversales del Programa de Carrera en Ingeniería de IA — 4Geeks Academy._
 
 _These instructions are also available in [English](./README.md)._
 
@@ -11,19 +11,19 @@ _These instructions are also available in [English](./README.md)._
 
 ## Propósito
 
-Este repositorio es la **plantilla de inicio** para los proyectos transversales. Trabajarás con escenarios de empresas reales (Brasaland, TrackFlow, Nexova) construyendo entregables que se corresponden con los hitos del curso (Web, Programación, Backend, Telemetría, RAG, Agentes, Workflows, Tiempo real).
+Este repositorio desarrolla el escenario de **TrackFlow**, empresa de logística de última milla y gestión de almacenes, a lo largo de los hitos del curso (Web, Programación, Backend, Telemetría, RAG, Agentes, Workflows, Tiempo real). La guía de carpetas conserva las recomendaciones organizativas de la plantilla; no implica que todos los componentes estén implementados ni que todas las tecnologías sugeridas estén adoptadas.
 
-- Crea una plantilla a partir de este repositorio.
-- Reemplaza el `CONTEXT.md` placeholder por el contexto de tu empresa asignada.
+- Lee el briefing de TrackFlow en [`CONTEXT.md`](./CONTEXT.md).
+- Consulta el [README técnico del website](./uis/website/README.md) para la landing y el formulario multipaso implementados, requisitos, comandos y evidencias de entrega.
 - Usa `skills/` y los `README.md` por carpeta como guía de trabajo.
 
 ---
 
 ## Cómo empezar
 
-1. **Usa este repositorio como plantilla** y crea tu propio repo de proyecto.
+1. **Lee el contexto del proyecto** y el alcance actual en [`memory-bank/projectbrief.md`](./memory-bank/projectbrief.md).
 2. **Clona** tu repositorio (o ábrelo en Codespaces).
-3. **Reemplaza** `CONTEXT.md` con el contexto completo de tu empresa asignada.
+3. **Lee** [`AGENTS.md`](./AGENTS.md) y las reglas de desarrollo aplicables antes de realizar cambios.
 4. **Lee esta guía de carpetas** y abre el `README.md` de la carpeta en la que estés trabajando.
 5. **Empieza a implementar** en la carpeta correcta — no tires todo en la raíz.
 6. **Documenta** lo que añadas: cada app, servicio, agente o pipeline nuevo lleva subcarpeta + README.
@@ -49,12 +49,14 @@ Estás construyendo **una sola empresa** a lo largo de muchos hitos y proyectos.
 
 ---
 
-## Estado actual de la plantilla
+## Estado actual de TrackFlow
 
-> 💡 Actualmente el repositorio ofrece solo una **estructura base de carpetas y documentación**. Todavía no incluye aplicaciones ejecutables ni scripts globales en la raíz.
+> 💡 TrackFlow tiene una **landing estática y un formulario multipaso de solicitud de información implementados** en [`uis/website/`](./uis/website/README.md).
 >
-> - `CONTEXT.md` es un placeholder y debe sustituirse por el contexto de la empresa asignada.
-> - No existe todavía un `AGENTS.md` en la raíz.
+> - El formulario tiene cuatro etapas de entrada más un resumen; el envío es simulado, sin backend ni recepción real de solicitudes.
+> - El desarrollador confirmó el 2026-10-26 las pruebas manuales del formulario, las validaciones y el botón de limpiar. Siguen pendientes Lighthouse actualizado, verificación de URL pública y las demás evidencias de entrega; consulta el [README técnico del website](./uis/website/README.md#entrega-a-4geeks).
+> - `CONTEXT.md` contiene el briefing de TrackFlow; existen `AGENTS.md`, las reglas de agente y `memory-bank/`.
+> - No hay backend de TrackFlow ni aplicación backoffice implementados.
 > - Existe metadata del paquete compartido en `packages/shared/package.json` (`@repo/shared-types`), pero aún no hay runner de workspace en raíz.
 
 ---
@@ -67,7 +69,7 @@ Lee el `README.md` enlazado dentro de cada carpeta antes de empezar a programar 
 
 | Ruta                         | Propósito                                                            | Qué haces aquí                                                                                               |
 | ---------------------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| [`CONTEXT.md`](./CONTEXT.md) | Fuente única de verdad de tu empresa (Brasaland, TrackFlow o Nexova) | **Primer paso:** copia aquí el briefing de tu empresa para que apps, agentes y prompts usen el mismo dominio |
+| [`CONTEXT.md`](./CONTEXT.md) | Briefing de la empresa TrackFlow | Lee los requisitos del dominio; modificarlo requiere autorización explícita |
 | `docker-compose.yml`         | Orquestación local de todo el stack                                  | Mantener en la raíz del repo — conecta `services/`, bases de datos y otros contenedores desde un solo lugar  |
 | `README.md` / `README.es.md` | Esta guía                                                            | Orientación — estás aquí                                                                                     |
 
