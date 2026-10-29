@@ -1,9 +1,9 @@
-# AI Engineering Company Project — Student Template
+# TrackFlow — AI Engineering Company Project
 
 [![4Geeks Academy](https://img.shields.io/badge/4Geeks-Academy-blue)](https://4geeksacademy.com)
 [![AI Engineering](https://img.shields.io/badge/track-AI%20Engineering-green)](https://4geeksacademy.com/es/programas-de-carrera/ingenieria-ia)
 
-_Base template for transversal projects in the AI Engineering Career Program — 4Geeks Academy._
+_TrackFlow monorepo, based on the transversal project template for the AI Engineering Career Program — 4Geeks Academy._
 
 _Estas instrucciones tambien estan disponibles en [espanol](./README.es.md)._
 
@@ -11,19 +11,19 @@ _Estas instrucciones tambien estan disponibles en [espanol](./README.es.md)._
 
 ## Purpose
 
-This repository is the **starter template** for transversal projects. You will work on real company scenarios (Brasaland, TrackFlow, Nexova), building deliverables that map to course milestones (Web, Programming, Backend, Telemetry, RAG, Agents, Workflows, Real-time).
+This repository develops **TrackFlow**, a last-mile logistics and warehouse-management company scenario, across course milestones (Web, Programming, Backend, Telemetry, RAG, Agents, Workflows, Real-time). The folder guide below retains the template's organizational recommendations; it does not imply that every component is implemented or every suggested technology adopted.
 
-- Create a template from this repository.
-- Replace the placeholder `CONTEXT.md` with your assigned company context.
+- Read the TrackFlow briefing in [`CONTEXT.md`](./CONTEXT.md).
+- See the [website technical README](./uis/website/README.md) for the implemented landing page and multi-step form, setup, commands, and delivery evidence.
 - Use `skills/` and the directory-level `README.md` files as working guidance.
 
 ---
 
 ## How to start
 
-1. **Use this repository as a template** and create your own project repo.
+1. **Read the project context** and current scope in [`memory-bank/projectbrief.md`](./memory-bank/projectbrief.md).
 2. **Clone** your repository (or open it in Codespaces).
-3. **Replace** `CONTEXT.md` with the full context for your assigned company.
+3. **Read** [`AGENTS.md`](./AGENTS.md) and the applicable development rules before making changes.
 4. **Read this folder guide** and open the `README.md` of the folder you are working in.
 5. **Start implementing** in the right folder — do not dump everything in the root.
 6. **Document** what you add: each new app, service, agent, or pipeline gets a subfolder + README.
@@ -49,12 +49,14 @@ You are building **one company** across many milestones and projects. Each top-l
 
 ---
 
-## Current status of the template
+## Current status of TrackFlow
 
-> 💡 This repository currently provides a **base folder structure and documentation skeleton** only. It does not include runnable apps or global scripts yet.
+> 💡 TrackFlow has an implemented **static landing page and multi-step information-request form** in [`uis/website/`](./uis/website/README.md).
 >
-> - `CONTEXT.md` is a placeholder and must be replaced with your assigned company context.
-> - There is no root `AGENTS.md` yet.
+> - The form has four input stages plus a summary; submission is simulated, with no backend or real request reception.
+> - The developer confirmed manual testing of the form, validations, and reset button on 2026-10-26. Updated Lighthouse, public URL verification, and remaining delivery evidence are still pending; see the [website technical README](./uis/website/README.md#entrega-a-4geeks).
+> - `CONTEXT.md` contains the TrackFlow briefing; `AGENTS.md`, agent rules, and `memory-bank/` exist.
+> - No TrackFlow backend or backoffice application is implemented.
 > - Shared package metadata exists in `packages/shared/package.json` (`@repo/shared-types`), but no workspace runner is configured at root.
 
 ---
@@ -67,7 +69,7 @@ Read the linked `README.md` inside each folder before you start coding there.
 
 | Path                         | Purpose                                                                   | What you do here                                                                                              |
 | ---------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| [`CONTEXT.md`](./CONTEXT.md) | Single source of truth for your company (Brasaland, TrackFlow, or Nexova) | **First step:** copy your assigned company briefing here so every app, agent, and prompt uses the same domain |
+| [`CONTEXT.md`](./CONTEXT.md) | TrackFlow company briefing | Read the domain requirements; changes require explicit authorization |
 | `docker-compose.yml`         | Local dev orchestration for the whole stack                               | Keep at repo root — wires `services/`, databases, and other containers from one place                         |
 | `README.md` / `README.es.md` | This guide                                                                | Orientation — you are here                                                                                    |
 

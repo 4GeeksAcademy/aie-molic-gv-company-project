@@ -1,15 +1,12 @@
-# Carpeta `uis`
+# Interfaces de usuario (`uis/`)
 
-Esta carpeta contiene **todos los proyectos con interfaz de usuario** para el proyecto transversal de AI Engineering de la compañía — por ejemplo: un sitio web público, un frontend de panel de administración, una interfaz de ecommerce, portales para clientes, aplicaciones Streamlit/Gradio u otras herramientas sólo-frontend.
+Esta carpeta agrupa las interfaces de usuario del monorepo de AI Engineering. Cada aplicación debe conservar su documentación técnica en su propia carpeta.
 
-Los dos proyectos principales que se almacenan aquí son:
+## Proyectos
 
-- **`website`** — la presencia web pública de la compañía.
-- **`backoffice`** — la aplicación interna de administración. Es el lugar ideal para desarrollar múltiples soluciones dentro de un mismo proyecto: autenticación, gestión de personas, gestión de operaciones, comunicación interna y otras capacidades de back-office.
+- **[TrackFlow website](./website/README.md)** (`website/`): web corporativa con landing (`index.html`) y formulario multipaso de solicitud de información (`application.html`, `validation.js`). Consulta su README para instalación, comandos, pruebas y entrega a 4Geeks.
+- **`backoffice/`**: área prevista para futuras interfaces de administración; no implica que exista una aplicación funcional.
 
-Organiza `uis/` por **distintas áreas de la compañía** — cada subcarpeta agrupa un ámbito diferente (por ejemplo, web pública frente a operaciones internas) e incluye su propia documentación técnica y funcional.
+Este README es un índice: las instrucciones de Tailwind, servidor y Codespaces se mantienen únicamente en el [README técnico del website](./website/README.md), evitando duplicarlas.
 
-- **Propósito principal**: centralizar en un único lugar todas las aplicaciones frontend que dan soporte a los casos de uso de la compañía.
-- **Recomendación**: documenta en este archivo (o en sub-READMEs) las aplicaciones que vayas añadiendo, su objetivo, tecnología usada y cómo ejecutarlas.
-
-> _These instructions are also available in [English](./README.md)._
+[English version](./README.md).

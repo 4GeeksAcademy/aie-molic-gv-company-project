@@ -28,6 +28,29 @@ El briefing solicita, como necesidades de negocio:
 
 Estos son requisitos descritos en `CONTEXT.md`; no implican que estén priorizados, aprobados como alcance de un único hito ni implementados.
 
+## Hito web autorizado (2026-10-25)
+
+El alcance de SPEC/PLAN 001 es la landing estática de `uis/website/`, sin formulario funcional, backend ni funcionalidades operativas; Stitch es una referencia visual flexible dentro de los requisitos. El `index.html` actual contiene las secciones de la landing, utilidades responsive, metadatos y marcado Organization. El estado de implementación y sus evidencias se registran en [TASKS 001](../specs/001-website/tasks.md), cuyo resumen marca T001–T039 y T046 completadas; sin embargo, sus notas finales todavía dicen que el trabajo se detuvo en T021 y que T036, la fase responsive, el menú y auditorías siguen pendientes. Esta frase describe el estado documental anterior a la aprobación registrada el 2026-10-25 en el README del website; aún deben reconciliarse las notas contradictorias de TASKS 001 y las limitaciones de auditoría. La aprobación histórica no sustituye la comprobación de entrega actual.
+
+## Hito SPEC 002 — Formulario multipaso
+
+El formulario de solicitud de información (`application.html`) y su lógica de validación (`validation.js`) están implementados según [SPEC 002](../specs/002-website-form/spec.md) y [PLAN 002](../specs/002-website-form/plan.md). Incluye:
+
+- **4 etapas de formulario más resumen**: (1) Datos de la empresa — F-01 y F-05; (2) Información de contacto — F-02 a F-04; (3) Datos de operación — F-06 a F-10; (4) Comentarios y privacidad — F-11 y F-12; (5) Resumen y envío simulado. El mensaje de éxito es una pantalla posterior, no una etapa del indicador de progreso.
+- **12 campos** con validación completa (V-01 a V-12), validación en tiempo real (input/blur/change), botón de limpiar, contador de caracteres y aviso de volumen bajo (≤100 envíos/mes).
+- **Navegación wizard** con JavaScript vanilla, sin dependencias externas.
+
+El formulario se sirve en `/application.html` desde los CTA de la landing; su lógica no se carga automáticamente en `index.html`. El envío es exclusivamente simulado y DP-01 (política de privacidad real) sigue pendiente.
+
+## Preparación para entrega a 4Geeks
+
+La documentación del website se ha reorganizado para facilitar la entrega:
+
+- `uis/README.md` (EN + ES) ahora es un índice conciso que enlaza al README detallado del website.
+- `uis/website/README.md` se ha reestructurado con: visión general, descripción de páginas, tecnologías, estructura del proyecto, comandos, entrega a 4Geeks (artefactos, plantilla PR), evaluación completa y documentación relacionada.
+- Se ha añadido una regla de agente en `.agents/rules/trackflow-development.md` que documenta la compilación correcta de Tailwind con la bandera `-c`.
+- La sección de auditorías de `uis/website/README.md` consolida todas las verificaciones ejecutadas (T001–T050) con su estado y criterios de aceptación.
+
 ## Alcance personal propuesto
 
 `company-choice.md` expresa interés personal por última milla, tecnología y área comercial, y propone como reto un sistema que recomiende el transportista más adecuado según destino, peso, urgencia, coste y rendimiento histórico. También plantea explicar la recomendación al coordinador y, tras su aprobación, permitir que se desencadene el siguiente paso.
@@ -38,4 +61,4 @@ Esta propuesta no sustituye ni reduce los requisitos empresariales anteriores y 
 
 - Fuentes principales: [`CONTEXT.md`](../CONTEXT.md), [`company-choice.md`](../company-choice.md) y la guía de estructura en [`README.md`](../README.md).
 - El briefing contiene una discrepancia sobre quién es el CEO: menciona a Thomas Harry en la introducción y a Daniel Espinoza en la sección de dirección ejecutiva. Pendiente de confirmación; no se modifica la fuente.
-- El repositorio no confirma qué requisitos empresariales formarán el primer alcance, qué datos estarán disponibles ni qué criterios de aceptación operativa se aplicarán.
+- La landing tiene el alcance documental anterior; los requisitos operativos posteriores, sus datos y criterios de aceptación siguen pendientes.
