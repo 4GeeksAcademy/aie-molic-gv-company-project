@@ -60,18 +60,21 @@
 
 ## Fase 1 — Modelos de dominio (Copilot + revisión del desarrollador)
 
-- [ ] **T006 — Definir modelos exactos en `src/models.ts`.** Copiar las declaraciones del briefing/SPEC para `Product`, `Dimensions`, `Shipment`, `Destination`, `Carrier`, `InventoryMovement`, `ProductCategory`, `WarehouseLocation`, `ProductStatus`, `Country`, `ShipmentPriority`, `ShipmentStatus` y `MovementType`.
+- [x] **T006 — Definir modelos exactos en `src/models.ts`.** Copiar las declaraciones del briefing/SPEC para `Product`, `Dimensions`, `Shipment`, `Destination`, `Carrier`, `InventoryMovement`, `ProductCategory`, `WarehouseLocation`, `ProductStatus`, `Country`, `ShipmentPriority`, `ShipmentStatus` y `MovementType`.
   - **Firma/contrato:** conservar exactamente propiedades, nombres, uniones y tipos de §4 de SPEC 003; en particular `Shipment.carrier: string | null` y fechas `Date`.
   - **Dependencias:** T005. No agregar campos, validaciones ni tipos no especificados.
-  - **Finalización:** revisión literal contra la SPEC; TypeScript reconoce referencias cruzadas y uniones bajo `strict`. Esta tarea crea tipos solamente, no funciones.
+  - **Verificación:** declaraciones comparadas con §4 de SPEC 003; `src/index.ts` reexporta los 13 modelos y tipos unión; TypeScript reconoce referencias cruzadas bajo `strict`.
+  - **Finalización:** contratos exactos, sin lógica de negocio, propiedades adicionales ni validaciones.
 
-- [ ] **T007 — Explicar los modelos y sus relaciones.** Explicar al desarrollador cada interfaz, sus propiedades y las referencias entre modelos (`Product`–`Dimensions`, `Shipment`–`Destination`, `Carrier`–`Country`/`ShipmentPriority`, `InventoryMovement`–`WarehouseLocation`/`MovementType`).
+- [x] **T007 — Explicar los modelos y sus relaciones.** Explicar al desarrollador cada interfaz, sus propiedades y las referencias entre modelos (`Product`–`Dimensions`, `Shipment`–`Destination`, `Carrier`–`Country`/`ShipmentPriority`, `InventoryMovement`–`WarehouseLocation`/`MovementType`).
   - **Dependencias:** T006.
-  - **Finalización:** explicación revisada en conversación; dudas se aclaran antes de continuar.
+  - **Verificación:** explicación revisada y Fase 1 aprobada por el desarrollador.
+  - **Finalización:** relaciones, nullabilidad y uso de tipos comprendidos antes de continuar.
 
-- [ ] **T008 — Verificar el tipado de los modelos.** Ejecutar `npm --prefix packages/trackflow-utils run typecheck` y revisar que las exportaciones de `src/index.ts` exponen los modelos aprobados.
+- [x] **T008 — Verificar el tipado de los modelos.** Ejecutar `npm --prefix packages/trackflow-utils run typecheck` y revisar que las exportaciones de `src/index.ts` exponen los modelos aprobados.
   - **Dependencias:** T006–T007.
-  - **Finalización:** chequeo sin errores y contratos exportados sin cambios semánticos; no hay implementación funcional.
+  - **Verificación:** `npm --prefix packages/trackflow-utils run typecheck` ejecutado sin errores; `src/index.ts` exporta los 13 modelos y tipos unión.
+  - **Finalización:** contratos exportados sin cambios semánticos; no hay implementación funcional.
 
 ## Protocolo para T009–T027
 
