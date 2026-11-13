@@ -20,38 +20,43 @@
 
 ### T001 — Confirmar línea base y límites
 
-- [ ] **T001 — Comprobar el destino y preservar el monorepo.** Revisar estado Git, confirmar que `packages/trackflow-utils/` no existe y que la web y `packages/shared/` quedan fuera de alcance.
+- [x] **T001 — Comprobar el destino y preservar el monorepo.** Revisar estado Git, confirmar que `packages/trackflow-utils/` no existe y que la web y `packages/shared/` quedan fuera de alcance.
   - **Archivos:** solo lectura del estado Git y árbol de `packages/` y `uis/website/`.
   - **Dependencias:** ninguna.
-  - **Finalización:** registrar cambios preexistentes y confirmar que el trabajo se limita al paquete nuevo; no limpiar archivos ni cambiar archivos ajenos.
+  - **Verificación:** rama `feature/domain-models`; estado limpio antes de comenzar; el paquete no existía. No se modifican la web ni `packages/shared/`.
+  - **Finalización:** cambios preexistentes identificados; trabajo limitado al paquete nuevo y a este registro de tareas; no se limpiaron archivos ajenos.
 
 ### T002 — Crear el esqueleto y documentarlo
 
-- [ ] **T002 — Crear la estructura local del paquete.** Crear `packages/trackflow-utils/`, `src/`, `src/utils/` y `tests/`; añadir un README con objetivo, alcance y cómo se documentarán los comandos verificados.
+- [x] **T002 — Crear la estructura local del paquete.** Crear `packages/trackflow-utils/`, `src/`, `src/utils/` y `tests/`; añadir un README con objetivo, alcance y cómo se documentarán los comandos verificados.
   - **Archivos:** paquete nuevo, sus carpetas y `README.md`.
   - **Dependencias:** T001; ubicación `packages/trackflow-utils/` y nombre privado aprobados.
-  - **Finalización:** la estructura vive solo en `packages/trackflow-utils/`; no se crea `src/` en la raíz ni se modifica README de plantilla.
+  - **Verificación:** creados `packages/trackflow-utils/src/`, `src/utils/`, `tests/` y `README.md` del paquete.
+  - **Finalización:** la estructura vive solo en el paquete; no se creó `src/` en raíz ni se modificó README de plantilla.
 
 ### T003 — Configurar el paquete y TypeScript
 
-- [ ] **T003 — Preparar `package.json`, `tsconfig.json` y lockfile local.** Declarar el paquete privado `@repo/trackflow-utils`, scripts locales `typecheck` y `test`, TypeScript estricto y opciones compatibles con el entorno comprobado de Codespaces.
+- [x] **T003 — Preparar `package.json`, `tsconfig.json` y lockfile local.** Declarar el paquete privado `@repo/trackflow-utils`, scripts locales `typecheck` y `test`, TypeScript estricto y opciones compatibles con el entorno comprobado de Codespaces.
   - **Archivos:** `packages/trackflow-utils/package.json`, `tsconfig.json` y `package-lock.json`.
   - **Dependencias:** T002; versiones de Node/npm/TypeScript revisadas en Codespaces.
-  - **Finalización:** configuración autocontenida, `noEmit`, inclusión limitada a fuentes/tests del paquete; ninguna modificación a manifiestos o lockfiles raíz. Registrar en README versiones y decisiones aplicadas.
+  - **Verificación:** Node.js `v22.23.3`, npm `10.9.9`, TypeScript `7.0.2`, Vitest `5.1.0`; configuración `strict` y `noEmit`; dependencias y lockfile confinados al paquete.
+  - **Finalización:** scripts y configuración autocontenidos; no se modificaron manifiestos ni lockfiles raíz. Versiones y comandos están documentados en el README del paquete.
 
 ### T004 — Configurar Vitest y prueba de arranque
 
-- [ ] **T004 — Preparar Vitest y comprobar el arnés de pruebas.** Añadir Vitest como dependencia local aprobada, configuración mínima si fuera necesaria y una prueba de humo que no implemente reglas del dominio.
+- [x] **T004 — Preparar Vitest y comprobar el arnés de pruebas.** Añadir Vitest como dependencia local aprobada, configuración mínima si fuera necesaria y una prueba de humo que no implemente reglas del dominio.
   - **Archivos:** configuración local y `tests/setup.test.ts` (o equivalente justificado en README).
   - **Dependencias:** T003.
-  - **Finalización:** el test runner inicia y la prueba de humo pasa; la prueba no contiene soluciones ni lógica de las funciones requeridas.
+  - **Verificación:** `tests/setup.test.ts` ejecutó correctamente con Vitest `5.1.0` (1 archivo, 1 test aprobado); no fue necesaria configuración adicional de Vitest.
+  - **Finalización:** test runner funcional; la prueba solo verifica el arnés y no contiene lógica de dominio.
 
 ### T005 — Verificar la preparación
 
-- [ ] **T005 — Ejecutar typecheck y prueba de arranque.** Verificar los scripts locales desde la raíz usando `npm --prefix packages/trackflow-utils run typecheck` y `npm --prefix packages/trackflow-utils test`.
+- [x] **T005 — Ejecutar typecheck y prueba de arranque.** Verificar los scripts locales desde la raíz usando `npm --prefix packages/trackflow-utils run typecheck` y `npm --prefix packages/trackflow-utils test`.
   - **Archivos:** los de T002–T004; corregir solo defectos de preparación autorizados.
   - **Dependencias:** T004.
-  - **Finalización:** ambos comandos completan correctamente; registrar salidas/resumen y versiones en el README. No declarar funciones implementadas.
+  - **Verificación:** `npm --prefix packages/trackflow-utils run typecheck` completó sin errores; `npm --prefix packages/trackflow-utils test` pasó (1 test).
+  - **Finalización:** ambos comandos documentados y ejecutables; no se crearon modelos ni se implementaron funciones.
 
 ## Fase 1 — Modelos de dominio (Copilot + revisión del desarrollador)
 
