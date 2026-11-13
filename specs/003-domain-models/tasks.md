@@ -82,13 +82,14 @@ Cada tarea de función se autoriza de forma independiente. Copilot prepara en es
 
 ## Fase 2 — Filtrado de productos (programación guiada)
 
-- [ ] **T009 — `filterProductsByWarehouse`**
+- [x] **T009 — `filterProductsByWarehouse`**
   - **Archivo/firma:** `src/utils/collections.ts` — `filterProductsByWarehouse(products: Product[], warehouse: WarehouseLocation): Product[]`.
   - **Objetivo:** retornar productos cuyo `warehouse` coincide.
   - **Conceptos:** `filter`, predicados, tipos unión, arrays.
   - **Pruebas:** coincidencias múltiples y una; ningún resultado; array vacío; entrada sin mutaciones.
   - **Aceptación:** solo contiene coincidencias, conserva el orden de entrada y no modifica array ni productos.
-  - **Dependencias/QA:** T006–T008. Ninguna QA bloqueante para el contrato especificado.
+  - **Verificación:** `npm --prefix packages/trackflow-utils test -- tests/collections.test.ts` pasó (1 archivo, 5 pruebas); `npm --prefix packages/trackflow-utils run typecheck` terminó sin errores. Las pruebas confirman que el array original y sus productos no cambian.
+  - **Dependencias/QA:** T006–T008. Ninguna QA bloqueante para el contrato especificado. Implementación revisada y aceptada por el desarrollador.
 
 - [ ] **T010 — `filterProductsByCategory`**
   - **Archivo/firma:** `src/utils/collections.ts` — `filterProductsByCategory(products: Product[], category: ProductCategory): Product[]`.
