@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#03142E" />
+    <meta name="description" content="Demo interna de las utilidades de operaciones TrackFlow con datos sintéticos." />
+    <title>TrackFlow Operations Playground</title>
+    <link rel="stylesheet" href="/assets/css/tailwind.css" />
+    <script type="module" src="/src/main.js"></script>
+  </head>
+  <body class="bg-[#F6F5F1] text-[#03142E] antialiased">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-white focus:px-4 focus:py-3">Saltar al contenido</a>
+    <header class="bg-gradient-to-r from-[#03142E] via-[#06295D] to-[#03142E] text-white shadow-lg">
+      <div class="mx-auto flex max-w-[1440px] flex-wrap items-center justify-between gap-4 px-4 py-4 md:px-8 lg:px-12">
+        <a href="#overview" class="flex min-h-12 items-center gap-3 rounded-lg focus-visible:outline-[#00CFFF]" aria-label="TrackFlow Operations Playground, inicio">
+          <img id="brand-logo" alt="" width="170" height="41" class="h-9 w-auto" />
+          <span><span class="block font-display text-lg font-bold tracking-tight sm:text-xl">TrackFlow</span><span class="block text-xs text-white/70">OPERATIONS PLAYGROUND</span></span>
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="hidden rounded-full border border-[#00DCCF]/50 bg-white/10 px-3 py-2 text-xs font-semibold text-[#9BF4EC] sm:inline-flex">● Demo · datos ficticios</span>
+          <button id="reset-button" type="button" class="min-h-11 rounded-lg border border-white/30 px-4 text-sm font-semibold hover:bg-white/10">Restablecer demo</button>
+        </div>
+      </div>
+    </header>
+    <div class="border-b border-[#00DCCF]/30 bg-[#03142E] text-white">
+      <div class="mx-auto flex max-w-[1440px] items-center justify-between gap-3 px-4 py-2 text-xs md:px-8 lg:px-12">
+        <p><span class="font-bold text-[#00DCCF]">ENTORNO LOCAL</span><span class="ml-2 text-white/75">Sin conexión a operaciones reales · Los resultados se calculan en este navegador.</span></p>
+        <span class="hidden text-white/60 sm:inline">Milestone 003</span>
+      </div>
+    </div>
+    <div class="mx-auto grid max-w-[1440px] gap-6 px-4 py-6 md:px-8 md:py-8 lg:grid-cols-[220px_minmax(0,1fr)] lg:px-12">
+      <aside class="lg:sticky lg:top-6 lg:self-start">
+        <nav aria-label="Áreas de la demo" class="rounded-2xl border border-[#526578]/20 bg-white p-3 shadow-[0_1px_3px_rgba(3,20,46,.04),0_6px_16px_rgba(3,20,46,.03)]">
+          <p class="px-3 pb-2 pt-1 text-[11px] font-bold uppercase tracking-[.16em] text-[#526578]">Espacio de trabajo</p>
+          <ul class="grid grid-cols-2 gap-1 sm:grid-cols-3 lg:grid-cols-1">
+            <li><a class="nav-link is-active" href="#overview" data-section="overview"><span aria-hidden="true">⌂</span> Resumen</a></li>
+            <li><a class="nav-link" href="#inventory" data-section="inventory"><span aria-hidden="true">▦</span> Inventario</a></li>
+            <li><a class="nav-link" href="#shipments" data-section="shipments"><span aria-hidden="true">⇢</span> Envíos</a></li>
+            <li><a class="nav-link" href="#carriers" data-section="carriers"><span aria-hidden="true">◈</span> Transportistas</a></li>
+            <li><a class="nav-link" href="#validations" data-section="validations"><span aria-hidden="true">✓</span> Validaciones</a></li>
+            <li><a class="nav-link" href="#reports" data-section="reports"><span aria-hidden="true">▤</span> Reportes</a></li>
+          </ul>
+          <div class="mt-4 rounded-xl bg-[#F6F5F1] p-3 text-xs leading-5 text-[#526578]"><strong class="text-[#03142E]">Nota de demo</strong><br />Tarifas, existencias y métricas son ejemplos sintéticos, no datos operativos.</div>
+        </nav>
+      </aside>
+      <main id="main-content" class="min-w-0" tabindex="-1">
+        <div id="live-message" class="sr-only" role="status" aria-live="polite"></div>
+        <section id="overview" class="app-section space-y-6" aria-labelledby="overview-title">
+          <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+            <div><p class="mb-2 text-xs font-bold uppercase tracking-[.16em] text-[#0758BD]">Centro de operaciones · Demo</p><h1 id="overview-title" class="font-display text-3xl font-extrabold tracking-tight sm:text-4xl">Resumen operativo</h1><p class="mt-2 max-w-2xl text-sm leading-6 text-[#526578]">Explora resultados producidos por las utilidades reales de TrackFlow sobre un conjunto local de prueba.</p></div>
+            <span class="inline-flex w-fit items-center gap-2 rounded-full border border-[#00DCCF]/40 bg-white px-3 py-2 text-xs font-semibold text-[#03142E]"><span class="h-2 w-2 rounded-full bg-[#00DCCF]"></span> Datos sintéticos · sin conexión</span>
+          </div>
+          <div id="overview-kpis" class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4"></div>
+          <div class="grid gap-5 xl:grid-cols-[1.2fr_.8fr]">
+            <article class="panel p-5 sm:p-6"><div class="mb-4 flex items-center justify-between"><div><p class="eyebrow">Vista rápida</p><h2 class="panel-title">Inventario por categoría</h2></div><a class="text-sm font-semibold text-[#0758BD] underline-offset-4 hover:underline" href="#inventory">Explorar inventario <span aria-hidden="true">→</span></a></div><div id="overview-categories" class="space-y-3"></div></article>
+            <article class="panel p-5 sm:p-6"><p class="eyebrow">Estado de envíos</p><h2 class="panel-title mb-4">Distribución actual de la demo</h2><div id="overview-status" class="space-y-3"></div><p class="mt-4 text-xs text-[#526578]">Los grupos se obtienen de <code>groupShipmentsByStatus</code>.</p></article>
+          </div>
+          <article class="rounded-2xl bg-gradient-to-r from-[#03142E] to-[#06295D] p-6 text-white sm:p-8"><div class="grid gap-4 sm:grid-cols-[1fr_auto] sm:items-center"><div><p class="text-xs font-bold uppercase tracking-[.16em] text-[#00DCCF]">Exploración guiada</p><h2 class="mt-2 font-display text-2xl font-bold">Datos de demostración, lógica real</h2><p class="mt-2 max-w-2xl text-sm leading-6 text-white/75">Prueba búsquedas, filtros y escenarios; cada cifra y resultado procede de las funciones TypeScript del paquete.</p></div><a href="#inventory" class="inline-flex min-h-11 items-center justify-center rounded-lg bg-[#00DCCF] px-5 font-semibold text-[#03142E] hover:bg-[#00CFFF]">Abrir inventario <span class="ml-2" aria-hidden="true">→</span></a></div></article>
+        </section>
+        <section id="inventory" class="app-section hidden space-y-6" aria-labelledby="inventory-title">
+          <div class="section-heading"><div><p class="eyebrow">Warehouse visibility</p><h1 id="inventory-title" class="page-title">Inventario</h1><p>Filtra y consulta productos ficticios almacenados en Los Angeles y Zaragoza.</p></div><span class="demo-pill">Muestra sintética</span></div>
+          <div id="inventory-kpis" class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4"></div>
+          <article class="panel p-5 sm:p-6"><div class="mb-5"><p class="eyebrow">Controles de consulta</p><h2 class="panel-title">Explorar productos</h2></div>
+            <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+              <label class="field-label">Almacén<select id="warehouse-filter" class="field"><option value="">Todos los almacenes</option><option>Los Angeles</option><option>Zaragoza</option></select></label>
+              <label class="field-label">Categoría<select id="category-filter" class="field"><option value="">Todas las categorías</option><option>Fashion</option><option>Electronics</option><option>Cosmetics</option><option>Home</option><option>Other</option></select></label>
+              <label class="field-label">Orden de stock<select id="stock-order" class="field"><option value="none">Orden original</option><option value="asc">Menor a mayor</option><option value="desc">Mayor a menor</option></select></label>
+              <label class="field-label flex flex-row items-center gap-3 self-end rounded-lg border border-[#526578]/20 p-3"><input id="low-stock-filter" type="checkbox" class="h-5 w-5 accent-[#0758BD]" /><span>Mostrar stock bajo o igual al umbral</span></label>
+            </div>
+            <div class="mt-5 grid gap-4 rounded-xl bg-[#F6F5F1] p-4 md:grid-cols-2">
+              <form id="sku-form" class="flex flex-col gap-2 sm:flex-row sm:items-end"><label class="field-label min-w-0 flex-1">Buscar por SKU<input id="sku-query" class="field" placeholder="Ej. TF-1001" /></label><button class="button-primary" type="submit">Buscar SKU</button></form>
+              <form id="weight-form" class="flex flex-col gap-2 sm:flex-row sm:items-end"><label class="field-label min-w-0 flex-1">Buscar peso exacto (kg)<input id="weight-query" class="field" type="number" step="0.01" min="0" placeholder="Ej. 1.25" /></label><button class="button-secondary" type="submit">Búsqueda binaria</button></form>
+            </div>
+            <div id="search-results" class="mt-4 space-y-3" aria-live="polite"></div>
+          </article>
+          <article class="panel overflow-hidden"><div class="flex flex-wrap items-end justify-between gap-2 border-b border-[#526578]/15 px-5 py-4 sm:px-6"><div><p class="eyebrow">Listado de productos</p><h2 class="panel-title">Stock y ubicación</h2></div><p id="product-count" class="text-sm text-[#526578]"></p></div><div id="products-table" class="p-4 sm:p-6"></div></article>
+          <div class="grid gap-5 xl:grid-cols-2"><article class="panel p-5 sm:p-6"><p class="eyebrow">Resumen</p><h2 class="panel-title mb-4">Conteo por categoría</h2><div id="inventory-counts" class="space-y-3"></div></article><article class="panel flex items-center justify-between gap-4 p-5 sm:p-6"><div><p class="eyebrow">Valor de muestra</p><h2 class="panel-title">Valor total del inventario</h2><p class="mt-1 text-xs text-[#526578]">Basado en stock × unitCostUSD (ficticio).</p></div><p id="inventory-value" class="tabular font-display text-3xl font-extrabold text-[#0758BD]"></p></article></div>
+        </section>
+        <section id="shipments" class="app-section hidden space-y-6" aria-labelledby="shipments-title">
+          <div class="section-heading"><div><p class="eyebrow">Shipment visibility</p><h1 id="shipments-title" class="page-title">Envíos</h1><p>Consulta registros de prueba; no se modifica ningún estado ni carrier asignado.</p></div><span class="demo-pill">Muestra sintética</span></div>
+          <div id="shipment-kpis" class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3"></div>
+          <div class="grid gap-5 xl:grid-cols-[1.2fr_.8fr]"><article class="panel p-5 sm:p-6"><p class="eyebrow">Búsqueda</p><h2 class="panel-title mb-4">Encontrar un envío</h2><form id="shipment-form" class="flex flex-col gap-3 sm:flex-row sm:items-end"><label class="field-label min-w-0 flex-1">ID de envío<input id="shipment-query" class="field" placeholder="Ej. SH-5001" /></label><button class="button-primary" type="submit">Buscar ID</button></form><div id="shipment-search-result" class="mt-4" aria-live="polite"></div></article><article class="panel p-5 sm:p-6"><p class="eyebrow">Promedio del conjunto demo</p><h2 class="panel-title">Distancia media</h2><p id="average-distance" class="tabular mt-3 font-display text-4xl font-extrabold text-[#0758BD]"></p><p class="mt-1 text-xs text-[#526578]">Kilómetros · calculado por la utilidad del paquete.</p></article></div>
+          <article class="panel overflow-hidden"><div class="border-b border-[#526578]/15 px-5 py-4 sm:px-6"><p class="eyebrow">Shipment manifest</p><h2 class="panel-title">Envíos de demostración</h2></div><div id="shipments-table" class="p-4 sm:p-6"></div></article>
+          <article class="panel p-5 sm:p-6"><p class="eyebrow">Agregación real</p><h2 class="panel-title mb-4">Envíos agrupados por estado</h2><div id="shipment-groups" class="grid gap-3 sm:grid-cols-2 xl:grid-cols-5"></div></article>
+        </section>
+        <section id="carriers" class="app-section hidden space-y-6" aria-labelledby="carriers-title">
+          <div class="section-heading"><div><p class="eyebrow">Carrier comparison</p><h1 id="carriers-title" class="page-title">Transportistas</h1><p>Inspecciona resultados deterministas para un escenario de prueba.</p></div><span class="demo-pill">No es una recomendación operativa</span></div>
+          <div class="grid gap-5 xl:grid-cols-[.8fr_1.2fr]"><article class="panel p-5 sm:p-6"><p class="eyebrow">Escenario sintético</p><h2 class="panel-title mb-4">Parámetros de evaluación</h2><div class="space-y-4"><label class="field-label">Envío<select id="carrier-shipment" class="field"></select></label><label class="field-label">Producto<select id="carrier-product" class="field"></select></label><label class="field-label">Carrier para inspección<select id="carrier-choice" class="field"></select></label><label class="field-label">Ordenar fiabilidad<select id="carrier-order" class="field"><option value="desc">Mayor a menor</option><option value="asc">Menor a mayor</option></select></label><button id="evaluate-carriers" type="button" class="button-primary w-full">Evaluar escenario sintético</button></div><p class="mt-4 rounded-lg bg-[#F6F5F1] p-3 text-xs leading-5 text-[#526578]">La utilidad puntúa país, peso, prioridad, fragilidad y fiabilidad. La salida no asigna un carrier ni constituye política empresarial.</p></article><div class="space-y-5"><div id="carrier-result" class="grid gap-4 sm:grid-cols-2"></div><article class="panel overflow-hidden"><div class="border-b border-[#526578]/15 px-5 py-4"><p class="eyebrow">Valores de prueba</p><h2 class="panel-title">Carriers disponibles en el fixture</h2></div><div id="carriers-table" class="p-4 sm:p-5"></div></article></div></div>
+          <article class="panel p-5 sm:p-6"><p class="eyebrow">Frecuencia observada</p><h2 class="panel-title">Transportistas más utilizados en los envíos de muestra</h2><div id="top-carriers" class="mt-4 grid gap-3 sm:grid-cols-3"></div></article>
+        </section>
+        <section id="validations" class="app-section hidden space-y-6" aria-labelledby="validations-title">
+          <div class="section-heading"><div><p class="eyebrow">Domain checks</p><h1 id="validations-title" class="page-title">Validaciones</h1><p>Compara una entidad sintética válida con una variante que activa reglas implementadas.</p></div><span class="demo-pill">Mensajes originales del paquete</span></div>
+          <article class="panel p-5 sm:p-6"><div class="grid gap-4 sm:grid-cols-[1fr_1fr_auto]"><label class="field-label">Entidad<select id="validation-entity" class="field"><option value="product">Product</option><option value="shipment">Shipment</option><option value="carrier">Carrier</option></select></label><label class="field-label">Caso de prueba<select id="validation-case" class="field"><option value="valid">Entidad válida</option><option value="invalid">Variante con error</option></select></label><button id="run-validation" class="button-primary self-end" type="button">Ejecutar validación</button></div><div id="validation-result" class="mt-5" aria-live="polite"></div></article>
+          <div class="grid gap-4 md:grid-cols-3"><article class="panel p-5"><p class="eyebrow">Product</p><p class="mt-2 text-sm leading-6 text-[#526578]">sku, peso, dimensiones, stock, umbral y coste.</p></article><article class="panel p-5"><p class="eyebrow">Shipment</p><p class="mt-2 text-sm leading-6 text-[#526578]">cantidad, valor declarado y distancia.</p></article><article class="panel p-5"><p class="eyebrow">Carrier</p><p class="mt-2 text-sm leading-6 text-[#526578]">tarifas, plazo, fiabilidad, capacidad y países.</p></article></div>
+        </section>
+        <section id="reports" class="app-section hidden space-y-6" aria-labelledby="reports-title">
+          <div class="section-heading"><div><p class="eyebrow">Analytics snapshot</p><h1 id="reports-title" class="page-title">Reportes</h1><p>Resumen calculado en vivo sobre las colecciones locales de demostración.</p></div><span class="demo-pill">No son KPIs reales</span></div>
+          <div id="report-kpis" class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4"></div>
+          <div class="grid gap-5 xl:grid-cols-2"><article class="panel p-5 sm:p-6"><p class="eyebrow">Inventory mix</p><h2 class="panel-title mb-4">Productos por categoría</h2><div id="report-categories" class="space-y-3"></div></article><article class="panel p-5 sm:p-6"><p class="eyebrow">Shipment distribution</p><h2 class="panel-title mb-4">Envíos por estado</h2><div id="report-status" class="space-y-3"></div></article></div>
+          <div class="grid gap-5 xl:grid-cols-[1fr_1fr]"><article class="panel flex items-center justify-between gap-4 p-5 sm:p-6"><div><p class="eyebrow">Valoración de prueba</p><h2 class="panel-title">Inventario total</h2><p class="mt-1 text-xs text-[#526578]">USD sintéticos</p></div><p id="report-value" class="tabular font-display text-3xl font-extrabold text-[#0758BD]"></p></article><article class="panel flex items-center justify-between gap-4 p-5 sm:p-6"><div><p class="eyebrow">Promedio de prueba</p><h2 class="panel-title">Distancia de envíos</h2><p class="mt-1 text-xs text-[#526578]">Kilómetros</p></div><p id="report-distance" class="tabular font-display text-3xl font-extrabold text-[#0758BD]"></p></article></div>
+          <article class="panel p-5 sm:p-6"><div class="flex flex-wrap items-end justify-between gap-4"><div><p class="eyebrow">Carrier frequency</p><h2 class="panel-title">Transportistas más utilizados</h2></div><label class="field-label w-36">Mostrar top<select id="top-n" class="field"><option>1</option><option selected>3</option><option>5</option><option>10</option></select></label></div><div id="report-top-carriers" class="mt-4 grid gap-3 sm:grid-cols-3"></div></article>
+        </section>
+        <footer class="mt-10 border-t border-[#526578]/20 py-5 text-xs text-[#526578]"><p>TrackFlow Operations Playground · Herramienta interna de demostración. Datos y tarifas ficticios; no conectada a servicios externos.</p></footer>
+      </main>
+    </div>
+  </body>
+</html>

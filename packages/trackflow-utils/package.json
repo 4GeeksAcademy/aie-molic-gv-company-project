@@ -1,0 +1,18 @@
+{
+  "name": "@repo/trackflow-utils",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "description": "Reusable TypeScript utilities for TrackFlow inventory and carrier exercises",
+  "scripts": {
+    "typecheck": "tsc --project tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "engines": {
+    "node": "^22.12.0 || ^24.0.0 || >=26.0.0"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2",
+    "vitest": "5.1.0"
+  }
+}
