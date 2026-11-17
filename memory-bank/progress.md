@@ -2,6 +2,14 @@
 
 ## Estado actual
 
+### Playground interno de utilidades (2026-11-17)
+
+- Implementado con autorización explícita del desarrollador en `uis/backoffice/trackflow-playground/`: Overview, Inventory, Shipments, Carriers, Validations y Reports sobre datos sintéticos efímeros, invocando el paquete real `@repo/trackflow-utils`.
+- Validación ejecutada: build local Vite/Tailwind correcto (aviso `caniuse-lite` desactualizado); `npm --prefix packages/trackflow-utils run typecheck` correcto; `npm --prefix packages/trackflow-utils test` correcto (6 archivos, 78 tests). Preview de producción respondió HTTP 200 (`text/html`, 18,399 bytes) y contenía marcadores esperados. Escaneo estático limitado de fuentes no encontró llamadas explícitas a `fetch`, XHR, URLs HTTP(S) ni APIs comunes de persistencia; esto no es una auditoría de tráfico. `git diff --check` no reportó problemas en cambios rastreados.
+- El desarrollador confirmó manualmente en navegador que se muestran logo y tarjetas resumen, funcionan navegación, filtros/controles, Inventory, Shipments, Carriers, Validations, Reports y «Restablecer demo». D011 (responsive y accesibilidad/teclado exhaustivos), D012 (cotejo independiente de retornos de cada función) y D013 (cierre integral, incluida auditoría de red) permanecen abiertas; ver límites en [TASKS Playground](../specs/003-domain-models/demo/tasks.md).
+- Control estático confirmó que las 19 funciones están importadas e invocadas (19/19), sin que esto constituya cotejo funcional de cada valor devuelto. La SPEC y el PLAN quedaron actualizados como aprobados/implementados dentro del alcance autorizado.
+- Documentación de la aplicación: [README](../uis/backoffice/trackflow-playground/README.md); resumen técnico y limitaciones en [Playground](trackflow-playground.md). No hubo commit, push, merge ni PR.
+
 ### Hito 003 — utilidades de dominio (2026-11-17)
 
 - `packages/trackflow-utils/` contiene modelos y 19 funciones TypeScript para colecciones, búsqueda, transformaciones y validaciones. `src/index.ts` expone los modelos/tipos y la API funcional.
