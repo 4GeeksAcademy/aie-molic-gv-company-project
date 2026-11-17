@@ -1,8 +1,8 @@
 # TASKS 003-domain-models: utilidades de inventario y transportistas
 
 - **Fecha:** 2026-11-13.
-- **Estado:** planificación aprobada; todas las tareas están pendientes. No se ha comenzado la implementación.
-- **Fuentes aprobadas:** [SPEC 003](spec.md) y [PLAN 003](plan.md); los [requisitos ES](utils/requirements.md) y [EN](utils/requirements.en.md) son la fuente de contratos y reglas.
+- **Estado:** T001–T027 completadas; T028–T032 revisadas en la fase final. T033 sigue pendiente y bloqueada por autorización explícita para preparar/realizar la entrega.
+- **Fuentes aprobadas:** [SPEC 003](spec.md) y [PLAN 003](plan.md); los [requisitos EN](utils/requirements.md) y [ES](utils/requirements.es.md) contienen los contratos actuales.
 - **Alcance:** paquete privado `packages/trackflow-utils/`, sin tocar la web, `packages/shared/`, manifiestos raíz, otros paquetes, backend, persistencia o IA.
 - **Inventario:** 33 tareas en 11 fases. T009–T027 corresponden a las 19 funciones requeridas, una tarea independiente por función.
 
@@ -13,7 +13,7 @@
 - Una tarea de función requiere autorización explícita antes de comenzar. Copilot no implementa automáticamente funciones pendientes ni avanza a otra función sin autorización nueva.
 - La ayuda ordinaria consiste en explicar, preguntar, dar pistas y revisar. El desarrollador puede pedir un ejemplo parcial o ayuda más directa para la función concreta activa.
 - Después de una implementación autorizada, Copilot puede ejecutar la prueba enfocada y el chequeo de tipos, explicar fallos y proponer correcciones. No altera la lógica sin petición explícita.
-- Las decisiones QA-02 a QA-10 siguen siendo propuestas hasta aprobación. Una prueba que dependa de ellas debe quedar pendiente/no ejecutable hasta confirmar la regla; redactar el test no la aprueba.
+- Las decisiones QA solo se consideran aprobadas dentro del alcance expresamente registrado en la tarea correspondiente. QA-01, QA-09 y QA-10, además de los subcasos de QA-04 aún no decididos, siguen pendientes; una prueba no convierte una propuesta en requisito.
 - No ejecutar comandos raíz. Usar solo los scripts documentados del paquete una vez creados. No hacer commits, push ni Pull Requests sin autorización explícita para cada operación.
 
 ## Fase 0 — Preparación del proyecto (Copilot)
@@ -91,185 +91,208 @@ Cada tarea de función se autoriza de forma independiente. Copilot prepara en es
   - **Verificación:** `npm --prefix packages/trackflow-utils test -- tests/collections.test.ts` pasó (1 archivo, 5 pruebas); `npm --prefix packages/trackflow-utils run typecheck` terminó sin errores. Las pruebas confirman que el array original y sus productos no cambian.
   - **Dependencias/QA:** T006–T008. Ninguna QA bloqueante para el contrato especificado. Implementación revisada y aceptada por el desarrollador.
 
-- [ ] **T010 — `filterProductsByCategory`**
+- [x] **T010 — `filterProductsByCategory`**
   - **Archivo/firma:** `src/utils/collections.ts` — `filterProductsByCategory(products: Product[], category: ProductCategory): Product[]`.
   - **Objetivo:** retornar productos cuya `category` coincide.
   - **Conceptos:** `filter`, comparación de literales, arrays.
   - **Pruebas:** una/múltiples coincidencias, otras categorías, ningún resultado, vacío y no mutación.
   - **Aceptación:** devuelve exactamente los productos de la categoría, en orden original, sin alterar entradas.
-  - **Dependencias/QA:** T006–T008. Ninguna QA bloqueante para los casos tipados.
+  - **Verificación:** `npm --prefix packages/trackflow-utils test -- tests/collections.test.ts` pasó (1 archivo, 10 pruebas entre T009 y T010); `npm --prefix packages/trackflow-utils run typecheck` terminó sin errores. Los casos confirman igualdad de categoría, orden de entrada y no mutación.
+  - **Dependencias/QA:** T006–T008. Ninguna QA bloqueante para los casos tipados. Implementación revisada y aceptada por el desarrollador.
 
-- [ ] **T011 — `filterLowStockProducts`**
+- [x] **T011 — `filterLowStockProducts`**
   - **Archivo/firma:** `src/utils/collections.ts` — `filterLowStockProducts(products: Product[]): Product[]`.
   - **Objetivo:** retornar productos con `stockQuantity <= minStockThreshold`.
   - **Conceptos:** comparación inclusiva, límites, predicados.
   - **Pruebas:** stock menor, exactamente igual y mayor al umbral; array vacío; no mutación.
   - **Aceptación:** igualdad al umbral se incluye y valores mayores se excluyen; entradas intactas.
-  - **Dependencias/QA:** T006–T008. No añadir reglas según `status`.
+  - **Verificación:** `npm --prefix packages/trackflow-utils test -- tests/collections.test.ts` pasó (1 archivo, 15 pruebas entre T009–T011); `npm --prefix packages/trackflow-utils run typecheck` terminó sin errores. Se verifican valores por debajo, en el umbral y por encima, array vacío y no mutación.
+  - **Dependencias/QA:** T006–T008. No añadir reglas según `status`. Implementación revisada y aceptada por el desarrollador.
 
 ## Fase 3 — Búsqueda lineal (programación guiada)
 
-- [ ] **T012 — `findProductBySKU`**
+- [x] **T012 — `findProductBySKU`**
   - **Archivo/firma:** `src/utils/search.ts` — `findProductBySKU(products: Product[], sku: string): Product | null`.
   - **Objetivo:** realizar búsqueda lineal por SKU ignorando mayúsculas/minúsculas; retornar producto o `null`.
   - **Conceptos:** recorrido lineal, normalización/comparación de cadenas, retorno nullable.
   - **Pruebas:** SKU exacto y con distinta capitalización, primer/último elemento, SKU inexistente y array vacío; retorno del mismo objeto.
   - **Aceptación:** encuentra el producto correcto sin mutar colección ni objeto; ausente retorna `null`.
-  - **Dependencias/QA:** T006–T008. No ampliar comportamiento para entradas runtime nulas no contempladas en firma (QA-09).
+  - **Verificación:** `npm --prefix packages/trackflow-utils test -- tests/search.test.ts` pasó (1 archivo, 6 pruebas); `npm --prefix packages/trackflow-utils run typecheck` terminó sin errores. Se validan comparación case-insensitive, retorno nullable, posiciones inicial/final y no mutación.
+  - **Dependencias/QA:** T006–T008. No ampliar comportamiento para entradas runtime nulas no contempladas en firma (QA-09). Implementación revisada y aceptada por el desarrollador.
 
-- [ ] **T013 — `findShipmentById`**
+- [x] **T013 — `findShipmentById`**
   - **Archivo/firma:** `src/utils/search.ts` — `findShipmentById(shipments: Shipment[], id: string): Shipment | null`.
   - **Objetivo:** realizar búsqueda lineal por ID y retornar envío o `null`.
   - **Conceptos:** recorrido lineal, comparación de identificadores, retorno nullable.
   - **Pruebas:** ID encontrado al inicio/final, ID ausente, array vacío; retorno del mismo objeto.
   - **Aceptación:** coincide por `id`, retorna `null` si falta y no muta entradas.
-  - **Dependencias/QA:** T006–T008. La sensibilidad de mayúsculas no está especificada; no imponer regla extra.
+  - **Verificación:** `npm --prefix packages/trackflow-utils test -- tests/search.test.ts` pasó (1 archivo, 11 pruebas entre T012 y T013); `npm --prefix packages/trackflow-utils run typecheck` terminó sin errores. Se verifican ID exacto, primer/último, ausente, vacío y no mutación.
+  - **Dependencias/QA:** T006–T008. La sensibilidad de mayúsculas no está especificada; no imponer regla extra. Implementación revisada y aceptada por el desarrollador.
 
 ## Fase 4 — Ordenación (programación guiada)
 
-- [ ] **T014 — `sortProductsByStock`**
+- [x] **T014 — `sortProductsByStock`**
   - **Archivo/firma:** `src/utils/collections.ts` — `sortProductsByStock(products: Product[], order: "asc" | "desc"): Product[]`.
   - **Objetivo:** ordenar por `stockQuantity` según `order`, sin mutar la entrada.
   - **Conceptos:** comparador, orden ascendente/descendente, copia inmutable.
   - **Pruebas:** ambos órdenes, array vacío/unitario, varios valores; comparar orden y referencias de entrada antes/después.
   - **Aceptación:** resultado ordenado correctamente; el array fuente conserva orden y elementos. No fijar expectativa de empates sin resolver QA-04.
+  - **Verificación:** `npm --prefix packages/trackflow-utils test -- tests/collections.test.ts` pasó (1 archivo, 25 pruebas, entre todas las funciones de colecciones); `npm --prefix packages/trackflow-utils run typecheck` terminó sin errores. Para esta función se verifican ambos órdenes, array vacío/unitario, orden correcto y que el array y sus productos no cambian. No se fijan resultados de empates.
   - **Dependencias/QA:** T006–T008. Resolver QA-04 antes de probar desempates/estabilidad.
 
-- [ ] **T015 — `sortCarriersByReliability`**
+- [x] **T015 — `sortCarriersByReliability`**
   - **Archivo/firma:** `src/utils/collections.ts` — `sortCarriersByReliability(carriers: Carrier[], order: "asc" | "desc"): Carrier[]`.
   - **Objetivo:** ordenar por `onTimeRate` de acuerdo con `order`, sin mutar la entrada.
   - **Conceptos:** comparadores, invertir orden, inmutabilidad.
   - **Pruebas:** asc/desc, array vacío/unitario, tasas distintas; verificar que entrada y carriers no cambian.
   - **Aceptación:** orden correcto y fuente intacta; casos de tasas iguales se difieren hasta resolver QA-04.
+  - **Verificación:** `npm --prefix packages/trackflow-utils test -- tests/collections.test.ts` pasó (1 archivo, 25 pruebas, entre todas las funciones de colecciones); `npm --prefix packages/trackflow-utils run typecheck` terminó sin errores. Para esta función se verifican ambos órdenes, array vacío/unitario, tasas distintas y que el array y sus carriers no cambian. No se fijan resultados de tasas iguales.
   - **Dependencias/QA:** T006–T008. QA-04 para empates.
 
 ## Fase 5 — Validaciones (programación guiada)
 
-- [ ] **T016 — `validateProduct`**
+- [x] **T016 — `validateProduct`**
   - **Archivo/firma:** `src/utils/validations.ts` — `validateProduct(product: Product): { valid: boolean; errors: string[] }`.
   - **Objetivo:** validar SKU no vacío, peso `> 0` y `<= 100`, cada dimensión `> 0` y `<= 200`, stock y umbral `>= 0`, coste `> 0`.
   - **Conceptos:** predicados, límites inclusivos/exclusivos, acumulación de errores, tipos de retorno.
   - **Pruebas:** caso válido; una violación por regla; límites exactos (peso 0/100, dimensión 0/200, stock/mínimo 0, coste 0); varias violaciones.
   - **Aceptación:** aplica solo esas reglas; válido retorna `{ valid: true, errors: [] }`; inválido retorna `valid: false` con errores. Mensaje/orden y SKU compuesto solo por espacios: QA-10.
+  - **Verificación:** `npm --prefix packages/trackflow-utils test -- tests/validations.test.ts` pasó (9 pruebas en el archivo para las tres funciones); `npm --prefix packages/trackflow-utils run typecheck` terminó sin errores; la suite completa `npm --prefix packages/trackflow-utils test` pasó (4 archivos, 46 pruebas). Se verifican reglas, límites especificados y acumulación de errores. No se fijan reglas para SKU compuesto solo por espacios ni formato/orden de mensajes (QA-10); no se prueban datos runtime malformados (QA-09).
   - **Dependencias/QA:** T006–T008. Resolver QA-09/QA-10 antes de expectativas sobre datos malformados, mensajes, orden o whitespace.
 
-- [ ] **T017 — `validateShipment`**
+- [x] **T017 — `validateShipment`**
   - **Archivo/firma:** `src/utils/validations.ts` — `validateShipment(shipment: Shipment): { valid: boolean; errors: string[] }`.
   - **Objetivo:** validar `quantity > 0`, `declaredValueUSD > 0` y `destination.distanceKm >= 0`.
   - **Conceptos:** validación de propiedades anidadas, comparación de límites, reporte de errores.
   - **Pruebas:** caso válido; cantidad/valor cero y positivos; distancia cero y negativa; violaciones múltiples.
   - **Aceptación:** distancia cero válida; otros límites siguen las desigualdades estrictas; forma de retorno conforme al contrato.
+  - **Verificación:** `npm --prefix packages/trackflow-utils test -- tests/validations.test.ts` pasó (9 pruebas en el archivo para las tres funciones); `npm --prefix packages/trackflow-utils run typecheck` terminó sin errores; la suite completa `npm --prefix packages/trackflow-utils test` pasó (4 archivos, 46 pruebas). Se verifican cantidad/valor positivos, distancia cero válida y negativa inválida, y acumulación de errores. No se prueban datos runtime malformados ni se fija formato/orden de mensajes (QA-09/QA-10).
   - **Dependencias/QA:** T006–T008. Resolver QA-09/QA-10 antes de ampliar entradas malformadas o fijar política de mensajes.
 
-- [ ] **T018 — `validateCarrier`**
+- [x] **T018 — `validateCarrier`**
   - **Archivo/firma:** `src/utils/validations.ts` — `validateCarrier(carrier: Carrier): { valid: boolean; errors: string[] }`.
   - **Objetivo:** validar tarifas `>= 0`, días y peso máximo `> 0`, `onTimeRate` entre 0 y 100 inclusive y `operatesIn` con al menos un país.
   - **Conceptos:** límites, arrays, varias condiciones y acumulación de errores.
   - **Pruebas:** carrier válido; tasas 0/negativas; días/peso máximo 0; tasa 0/100 y fuera de rango; `operatesIn` vacío/no vacío; errores múltiples.
   - **Aceptación:** aplica todas y solo las reglas indicadas y retorna `valid/errors` con correspondencia correcta.
+  - **Verificación:** `npm --prefix packages/trackflow-utils test -- tests/validations.test.ts` pasó (9 pruebas en el archivo para las tres funciones); `npm --prefix packages/trackflow-utils run typecheck` terminó sin errores; la suite completa `npm --prefix packages/trackflow-utils test` pasó (4 archivos, 46 pruebas). Se verifican tarifas cero/negativas, días y peso máximo, límites de fiabilidad 0/100, países vacíos/no vacíos y acumulación de errores. No se prueban datos runtime malformados ni se fija formato/orden de mensajes (QA-09/QA-10).
   - **Dependencias/QA:** T006–T008. Resolver QA-09/QA-10 antes de validar campos runtime extra o fijar texto/orden de errores.
 
 ## Fase 6 — Agrupaciones y reportes (programación guiada)
 
-- [ ] **T019 — `countProductsByCategory`**
+- [x] **T019 — `countProductsByCategory`**
   - **Archivo/firma:** `src/utils/transformations.ts` — `countProductsByCategory(products: Product[]): Record<ProductCategory, number>`.
   - **Objetivo:** contar productos por categoría.
   - **Conceptos:** acumuladores, `Record`, conteo por clave.
   - **Pruebas:** varias categorías y repetición, categoría ausente, array vacío, no mutación.
   - **Aceptación:** cada conteo corresponde a productos de entrada y el resultado respeta `Record<ProductCategory, number>`.
-  - **Dependencias/QA:** T006–T008. Resolver QA-05 antes de determinar si las categorías ausentes deben tener cero o pueden omitirse.
+  - **Verificación:** `npm --prefix packages/trackflow-utils test -- tests/transformations.test.ts` pasó (1 archivo, 11 pruebas de las tres funciones de Fase 6); typecheck terminó sin errores y la suite completa pasó (5 archivos, 57 pruebas). Se cubren categorías repetidas/presentes, ausentes en cero, entrada vacía y no mutación. QA-05 aprobada: se devuelven todas las claves de categoría.
+  - **Dependencias/QA:** T006–T008. QA-05 aprobada para claves ausentes y entrada vacía.
 
-- [ ] **T020 — `groupShipmentsByStatus`**
+- [x] **T020 — `groupShipmentsByStatus`**
   - **Archivo/firma:** `src/utils/transformations.ts` — `groupShipmentsByStatus(shipments: Shipment[]): Record<ShipmentStatus, Shipment[]>`.
   - **Objetivo:** agrupar envíos por `status`.
   - **Conceptos:** acumulación en objetos, claves de unión, arrays por grupo.
   - **Pruebas:** uno/varios estados, varios envíos del mismo estado, array vacío, referencias y orden dentro de grupo, no mutación.
   - **Aceptación:** cada envío queda bajo su estado y el resultado respeta el tipo `Record`.
-  - **Dependencias/QA:** T006–T008. Resolver QA-05 antes de decidir claves de estado sin envíos.
+  - **Verificación:** `npm --prefix packages/trackflow-utils test -- tests/transformations.test.ts` pasó (1 archivo, 11 pruebas de las tres funciones de Fase 6); typecheck terminó sin errores y la suite completa pasó (5 archivos, 57 pruebas). Se cubren estados presentes/ausentes, varios envíos por estado, array vacío, referencias, orden y no mutación. QA-05 aprobada: se devuelven todas las claves de estado.
+  - **Dependencias/QA:** T006–T008. QA-05 aprobada para claves de estado ausentes y entrada vacía.
 
-- [ ] **T021 — `findTopCarriers`**
+- [x] **T021 — `findTopCarriers`**
   - **Archivo/firma:** `src/utils/transformations.ts` — `findTopCarriers(shipments: Shipment[], topN: number): Array<{ carrier: string; count: number }>`.
   - **Objetivo:** contar carriers de envíos asignados, omitir `null`, ordenar por uso descendente y limitar a `topN`.
   - **Conceptos:** conteo, `Map`/objeto, ordenación, límites y `null` explícito.
   - **Pruebas:** carrier repetido y distintos, `null`, vacío, `topN` menor/igual/mayor que carriers únicos.
   - **Aceptación:** salida descendente, cada conteo correcto, no incluye `null` y no muta shipments.
-  - **Dependencias/QA:** T006–T008. Resolver QA-04 (empates), QA-06 (nombre o ID) y QA-07 (`topN` no positivo/no entero/superior) antes de fijar esos resultados.
+  - **Verificación:** `npm --prefix packages/trackflow-utils test -- tests/transformations.test.ts` pasó (1 archivo, 11 pruebas de las tres funciones de Fase 6); typecheck terminó sin errores y la suite completa pasó (5 archivos, 57 pruebas). Se verifican conteos, orden descendente y de primera aparición para empates, omisión de `null`, topN, entrada vacía, valores inválidos y no mutación. QA-04 aprobada (estabilidad de primera aparición), QA-06 aprobada (usar literalmente `Shipment.carrier`) y QA-07 aprobada (solo entero positivo; no válido, incluido NaN, devuelve `[]`; valores mayores retornan todos los carriers únicos).
+  - **Dependencias/QA:** T006–T008. QA-04, QA-06 y QA-07 aprobadas para las reglas descritas en la verificación.
 
 ## Fase 7 — Búsqueda binaria (programación guiada)
 
-- [ ] **T022 — `binarySearchProductByWeight`**
+- [x] **T022 — `binarySearchProductByWeight`**
   - **Archivo/firma:** `src/utils/search.ts` — `binarySearchProductByWeight(sortedProducts: Product[], targetWeight: number): number`.
   - **Objetivo:** buscar por `weightKg` en array ya ordenado ascendentemente; retornar índice o `-1`.
   - **Conceptos:** búsqueda binaria, límites inclusivos, cálculo de punto medio, complejidad logarítmica.
   - **Pruebas:** coincidencia al inicio/medio/final; peso ausente antes/entre/después; vacío y unitario.
   - **Aceptación:** índice corresponde a producto con peso objetivo; ausente retorna `-1`; entrada intacta y precondición de orden respetada.
-  - **Dependencias/QA:** T006–T008. Resolver QA-08 antes de fijar duplicados y tolerancia decimal; no ordenar la lista dentro de esta función.
+  - **Verificación:** `npm --prefix packages/trackflow-utils test -- tests/phase-7-9.test.ts` pasó (13 pruebas de Fases 7–9); `npm --prefix packages/trackflow-utils run typecheck` terminó sin errores; suite completa: 6 archivos y 70 pruebas pasaron. Se cubren primer/medio/último, ausente antes/entre/después, vacío/unitario, igualdad exacta y no mutación.
+  - **Dependencias/QA:** T006–T008. QA-08 aprobada: igualdad exacta y cualquier índice coincidente si hay duplicados; la función no ordena la entrada.
 
 ## Fase 8 — Cálculos numéricos (programación guiada)
 
-- [ ] **T023 — `calculateTotalInventoryValue`**
+- [x] **T023 — `calculateTotalInventoryValue`**
   - **Archivo/firma:** `src/utils/transformations.ts` — `calculateTotalInventoryValue(products: Product[]): number`.
   - **Objetivo:** sumar `stockQuantity * unitCostUSD` y redondear a dos decimales.
   - **Conceptos:** `reduce`, acumulación monetaria, redondeo.
   - **Pruebas:** producto único, varios productos, stock cero, suma que requiere redondeo y lista vacía; no mutación.
   - **Aceptación:** total coincide con la fórmula y dos decimales; no altera entradas.
-  - **Dependencias/QA:** T006–T008. Casos runtime no finitos/null, si se desean, dependen de QA-09; no añadir reglas implícitas.
+  - **Verificación:** prueba enfocada de Fases 7–9 y typecheck pasaron; suite completa: 6 archivos y 70 pruebas pasaron. Se comprueban varios productos, redondeo, stock cero, entrada vacía y no mutación.
+  - **Dependencias/QA:** T006–T008. No se añadieron reglas para datos runtime no finitos/null (QA-09).
 
-- [ ] **T024 — `calculateAverageShipmentDistance`**
+- [x] **T024 — `calculateAverageShipmentDistance`**
   - **Archivo/firma:** `src/utils/transformations.ts` — `calculateAverageShipmentDistance(shipments: Shipment[]): number`.
   - **Objetivo:** calcular la media de `destination.distanceKm`, redondeada a dos decimales.
   - **Conceptos:** suma/media, acceso anidado, redondeo.
   - **Pruebas:** un envío, varias distancias incluyendo cero, promedio que requiere redondeo, vacío.
-  - **Aceptación:** media y redondeo correctos; resultado para lista vacía solo se acepta tras decisión.
-  - **Dependencias/QA:** T006–T008. Resolver QA-05 antes de fijar el resultado vacío.
+  - **Aceptación:** media y redondeo correctos; resultado para lista vacía es cero según decisión aprobada.
+  - **Verificación:** prueba enfocada de Fases 7–9 y typecheck pasaron; suite completa: 6 archivos y 70 pruebas pasaron. Se comprueban vacío, un envío, múltiples distancias, distancia cero y redondeo.
+  - **Dependencias/QA:** T006–T008. QA-05 aprobada para esta función: lista vacía retorna `0`.
 
-- [ ] **T025 — `calculateShippingCost`**
+- [x] **T025 — `calculateShippingCost`**
   - **Archivo/firma:** `src/utils/transformations.ts` — `calculateShippingCost(shipment: Shipment, product: Product, carrier: Carrier): number`.
   - **Objetivo:** combinar tarifa base, `weightKg * ratePerKgUSD * quantity`, `distanceKm * ratePerKmUSD` y recargo Standard 0 %, Express 30 %, Same-day 60 %; retornar dos decimales.
   - **Conceptos:** fórmula por componentes, porcentajes, selección condicional y redondeo monetario.
   - **Pruebas:** cada prioridad, peso/cantidad/distancia, tasas o distancia cero, subtotal que requiere redondeo.
   - **Aceptación:** usa los campos/fórmulas exactos del briefing y redondea a dos decimales según la base del recargo aprobada.
-  - **Dependencias/QA:** T006–T008. Resolver QA-03 antes de implementar o fijar resultados del recargo; QA-09 solo si se amplía a datos runtime inválidos.
+  - **Verificación:** prueba enfocada de Fases 7–9 y typecheck pasaron; suite completa: 6 archivos y 70 pruebas pasaron. Se prueban las tres prioridades, componentes del subtotal, cálculo de cantidad y redondeo.
+  - **Dependencias/QA:** T006–T008. QA-03 aprobada: recargo aplicado al subtotal completo (base + peso + distancia). No se añadieron reglas runtime de QA-09.
 
 ## Fase 9 — Scoring y selección de transportistas (programación guiada)
 
-- [ ] **T026 — `scoreCarrierForShipment`**
+- [x] **T026 — `scoreCarrierForShipment`**
   - **Archivo/firma:** `src/utils/transformations.ts` — `scoreCarrierForShipment(carrier: Carrier, shipment: Shipment, product: Product): number`.
   - **Objetivo:** puntuar país (+20), peso permitido (+20), prioridad (+15), manejo de frágil (+15 según regla) y fiabilidad (`onTimeRate * 0.3`); redondear a dos decimales.
   - **Conceptos:** puntuación compuesta, condicionales, límites de peso, suma y redondeo.
   - **Pruebas:** cada criterio activado/desactivado aisladamente, frágil/no frágil, peso exactamente al máximo y superior, fiabilidad 0/100/intermedia.
   - **Aceptación:** matriz detallada aplicada exactamente y score conforme a los puntos definidos.
-  - **Dependencias/QA:** T006–T008. Resolver QA-02 sobre la discrepancia del resumen coste/velocidad frente a la fórmula detallada antes de fijar el contrato de prueba; no añadir puntos por cuenta propia.
+  - **Verificación:** prueba enfocada de Fases 7–9 y typecheck pasaron; suite completa: 6 archivos y 70 pruebas pasaron. Se cubren país, peso total y límite, prioridad, producto frágil/no frágil, fiabilidad y redondeo.
+  - **Dependencias/QA:** T006–T008. QA-02 aprobada: aplicar solo la matriz detallada; no agregar puntos de coste o velocidad.
 
-- [ ] **T027 — `selectBestCarrier`**
+- [x] **T027 — `selectBestCarrier`**
   - **Archivo/firma:** `src/utils/transformations.ts` — `selectBestCarrier(carriers: Carrier[], shipment: Shipment, product: Product): { carrier: Carrier; score: number; cost: number } | null`.
   - **Objetivo:** evaluar carriers, excluir score `< 50` y retornar el elegible de menor coste con score/cost, o `null`.
   - **Conceptos:** composición de funciones, filtrado, selección mínima y retorno nullable.
   - **Pruebas:** lista vacía, ninguno elegible, score debajo y exactamente 50, más de un elegible con costes distintos; verificar datos del ganador.
   - **Aceptación:** no selecciona score `< 50`, acepta 50, compara costes y retorna `null` si no hay elegibles.
-  - **Dependencias/QA:** T025 y T026. Resolver QA-02 (score), QA-03 (coste) y QA-04 (empate de coste) antes de aceptar casos dependientes.
+  - **Verificación:** prueba enfocada de Fases 7–9 y typecheck pasaron; suite completa: 6 archivos y 70 pruebas pasaron. Se comprueban entrada vacía, inelegibilidad, umbral inclusivo de 50, menor coste y desempate.
+  - **Dependencias/QA:** T025 y T026. QA-02 y QA-03 aprobadas como se documenta arriba; QA-04 aprobada específicamente para selección: ante coste mínimo empatado, gana el primer carrier elegible de la entrada.
 
 ## Fase final — Verificación y entrega
 
-- [ ] **T028 — Ejecutar todas las pruebas.** Correr `npm --prefix packages/trackflow-utils test` después de que todas las funciones autorizadas estén implementadas y sus tests activos.
+- [x] **T028 — Ejecutar todas las pruebas.** Correr `npm --prefix packages/trackflow-utils test` después de que todas las funciones autorizadas estén implementadas y sus tests activos.
   - **Dependencias:** T009–T027 y QA resueltas para los casos incluidos.
-  - **Finalización:** suite completa pasa; reportar pruebas bloqueadas/omitidas y sus QA, sin presentarlas como aprobadas.
+  - **Verificación:** `npm --prefix packages/trackflow-utils test` pasó el 2026-11-17: 6 archivos, 78 pruebas aprobadas. No se omitieron pruebas de la suite; siguen abiertas QA-04 para empates de ordenación, y QA-09/QA-10 para comportamientos no fijados; no se presentan como aprobados.
+  - **Finalización:** suite completa pasa; las reglas aprobadas y las QA aún abiertas quedan distinguidas.
 
-- [ ] **T029 — Verificar TypeScript sin errores.** Ejecutar `npm --prefix packages/trackflow-utils run typecheck` con `strict` habilitado.
+- [x] **T029 — Verificar TypeScript sin errores.** Ejecutar `npm --prefix packages/trackflow-utils run typecheck` con `strict` habilitado.
   - **Dependencias:** T006–T027.
+  - **Verificación:** `npm --prefix packages/trackflow-utils run typecheck` pasó el 2026-11-17 con `strict: true`; cotejo de las 19 firmas definidas en los cuatro módulos de utilidades frente a `utils/requirements.md` y `utils/requirements.es.md`; `src/index.ts` exporta las 19 funciones y los modelos/tipos. La superficie pública fue añadida al barrel durante esta tarea.
   - **Finalización:** typecheck exitoso y contratos públicos exportados desde `src/index.ts`.
 
-- [ ] **T030 — Revisar pureza y no mutación.** Verificar que todas las funciones dependen de parámetros, no producen efectos externos y no alteran arrays/objetos recibidos.
+- [x] **T030 — Revisar pureza y no mutación.** Verificar que todas las funciones dependen de parámetros, no producen efectos externos y no alteran arrays/objetos recibidos.
   - **Dependencias:** T009–T027.
-  - **Finalización:** casos de mutación pasan en filtros, ordenaciones, búsquedas, agregaciones, cálculos, scoring y validaciones; cualquier limitación se documenta.
+  - **Verificación:** revisión de las 19 implementaciones: todas son cálculos/recorridos sobre argumentos sin I/O, estado global ni asignación a propiedades de entrada; ordenaciones operan sobre copias. Tests explícitos de no mutación cubren filtros, ordenamientos, búsquedas, agregaciones, cálculos, scoring, selección y los tres validadores. Suite completa: 78/78.
+  - **Finalización:** revisión de pureza completa; no se detectaron mutaciones ni efectos externos.
 
-- [ ] **T031 — Documentar comandos de uso y validación.** Actualizar el README propio del paquete con los comandos reales de instalación local, typecheck y pruebas.
+- [x] **T031 — Documentar comandos de uso y validación.** Actualizar el README propio del paquete con los comandos reales de instalación local, typecheck y pruebas.
   - **Dependencias:** T002–T005 y comandos finales verificados.
-  - **Finalización:** README describe únicamente comandos disponibles en el manifiesto local, desde el directorio correcto, sin inventar runner raíz.
+  - **Verificación:** `packages/trackflow-utils/README.md` actualizado con `npm --prefix packages/trackflow-utils ci`, `run typecheck`, `test` y ejemplo de test enfocado; cada comando coincide con el manifiesto/lockfile local y no requiere runner raíz.
+  - **Finalización:** README documenta los comandos disponibles y la API presente.
 
-- [ ] **T032 — Revisar aceptación completa contra SPEC.** Recorrer CA-01 a CA-10, las firmas, límites, no mutación y QA aprobadas; anotar evidencias de ejecución.
+- [x] **T032 — Revisar aceptación completa contra SPEC.** Recorrer CA-01 a CA-10, las firmas, límites, no mutación y QA aprobadas; anotar evidencias de ejecución.
   - **Dependencias:** T028–T031.
-  - **Finalización:** cada criterio está probado, bloqueado por decisión pendiente o reportado con evidencia; no se declara éxito no ejecutado.
+  - **Verificación:** CA-01–CA-08 y CA-10 cotejados con modelos, funciones, tests y revisión de pureza; CA-09 cotejado con casos límite y decisiones QA registradas. Suite 78/78 y typecheck strict pasaron. QA-01, QA-04 (empates de ordenación no definidos), QA-09/QA-10 quedan pendientes para nombre del hito, datos runtime malformados, valores no finitos, SKU en blanco/whitespace y política de mensajes; no se agregaron reglas por inferencia. La comparación EN/ES identificó nombres/enlaces inconsistentes; se mantienen los archivos sin rename/restore y la ruta definitiva requiere decisión.
+  - **Finalización:** todos los criterios tienen evidencia o limitaciones/QA pendientes reportadas; no se declara resuelto aquello que sigue abierto.
 
 - [ ] **T033 — Preparar commit y Pull Request hacia `main` (bloqueado por autorización).** Revisar estado/diff, preparar resumen y propuesta de commit/PR. Ejecutar commit, push o crear PR solo después de autorización explícita del desarrollador para cada operación.
   - **Dependencias:** T032 y autorización explícita. Revisar Memory Bank, README del paquete, cambios ajenos y archivos dentro del alcance.
@@ -277,4 +300,4 @@ Cada tarea de función se autoriza de forma independiente. Copilot prepara en es
 
 ## Cierre
 
-Esta lista define el orden y las verificaciones, pero no inicia trabajo de implementación. Las tareas T009–T027 permanecen sujetas a autorización individual. QA-02 a QA-10 se mantienen como propuestas pendientes hasta confirmación expresa; ninguna tarea las convierte en requisitos por estar documentada aquí.
+Esta lista define el orden y las verificaciones. T001–T032 reflejan trabajo y evidencia ejecutados; T033 no está completada ni autorizada. QA-02, QA-03, QA-04 (para cada decisión específica), QA-05, QA-06, QA-07 y QA-08 tienen las aprobaciones de alcance acotado anotadas en las tareas dependientes. QA-01, QA-09 y QA-10 siguen pendientes; las propuestas no aprobadas no se convierten en requisitos por estar documentadas aquí.

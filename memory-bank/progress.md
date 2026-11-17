@@ -2,6 +2,14 @@
 
 ## Estado actual
 
+### Hito 003 — utilidades de dominio (2026-11-17)
+
+- `packages/trackflow-utils/` contiene modelos y 19 funciones TypeScript para colecciones, búsqueda, transformaciones y validaciones. `src/index.ts` expone los modelos/tipos y la API funcional.
+- Verificación final T028–T032: `npm --prefix packages/trackflow-utils test` pasó (6 archivos, 78 tests); `npm --prefix packages/trackflow-utils run typecheck` pasó con la configuración estricta del paquete. Hay pruebas explícitas de no mutación en todas las familias; revisión estática no encontró I/O ni escrituras a entradas.
+- `packages/trackflow-utils/README.md` describe instalación y comandos locales reales. T028–T032 están marcadas completas en [TASKS 003](../specs/003-domain-models/tasks.md); T033 permanece pendiente y no se ha hecho commit, push ni PR.
+- Decisiones QA acotadas: QA-02/03/04 (empates en las funciones con decisión específica)/05/06/07/08 aprobadas en los términos registrados en TASKS 003. QA-01, QA-04 (empates de `sortProductsByStock`/`sortCarriersByReliability`), QA-09 y QA-10 permanecen abiertas; las conductas no especificadas (por ejemplo datos runtime malformados y SKU de solo espacios) no se infieren ni se declaran aceptadas.
+- **Documentación bilingüe:** convención verificada y aplicada: `specs/003-domain-models/utils/requirements.md` es la versión inglesa y `requirements.es.md` la española. SPEC, PLAN y TASKS enlazan ahora las rutas correctas; no se modificó el contenido de los requisitos ni se restauró ningún archivo obsoleto.
+
 ## Estado vigente — 2026-10-26
 
 - **SPEC 001 — Landing:** implementada y aprobada históricamente con limitaciones registradas en el README del website; el historial de TASKS 001 contiene entradas contradictorias y aún debe reconciliarse. La aprobación anterior no acredita automáticamente la entrega actual.
@@ -13,7 +21,6 @@
 ### Historial anterior
 
 Los apartados fechados a continuación reflejan lo observado en su momento. Las referencias a `application.html` y `validation.js` vacíos son **históricas** y no describen el estado actual.
-
 
 El repositorio parte de una plantilla con documentación y estructura de carpetas, no de una solución operativa de TrackFlow. `CONTEXT.md` sí contiene el briefing de la empresa, aunque el README raíz todavía lo describe como placeholder.
 
@@ -54,7 +61,6 @@ Próximos pasos en documentación:
 ## Siguientes pasos inmediatos
 
 **Prioridad para la entrega actual:** verificar reset y validación en tiempo real en navegador, auditar Lighthouse de nuevo, guardar evidencia y verificar URL pública/PR. Las tareas históricas siguientes siguen registradas para reconciliación documental, sin impedir describir la implementación actual.
-
 
 1. Reconciliar las casillas de estado, evidencias y notas finales de [TASKS 001](../specs/001-website/tasks.md), que no describen un estado coherente.
 2. Restablecer la disponibilidad pública de revisión y completar los pendientes de T041+T042, T044–T045 y T047–T050. T043 queda cerrada con la limitación aceptada del zoom. T040 y T046 figuran completadas históricamente, pero la URL de T040 ya no está disponible en la última comprobación.

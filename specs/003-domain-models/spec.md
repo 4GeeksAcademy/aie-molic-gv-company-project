@@ -5,17 +5,17 @@
 - **Funcionalidad:** `003-domain-models`.
 - **Stakeholder del briefing:** Ana Whitfield, Directora de Operaciones de Almacén.
 - **Idioma de esta SPEC:** español; los identificadores, nombres, propiedades, literales y firmas TypeScript se conservan exactamente como en los requisitos.
-- **Fuente normativa:** [requisitos en español](utils/requirements.md) y [requisitos en inglés](utils/requirements.en.md).
+- **Fuente normativa:** [requisitos en inglés](utils/requirements.md) y [requisitos en español](utils/requirements.es.md).
 
 ## 1. Fuentes, precedencia y convenciones
 
-| Fuente | Aplicación en esta SPEC |
-| --- | --- |
-| [Requisitos ES](utils/requirements.md) y [EN](utils/requirements.en.md) | Fuente de verdad del dominio, interfaces, funciones, reglas de validación y criterios de aceptación del ejercicio. |
-| [AGENTS.md](../../AGENTS.md) y [regla de desarrollo](../../.agents/rules/trackflow-development.md) | Límites de alcance, distinción entre requisitos y funcionalidades implementadas, preservación del dominio y decisiones pendientes. |
-| [README raíz](../../README.md) y [README raíz en español](../../README.es.md) | Organización del monorepo y carácter orientativo de sus recomendaciones. |
-| [README de `packages/`](../../packages/README.md) y su [versión en español](../../packages/README.es.md) | Guía sobre la responsabilidad de los paquetes reutilizables; no selecciona en esta SPEC la ubicación física del componente. |
-| [Memory Bank](../../memory-bank/projectbrief.md), [contexto técnico](../../memory-bank/techContext.md) y [progreso](../../memory-bank/progress.md) | Estado conocido, tecnologías no adoptadas y límite respecto de la propuesta futura de recomendación de transportistas. |
+| Fuente                                                                                                                                                                                                                                     | Aplicación en esta SPEC                                                                                                                      |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Requisitos EN](utils/requirements.md) y [ES](utils/requirements.es.md)                                                                                                                                                                    | Fuente de verdad del dominio, interfaces, funciones, reglas de validación y criterios de aceptación del ejercicio.                           |
+| [AGENTS.md](../../AGENTS.md) y [regla de desarrollo](../../.agents/rules/trackflow-development.md)                                                                                                                                         | Límites de alcance, distinción entre requisitos y funcionalidades implementadas, preservación del dominio y decisiones pendientes.           |
+| [README raíz](../../README.md) y [README raíz en español](../../README.es.md)                                                                                                                                                              | Organización del monorepo y carácter orientativo de sus recomendaciones.                                                                     |
+| [README de `packages/`](../../packages/README.md) y su [versión en español](../../packages/README.es.md)                                                                                                                                   | Guía sobre la responsabilidad de los paquetes reutilizables; no selecciona en esta SPEC la ubicación física del componente.                  |
+| [Memory Bank](../../memory-bank/projectbrief.md), [contexto técnico](../../memory-bank/techContext.md) y [progreso](../../memory-bank/progress.md)                                                                                         | Estado conocido, tecnologías no adoptadas y límite respecto de la propuesta futura de recomendación de transportistas.                       |
 | [SPEC 001](../001-website/spec.md), [PLAN 001](../001-website/plan.md), [TASKS 001](../001-website/tasks.md), [SPEC 002](../002-website-form/spec.md), [PLAN 002](../002-website-form/plan.md) y [TASKS 002](../002-website-form/tasks.md) | Convención SDD observada: fuentes, objetivo, alcance/exclusiones, escenarios, requisitos, aceptación verificable y cierre explícito de fase. |
 
 Esta SPEC describe requisitos funcionales y de calidad. No elige la carpeta física del paquete, herramientas, dependencias, configuración, comandos, estrategia de pruebas ni estructura de implementación más allá de los nombres de módulos indicados por los requisitos. Esas decisiones pertenecen al PLAN y requieren las aprobaciones aplicables.
@@ -203,15 +203,15 @@ Los requisitos no expresan explícitamente sobre qué importe se aplica el recar
 
 **`scoreCarrierForShipment`** retorna el puntaje de idoneidad redondeado a 2 decimales, según estos componentes:
 
-| Criterio | Puntos |
-| --- | --- |
-| El carrier opera en `shipment.destination.country` | +20; en caso contrario, 0 |
-| `product.weightKg * shipment.quantity <= carrier.maxWeightKg` | +20; en caso contrario, 0 |
-| `carrier.acceptsPriority` contiene `shipment.priority` | +15; en caso contrario, 0 |
-| Producto frágil y `carrier.handlesFragile` verdadero | +15 |
-| Producto no frágil | +15 |
-| Producto frágil y carrier incapaz de manejarlo | 0 |
-| Fiabilidad | `carrier.onTimeRate * 0.3` puntos |
+| Criterio                                                      | Puntos                            |
+| ------------------------------------------------------------- | --------------------------------- |
+| El carrier opera en `shipment.destination.country`            | +20; en caso contrario, 0         |
+| `product.weightKg * shipment.quantity <= carrier.maxWeightKg` | +20; en caso contrario, 0         |
+| `carrier.acceptsPriority` contiene `shipment.priority`        | +15; en caso contrario, 0         |
+| Producto frágil y `carrier.handlesFragile` verdadero          | +15                               |
+| Producto no frágil                                            | +15                               |
+| Producto frágil y carrier incapaz de manejarlo                | 0                                 |
+| Fiabilidad                                                    | `carrier.onTimeRate * 0.3` puntos |
 
 **`selectBestCarrier`** calcula puntuación y coste para los carriers recibidos, descarta los que obtengan un puntaje menor que 50 y, entre los restantes, elige el de menor coste. Retorna `{ carrier, score, cost }` para el elegido o `null` si no queda ninguno adecuado. El umbral es inclusivo en 50.
 
@@ -250,32 +250,32 @@ Cada función retorna `valid: true` si se cumplen todas las reglas enumeradas pa
 
 #### RF-05.1 Reglas para `Product`
 
-| Propiedad | Regla válida |
-| --- | --- |
-| `sku` | No está vacío. |
-| `weightKg` | Mayor que 0 y menor o igual a 100. |
+| Propiedad                                                          | Regla válida                                         |
+| ------------------------------------------------------------------ | ---------------------------------------------------- |
+| `sku`                                                              | No está vacío.                                       |
+| `weightKg`                                                         | Mayor que 0 y menor o igual a 100.                   |
 | `dimensions.lengthCm`, `dimensions.widthCm`, `dimensions.heightCm` | Cada dimensión es mayor que 0 y menor o igual a 200. |
-| `stockQuantity` | Mayor o igual a 0. |
-| `minStockThreshold` | Mayor o igual a 0. |
-| `unitCostUSD` | Mayor que 0. |
+| `stockQuantity`                                                    | Mayor o igual a 0.                                   |
+| `minStockThreshold`                                                | Mayor o igual a 0.                                   |
+| `unitCostUSD`                                                      | Mayor que 0.                                         |
 
 #### RF-05.2 Reglas para `Shipment`
 
-| Propiedad | Regla válida |
-| --- | --- |
-| `quantity` | Mayor que 0. |
-| `declaredValueUSD` | Mayor que 0. |
+| Propiedad                | Regla válida       |
+| ------------------------ | ------------------ |
+| `quantity`               | Mayor que 0.       |
+| `declaredValueUSD`       | Mayor que 0.       |
 | `destination.distanceKm` | Mayor o igual a 0. |
 
 #### RF-05.3 Reglas para `Carrier`
 
-| Propiedad | Regla válida |
-| --- | --- |
-| `baseRateUSD`, `ratePerKgUSD`, `ratePerKmUSD` | Cada tarifa es mayor o igual a 0. |
-| `avgDeliveryDays` | Mayor que 0. |
-| `onTimeRate` | Entre 0 y 100, incluidos ambos extremos. |
-| `maxWeightKg` | Mayor que 0. |
-| `operatesIn` | Contiene al menos un país. |
+| Propiedad                                     | Regla válida                             |
+| --------------------------------------------- | ---------------------------------------- |
+| `baseRateUSD`, `ratePerKgUSD`, `ratePerKmUSD` | Cada tarifa es mayor o igual a 0.        |
+| `avgDeliveryDays`                             | Mayor que 0.                             |
+| `onTimeRate`                                  | Entre 0 y 100, incluidos ambos extremos. |
+| `maxWeightKg`                                 | Mayor que 0.                             |
+| `operatesIn`                                  | Contiene al menos un país.               |
 
 No se han proporcionado reglas de validación adicionales para los campos no listados ni para `InventoryMovement`.
 
@@ -291,19 +291,19 @@ No se han proporcionado reglas de validación adicionales para los campos no lis
 
 ## 7. Casos límite y comportamiento especificado
 
-| Caso | Comportamiento que sí fijan los requisitos |
-| --- | --- |
-| Filtro sin coincidencias o lista vacía | El resultado es una lista vacía. |
-| Ordenación de lista vacía | El resultado es una lista vacía; la lista de entrada no se altera. |
-| SKU sin coincidencia | `findProductBySKU` retorna `null`; la comparación para coincidencias ignora mayúsculas/minúsculas. |
-| ID de envío sin coincidencia | `findShipmentById` retorna `null`. |
-| Peso sin coincidencia | `binarySearchProductByWeight` retorna `-1`. La entrada se considera ordenada ascendentemente por el llamador. |
-| Carrier no asignado | `Shipment.carrier` puede ser `null`; `findTopCarriers` lo ignora. |
-| Ningún carrier elegible | `selectBestCarrier` retorna `null`, incluso si la lista está vacía. |
+| Caso                                           | Comportamiento que sí fijan los requisitos                                                                                                    |
+| ---------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| Filtro sin coincidencias o lista vacía         | El resultado es una lista vacía.                                                                                                              |
+| Ordenación de lista vacía                      | El resultado es una lista vacía; la lista de entrada no se altera.                                                                            |
+| SKU sin coincidencia                           | `findProductBySKU` retorna `null`; la comparación para coincidencias ignora mayúsculas/minúsculas.                                            |
+| ID de envío sin coincidencia                   | `findShipmentById` retorna `null`.                                                                                                            |
+| Peso sin coincidencia                          | `binarySearchProductByWeight` retorna `-1`. La entrada se considera ordenada ascendentemente por el llamador.                                 |
+| Carrier no asignado                            | `Shipment.carrier` puede ser `null`; `findTopCarriers` lo ignora.                                                                             |
+| Ningún carrier elegible                        | `selectBestCarrier` retorna `null`, incluso si la lista está vacía.                                                                           |
 | Valor exactamente en los límites de validación | Se aplican literalmente los operadores de §5: los límites expresados con `<=` o `>=` son válidos; los límites estrictos `>` no incluyen cero. |
-| Distancia igual a cero | Es válida para `Shipment`. |
-| Tarifas iguales a cero | Son válidas para `Carrier`. |
-| Fiabilidad igual a 0 o 100 | Es válida para `Carrier`. |
+| Distancia igual a cero                         | Es válida para `Shipment`.                                                                                                                    |
+| Tarifas iguales a cero                         | Son válidas para `Carrier`.                                                                                                                   |
+| Fiabilidad igual a 0 o 100                     | Es válida para `Carrier`.                                                                                                                     |
 
 No se asigna un resultado no indicado para medias de listas vacías, claves ausentes en agrupaciones/registros, valores de `topN` fuera de rango o empates. Esos casos se registran en §9 y deben resolverse antes de fijar sus criterios de prueba.
 
@@ -311,35 +311,35 @@ No se asigna un resultado no indicado para medias de listas vacías, claves ause
 
 Los criterios describen comprobaciones futuras de la implementación; redactar esta SPEC no acredita que estén superadas. Cuando un criterio dependa de una cuestión abierta de §9, su cierre requiere la aclaración correspondiente.
 
-| ID | Comprobación y resultado exigido | Trazabilidad |
-| --- | --- | --- |
-| CA-01 | Las interfaces, propiedades, tipos y literales de §4 existen con los mismos nombres y tipos. `Shipment.carrier` admite `string \| null`; fechas usan `Date`. | §4; requisitos de tipo |
-| CA-02 | Las cinco funciones de colecciones filtran/ordenan por las propiedades definidas y ambas ordenaciones respetan `asc`/`desc`; las entradas no quedan mutadas. Las listas vacías y sin coincidencias producen listas vacías. | RF-01; §6; §7 |
-| CA-03 | `findProductBySKU` encuentra SKU ignorando capitalización y retorna `null` al faltar; `findShipmentById` busca por ID y retorna `null` al faltar; búsqueda binaria retorna un índice válido al encontrar el peso o `-1` al no encontrarlo. | RF-02 |
-| CA-04 | El coste usa la tarifa base, el coste por peso multiplicado por cantidad, el coste por distancia y los porcentajes de prioridad especificados; el resultado se redondea a 2 decimales conforme a la aclaración del recargo pendiente. | RF-03; cuestión abierta QA-02 |
-| CA-05 | Cada condición de `scoreCarrierForShipment` aporta exactamente los puntos indicados, incluida la fórmula `onTimeRate * 0.3`; el resultado se redondea a 2 decimales. | RF-03 |
-| CA-06 | `selectBestCarrier` excluye puntuaciones `< 50`, puede seleccionar puntuación `50`, elige el coste mínimo entre elegibles y retorna `null` si ninguno es elegible. | RF-03 |
-| CA-07 | Las agregaciones producen conteos por categoría, total de inventario según `stockQuantity * unitCostUSD`, distancia media, grupos por estado y carriers más usados; total y media se redondean a 2 decimales. `findTopCarriers` omite carriers `null` y ordena conteos descendentes. | RF-04 |
-| CA-08 | `validateProduct`, `validateShipment` y `validateCarrier` aceptan/rechazan las condiciones y límites exactos de §5. Un resultado válido tiene `valid: true` y `errors: []`; uno inválido tiene `valid: false` y errores. | RF-05 |
-| CA-09 | Los casos explícitos de §7 se verifican. Los casos con comportamiento abierto no se consideran aprobados por una convención implícita: requieren resolución documentada antes del test correspondiente. | §7; §9 |
-| CA-10 | La implementación no muta entradas, no depende de variables globales ni produce efectos externos; cada función se mantiene en la responsabilidad lógica indicada y conserva las firmas tipadas. | §5; §6 |
+| ID    | Comprobación y resultado exigido                                                                                                                                                                                                                                                     | Trazabilidad                  |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------- |
+| CA-01 | Las interfaces, propiedades, tipos y literales de §4 existen con los mismos nombres y tipos. `Shipment.carrier` admite `string \| null`; fechas usan `Date`.                                                                                                                         | §4; requisitos de tipo        |
+| CA-02 | Las cinco funciones de colecciones filtran/ordenan por las propiedades definidas y ambas ordenaciones respetan `asc`/`desc`; las entradas no quedan mutadas. Las listas vacías y sin coincidencias producen listas vacías.                                                           | RF-01; §6; §7                 |
+| CA-03 | `findProductBySKU` encuentra SKU ignorando capitalización y retorna `null` al faltar; `findShipmentById` busca por ID y retorna `null` al faltar; búsqueda binaria retorna un índice válido al encontrar el peso o `-1` al no encontrarlo.                                           | RF-02                         |
+| CA-04 | El coste usa la tarifa base, el coste por peso multiplicado por cantidad, el coste por distancia y los porcentajes de prioridad especificados; el resultado se redondea a 2 decimales conforme a la aclaración del recargo pendiente.                                                | RF-03; cuestión abierta QA-02 |
+| CA-05 | Cada condición de `scoreCarrierForShipment` aporta exactamente los puntos indicados, incluida la fórmula `onTimeRate * 0.3`; el resultado se redondea a 2 decimales.                                                                                                                 | RF-03                         |
+| CA-06 | `selectBestCarrier` excluye puntuaciones `< 50`, puede seleccionar puntuación `50`, elige el coste mínimo entre elegibles y retorna `null` si ninguno es elegible.                                                                                                                   | RF-03                         |
+| CA-07 | Las agregaciones producen conteos por categoría, total de inventario según `stockQuantity * unitCostUSD`, distancia media, grupos por estado y carriers más usados; total y media se redondean a 2 decimales. `findTopCarriers` omite carriers `null` y ordena conteos descendentes. | RF-04                         |
+| CA-08 | `validateProduct`, `validateShipment` y `validateCarrier` aceptan/rechazan las condiciones y límites exactos de §5. Un resultado válido tiene `valid: true` y `errors: []`; uno inválido tiene `valid: false` y errores.                                                             | RF-05                         |
+| CA-09 | Los casos explícitos de §7 se verifican. Los casos con comportamiento abierto no se consideran aprobados por una convención implícita: requieren resolución documentada antes del test correspondiente.                                                                              | §7; §9                        |
+| CA-10 | La implementación no muta entradas, no depende de variables globales ni produce efectos externos; cada función se mantiene en la responsabilidad lógica indicada y conserva las firmas tipadas.                                                                                      | §5; §6                        |
 
 ## 9. Discrepancias y preguntas abiertas
 
 Se conservan sin resolver; esta SPEC no altera los requisitos originales.
 
-| ID | Discrepancia o ambigüedad | Consecuencia / aclaración necesaria |
-| --- | --- | --- |
-| QA-01 | El encabezado del requisito identifica el ejercicio como **Milestone 2 / Hito 2**, mientras que la solicitud de trabajo lo denomina tercer hito. Los archivos están bajo `specs/003-domain-models/`. | Confirmar la numeración/título oficial del hito. La carpeta se conserva como `003-domain-models` en esta documentación. |
-| QA-02 | El resumen de objetivos dice que el scoring de carriers se basa en coste, velocidad y fiabilidad; la fórmula detallada de `scoreCarrierForShipment` puntúa país, peso, prioridad, fragilidad y fiabilidad, sin coste ni `avgDeliveryDays`. | Confirmar si el resumen es general o si coste/velocidad debían formar parte del scoring. No se añaden puntos ni criterios a la fórmula detallada en esta SPEC. |
-| QA-03 | Para `calculateShippingCost` se enumeran componentes y porcentajes de recargo, pero no se indica explícitamente si el recargo se aplica a la tarifa base, al subtotal de base + peso + distancia u otra base. | Confirmar la operación exacta antes de implementar o fijar el valor esperado de coste. |
-| QA-04 | No se define desempate para ordenaciones con mismo stock/fiabilidad, carriers de igual coste en `selectBestCarrier` ni carriers con igual conteo en `findTopCarriers`. | Definir si basta cualquier orden entre empates o si se requiere estabilidad/desempate secundario. |
-| QA-05 | No se fija el resultado de `calculateAverageShipmentDistance([])`, ni si los registros/agrupaciones incluyen todas las categorías/estados con cero/arrays vacíos o solo claves observadas. | Precisar el comportamiento de entradas vacías y claves sin elementos, en especial porque los retornos son `Record<...>`. |
-| QA-06 | `Shipment.carrier` es `string | null`, pero no se especifica si la cadena representa `Carrier.id` o `Carrier.name`; `findTopCarriers` dice devolver el nombre del carrier. | Confirmar el valor almacenado en `Shipment.carrier` y si la salida debe conservar ese string o resolver una relación con `Carrier`. No se añade un parámetro ni una entidad a la firma. |
-| QA-07 | `topN` no tiene reglas para cero, valores negativos o no enteros. Tampoco se define el resultado si excede el número de carriers disponibles. | Confirmar los límites admitidos y el comportamiento esperado. |
-| QA-08 | Búsqueda binaria no define qué índice retornar si varios productos tienen el mismo `weightKg`, ni la tolerancia ante decimales de punto flotante. | Confirmar si cualquier índice coincidente es válido y si la comparación es exacta, o especificar otra regla. |
-| QA-09 | La aceptación general solicita tratar «null values» y datos inválidos con gracia, pero las firmas reciben arrays y entidades no nulos, excepto `Shipment.carrier`. Las reglas de validación solo cubren los campos listados en §5. | Confirmar si «null» se refiere únicamente a `Shipment.carrier` y si deben validarse campos adicionales, valores no finitos (`NaN`/`Infinity`), cadenas en blanco u otros datos malformados. No ampliar las validaciones por inferencia. |
-| QA-10 | Los requisitos no precisan la política exacta de errores de validación: texto, idioma, orden, granularidad ni si se reportan todas las reglas fallidas en una llamada. Además, `sku must not be empty` no especifica si una cadena de solo espacios cuenta como vacía. | Confirmar esos detalles solo si se requieren para implementar o evaluar de forma uniforme; no inventar textos o reglas adicionales. |
+| ID    | Discrepancia o ambigüedad                                                                                                                                                                                                                                              | Consecuencia / aclaración necesaria                                                                                                                                                                                                     |
+| ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| QA-01 | El encabezado del requisito identifica el ejercicio como **Milestone 2 / Hito 2**, mientras que la solicitud de trabajo lo denomina tercer hito. Los archivos están bajo `specs/003-domain-models/`.                                                                   | Confirmar la numeración/título oficial del hito. La carpeta se conserva como `003-domain-models` en esta documentación.                                                                                                                 |
+| QA-02 | El resumen de objetivos dice que el scoring de carriers se basa en coste, velocidad y fiabilidad; la fórmula detallada de `scoreCarrierForShipment` puntúa país, peso, prioridad, fragilidad y fiabilidad, sin coste ni `avgDeliveryDays`.                             | Confirmar si el resumen es general o si coste/velocidad debían formar parte del scoring. No se añaden puntos ni criterios a la fórmula detallada en esta SPEC.                                                                          |
+| QA-03 | Para `calculateShippingCost` se enumeran componentes y porcentajes de recargo, pero no se indica explícitamente si el recargo se aplica a la tarifa base, al subtotal de base + peso + distancia u otra base.                                                          | Confirmar la operación exacta antes de implementar o fijar el valor esperado de coste.                                                                                                                                                  |
+| QA-04 | No se define desempate para ordenaciones con mismo stock/fiabilidad, carriers de igual coste en `selectBestCarrier` ni carriers con igual conteo en `findTopCarriers`.                                                                                                 | Definir si basta cualquier orden entre empates o si se requiere estabilidad/desempate secundario.                                                                                                                                       |
+| QA-05 | No se fija el resultado de `calculateAverageShipmentDistance([])`, ni si los registros/agrupaciones incluyen todas las categorías/estados con cero/arrays vacíos o solo claves observadas.                                                                             | Precisar el comportamiento de entradas vacías y claves sin elementos, en especial porque los retornos son `Record<...>`.                                                                                                                |
+| QA-06 | `Shipment.carrier` es `string                                                                                                                                                                                                                                          | null`, pero no se especifica si la cadena representa `Carrier.id`o`Carrier.name`; `findTopCarriers` dice devolver el nombre del carrier.                                                                                                | Confirmar el valor almacenado en `Shipment.carrier` y si la salida debe conservar ese string o resolver una relación con `Carrier`. No se añade un parámetro ni una entidad a la firma. |
+| QA-07 | `topN` no tiene reglas para cero, valores negativos o no enteros. Tampoco se define el resultado si excede el número de carriers disponibles.                                                                                                                          | Confirmar los límites admitidos y el comportamiento esperado.                                                                                                                                                                           |
+| QA-08 | Búsqueda binaria no define qué índice retornar si varios productos tienen el mismo `weightKg`, ni la tolerancia ante decimales de punto flotante.                                                                                                                      | Confirmar si cualquier índice coincidente es válido y si la comparación es exacta, o especificar otra regla.                                                                                                                            |
+| QA-09 | La aceptación general solicita tratar «null values» y datos inválidos con gracia, pero las firmas reciben arrays y entidades no nulos, excepto `Shipment.carrier`. Las reglas de validación solo cubren los campos listados en §5.                                     | Confirmar si «null» se refiere únicamente a `Shipment.carrier` y si deben validarse campos adicionales, valores no finitos (`NaN`/`Infinity`), cadenas en blanco u otros datos malformados. No ampliar las validaciones por inferencia. |
+| QA-10 | Los requisitos no precisan la política exacta de errores de validación: texto, idioma, orden, granularidad ni si se reportan todas las reglas fallidas en una llamada. Además, `sku must not be empty` no especifica si una cadena de solo espacios cuenta como vacía. | Confirmar esos detalles solo si se requieren para implementar o evaluar de forma uniforme; no inventar textos o reglas adicionales.                                                                                                     |
 
 **Coincidencia ES/EN:** en los apartados leídos no se detectaron diferencias entre las dos versiones en nombres, firmas, tipos, fórmulas detalladas, límites de validación ni criterios de aceptación. Las ambigüedades QA-02 a QA-10 están presentes en ambos requisitos; no son discrepancias de traducción. QA-01 es una diferencia entre el encabezado del requisito y la descripción de esta solicitud, no entre las versiones ES/EN.
 
